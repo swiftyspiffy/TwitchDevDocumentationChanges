@@ -369,11 +369,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "id",
         "type": "string",
         "description": "Transaction IDs to look up. Can include multiple to fetch multiple transactions in a single request.. . Format: Repeated Query Parameter, eg. /helix/extensions/transactions?extension_id=1234&amp;id=1&amp;id=2&amp;id=3. . Maximum: 100"
@@ -390,11 +385,6 @@
       }
     ],
     "response_fields": [
-      {
-        "parameter": "\n      ",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "pagination",
         "type": "object containing a string",
@@ -1416,11 +1406,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Param",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "code",
         "type": "String",
         "description": "The code to get the status of. Repeat this query parameter additional times to get the status of multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
@@ -1434,11 +1419,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": [
-      {
-        "parameter": "Param",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "data",
         "type": "Array of payloads each of which includes code (string) and status (string).",
@@ -1537,11 +1517,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "code",
         "type": "String",
         "description": "The code to redeem to the authenticated user’s account.. . A fifteen character (plus optional hyphen separators) alphanumeric string, e.g. ABCDE-12345-FGHIJ. . Repeat this query parameter additional times to redeem multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
@@ -1555,11 +1530,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "data",
         "type": "Array of payloads each of which includes code (string) and status (string).",
@@ -1869,11 +1839,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "broadcaster_id",
         "type": "string",
         "description": "User ID of the broadcaster. Must match the User ID in the Bearer token if User Token is used."
@@ -1881,11 +1846,6 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "first",
         "type": "integer",
@@ -1903,11 +1863,6 @@
       }
     ],
     "response_fields": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "id",
         "type": "string",
@@ -2036,11 +1991,6 @@
     "optional_query_parameters": [],
     "response_fields": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "msg_id",
         "type": "string",
         "description": "The msg_id passed in the body of the POST message. Maps each message to its status."
@@ -2065,11 +2015,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "broadcaster_id",
         "type": "string",
         "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
@@ -2077,11 +2022,6 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "user_id",
         "type": "string",
@@ -2099,11 +2039,6 @@
       }
     ],
     "response_fields": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "id",
         "type": "string",
@@ -2179,11 +2114,6 @@
     ],
     "response_fields": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "user_id",
         "type": "string",
         "description": "User ID of a user who has been banned."
@@ -2248,11 +2178,6 @@
     ],
     "response_fields": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "user_id",
         "type": "string",
         "description": "User ID of a moderator in the channel."
@@ -2287,11 +2212,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "broadcaster_id",
         "type": "string",
         "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
@@ -2300,11 +2220,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "id",
         "type": "string",
@@ -2795,11 +2710,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "broadcaster_id",
         "type": "string",
         "description": "User ID of the broadcaster. Must match the User ID in the Bearer token."
@@ -2808,11 +2718,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": [
-      {
-        "parameter": "Parameter",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "broadcaster_id",
         "type": "string",
@@ -2880,11 +2785,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [
       {
-        "parameter": "Name",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "after",
         "type": "string",
         "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
@@ -2901,11 +2801,6 @@
       }
     ],
     "response_fields": [
-      {
-        "parameter": "Field",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "id",
         "type": "string",
@@ -2951,11 +2846,6 @@
     },
     "required_query_parameters": [
       {
-        "parameter": "Name",
-        "type": "Type",
-        "description": "Description"
-      },
-      {
         "parameter": "broadcaster_id",
         "type": "string",
         "description": "ID of the stream thats tags are going to be fetched"
@@ -2964,11 +2854,6 @@
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": [
-      {
-        "parameter": "Field",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "is_auto",
         "type": "Boolean",
@@ -3003,11 +2888,6 @@
       "url": "https://api.twitch.tv/helix/streams/tags"
     },
     "required_query_parameters": [
-      {
-        "parameter": "\n      ",
-        "type": "Type",
-        "description": "Description"
-      },
       {
         "parameter": "broadcaster_id",
         "type": "string",

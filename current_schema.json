@@ -359,10 +359,133 @@
       "method": "GET",
       "url": "https://api.twitch.tv/helix/extensions/transactions"
     },
-    "required_query_parameters": [],
+    "required_query_parameters": [
+      {
+        "parameter": "extension_id",
+        "type": "string",
+        "description": "ID of the extension to list transactions for. Maximum: 1"
+      }
+    ],
     "required_body_parameters": [],
-    "optional_query_parameters": [],
-    "response_fields": []
+    "optional_query_parameters": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Transaction IDs to look up. Can include multiple to fetch multiple transactions in a single request.. . Format: Repeated Query Parameter, eg. /helix/extensions/transactions?extension_id=1234&amp;id=1&amp;id=2&amp;id=3. . Maximum: 100"
+      },
+      {
+        "parameter": "after",
+        "type": "string",
+        "description": "The cursor used to fetch the next page of data. This only applies to queries without ID. If an ID is specified, it supersedes the cursor."
+      },
+      {
+        "parameter": "first",
+        "type": "integer",
+        "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20"
+      }
+    ],
+    "response_fields": [
+      {
+        "parameter": "\n      ",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
+      },
+      {
+        "parameter": "data",
+        "type": "array",
+        "description": "Array of requested transactions."
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Unique identifier of the Bits in Extensions Transaction."
+      },
+      {
+        "parameter": "timestamp",
+        "type": "string",
+        "description": "UTC timestamp when this transaction occurred."
+      },
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "Twitch User ID of the channel the transaction occurred on."
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Login name of the broadcaster."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Twitch Display Name of the broadcaster."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "Twitch User ID of the user who generated the transaction."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "Login name of the user who generated the transaction."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "Twitch Display Name of the user who generated the transaction."
+      },
+      {
+        "parameter": "product_type",
+        "type": "string",
+        "description": "Enum of the product type. Currently only BITS_IN_EXTENSION."
+      },
+      {
+        "parameter": "product_data",
+        "type": "object",
+        "description": "JSON Object representing the product acquired, as it looked at the time of the transaction."
+      },
+      {
+        "parameter": "domain",
+        "type": "string",
+        "description": "Set this field to twitch.ext + your extension ID."
+      },
+      {
+        "parameter": "broadcast",
+        "type": "Boolean",
+        "description": "Flag that denotes whether or not the data was sent over the extension pubsub to all instances of the extension."
+      },
+      {
+        "parameter": "expiration",
+        "type": "string",
+        "description": "Always empty since only unexpired products can be purchased."
+      },
+      {
+        "parameter": "sku",
+        "type": "string",
+        "description": "Unique identifier for the product across the extension."
+      },
+      {
+        "parameter": "cost",
+        "type": "object",
+        "description": "JSON Object representing the cost to acquire the product."
+      },
+      {
+        "parameter": "amount",
+        "type": "integer",
+        "description": "Number of Bits required to acquire the product."
+      }
+    ]
   },
   {
     "title": "Get Channel Information",
@@ -384,7 +507,38 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "Twitch User ID of this channel owner"
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Twitch user display name of this channel owner"
+      },
+      {
+        "parameter": "game_name",
+        "type": "string",
+        "description": "Name of the game being played on the channel"
+      },
+      {
+        "parameter": "game_id",
+        "type": "string",
+        "description": "Current game ID being played on the channel"
+      },
+      {
+        "parameter": "broadcaster_language",
+        "type": "string",
+        "description": "Language of the channel. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+      },
+      {
+        "parameter": "title",
+        "type": "string",
+        "description": "Title of the stream"
+      }
+    ]
   },
   {
     "title": "Modify Channel Information",
@@ -466,7 +620,108 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "ID of the channel the reward is for"
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Broadcaster’s user login name."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Display name of the channel the reward is for"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "ID of the reward"
+      },
+      {
+        "parameter": "title",
+        "type": "string",
+        "description": "The title of the reward"
+      },
+      {
+        "parameter": "prompt",
+        "type": "string",
+        "description": "The prompt for the viewer when they are redeeming the reward"
+      },
+      {
+        "parameter": "cost",
+        "type": "integer",
+        "description": "The cost of the reward"
+      },
+      {
+        "parameter": "image",
+        "type": "object",
+        "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+      },
+      {
+        "parameter": "default_image",
+        "type": "object",
+        "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+      },
+      {
+        "parameter": "background_color",
+        "type": "string",
+        "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+      },
+      {
+        "parameter": "is_enabled",
+        "type": "Boolean",
+        "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+      },
+      {
+        "parameter": "is_user_input_required",
+        "type": "Boolean",
+        "description": "Does the user need to enter information when redeeming the reward"
+      },
+      {
+        "parameter": "max_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+      },
+      {
+        "parameter": "max_per_user_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+      },
+      {
+        "parameter": "global_cooldown_setting",
+        "type": "object",
+        "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+      },
+      {
+        "parameter": "is_paused",
+        "type": "Boolean",
+        "description": "Is the reward currently paused, if true viewers can’t redeem"
+      },
+      {
+        "parameter": "is_in_stock",
+        "type": "Boolean",
+        "description": "Is the reward currently in stock, if false viewers can’t redeem"
+      },
+      {
+        "parameter": "should_redemptions_skip_request_queue",
+        "type": "Boolean",
+        "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+      },
+      {
+        "parameter": "redemptions_redeemed_current_stream",
+        "type": "integer",
+        "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+      },
+      {
+        "parameter": "cooldown_expires_at",
+        "type": "string",
+        "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown."
+      }
+    ]
   },
   {
     "title": "Delete Custom Reward",
@@ -526,7 +781,108 @@
         "description": "When set to true, only returns custom rewards that the calling client_id can manage. Defaults false."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "ID of the channel the reward is for"
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Login of the channel the reward is for"
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Display name of the channel the reward is for"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "ID of the reward"
+      },
+      {
+        "parameter": "title",
+        "type": "string",
+        "description": "The title of the reward"
+      },
+      {
+        "parameter": "prompt",
+        "type": "string",
+        "description": "The prompt for the viewer when they are redeeming the reward"
+      },
+      {
+        "parameter": "cost",
+        "type": "integer",
+        "description": "The cost of the reward"
+      },
+      {
+        "parameter": "image",
+        "type": "object",
+        "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+      },
+      {
+        "parameter": "default_image",
+        "type": "object",
+        "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+      },
+      {
+        "parameter": "background_color",
+        "type": "string",
+        "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+      },
+      {
+        "parameter": "is_enabled",
+        "type": "Boolean",
+        "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+      },
+      {
+        "parameter": "is_user_input_required",
+        "type": "Boolean",
+        "description": "Does the user need to enter information when redeeming the reward"
+      },
+      {
+        "parameter": "max_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+      },
+      {
+        "parameter": "max_per_user_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+      },
+      {
+        "parameter": "global_cooldown_setting",
+        "type": "object",
+        "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+      },
+      {
+        "parameter": "is_paused",
+        "type": "Boolean",
+        "description": "Is the reward currently paused, if true viewers can’t redeem"
+      },
+      {
+        "parameter": "is_in_stock",
+        "type": "Boolean",
+        "description": "Is the reward currently in stock, if false viewers can’t redeem"
+      },
+      {
+        "parameter": "should_redemptions_skip_request_queue",
+        "type": "Boolean",
+        "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+      },
+      {
+        "parameter": "redemptions_redeemed_current_stream",
+        "type": "integer",
+        "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+      },
+      {
+        "parameter": "cooldown_expires_at",
+        "type": "string",
+        "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown."
+      }
+    ]
   },
   {
     "title": "Get Custom Reward Redemption",
@@ -579,7 +935,63 @@
         "description": "Number of results to be returned when getting the paginated Custom Reward Redemption objects for a reward. Limit: 50. Default: 20."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "The id of the broadcaster that the reward belongs to."
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Broadcaster’s user login name."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "The display name of the broadcaster that the reward belongs to."
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "The ID of the redemption."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "The login of the user who redeemed the reward."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "The ID of the user that redeemed the reward."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "The display name of the user that redeemed the reward."
+      },
+      {
+        "parameter": "reward",
+        "type": "object",
+        "description": "Basic information about the Custom Reward that was redeemed at the time it was redeemed. { “id”: string, “title”: string, “prompt”: string, “cost”: int, }"
+      },
+      {
+        "parameter": "user_input",
+        "type": "string",
+        "description": "The user input provided. Empty string if not provided."
+      },
+      {
+        "parameter": "status",
+        "type": "string",
+        "description": "One of UNFULFILLED, FULFILLED or CANCELED"
+      },
+      {
+        "parameter": "redeemed_at",
+        "type": "string",
+        "description": "RFC3339 timestamp of when the reward was redeemed."
+      }
+    ]
   },
   {
     "title": "Update Custom Reward",
@@ -606,7 +1018,108 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "ID of the channel the reward is for"
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Broadcaster’s user login name."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Display name of the channel the reward is for"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "ID of the reward"
+      },
+      {
+        "parameter": "title",
+        "type": "string",
+        "description": "The title of the reward"
+      },
+      {
+        "parameter": "prompt",
+        "type": "string",
+        "description": "The prompt for the viewer when they are redeeming the reward"
+      },
+      {
+        "parameter": "cost",
+        "type": "integer",
+        "description": "The cost of the reward"
+      },
+      {
+        "parameter": "image",
+        "type": "object",
+        "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+      },
+      {
+        "parameter": "default_image",
+        "type": "object",
+        "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+      },
+      {
+        "parameter": "background_color",
+        "type": "string",
+        "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+      },
+      {
+        "parameter": "is_enabled",
+        "type": "Boolean",
+        "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+      },
+      {
+        "parameter": "is_user_input_required",
+        "type": "Boolean",
+        "description": "Does the user need to enter information when redeeming the reward"
+      },
+      {
+        "parameter": "max_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+      },
+      {
+        "parameter": "max_per_user_per_stream_setting",
+        "type": "object",
+        "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+      },
+      {
+        "parameter": "global_cooldown_setting",
+        "type": "object",
+        "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+      },
+      {
+        "parameter": "is_paused",
+        "type": "Boolean",
+        "description": "Is the reward currently paused, if true viewers can’t redeem"
+      },
+      {
+        "parameter": "is_in_stock",
+        "type": "Boolean",
+        "description": "Is the reward currently in stock, if false viewers can’t redeem"
+      },
+      {
+        "parameter": "should_redemptions_skip_request_queue",
+        "type": "Boolean",
+        "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+      },
+      {
+        "parameter": "redemptions_redeemed_current_stream",
+        "type": "integer",
+        "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+      },
+      {
+        "parameter": "cooldown_expires_at",
+        "type": "string",
+        "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown"
+      }
+    ]
   },
   {
     "title": "Update Redemption Status",
@@ -638,7 +1151,63 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "The id of the broadcaster that the reward belongs to."
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Broadcaster’s user login name."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "The display name of the broadcaster that the reward belongs to."
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "The ID of the redemption."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "The ID of the user that redeemed the reward"
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "The display name of the user that redeemed the reward."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "The login of the user that redeemed the reward."
+      },
+      {
+        "parameter": "reward",
+        "type": "object",
+        "description": "Basic information about the Custom Reward that was redeemed at the time it was redeemed. { “id”: string, “title”: string, “prompt”: string, “cost”: int, }"
+      },
+      {
+        "parameter": "user_input",
+        "type": "string",
+        "description": "The user input provided. Null if not provided."
+      },
+      {
+        "parameter": "status",
+        "type": "string",
+        "description": "One of UNFULFILLED, FULFILLED or CANCELED"
+      },
+      {
+        "parameter": "redeemed_at",
+        "type": "string",
+        "description": "RFC3339 timestamp of when the reward was redeemed."
+      }
+    ]
   },
   {
     "title": "Create Clip",
@@ -845,10 +1414,37 @@
       "method": "GET",
       "url": "https://api.twitch.tv/helix/entitlements/codes"
     },
-    "required_query_parameters": [],
+    "required_query_parameters": [
+      {
+        "parameter": "Param",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "code",
+        "type": "String",
+        "description": "The code to get the status of. Repeat this query parameter additional times to get the status of multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
+      },
+      {
+        "parameter": "user_id",
+        "type": "Integer",
+        "description": "Represents a numeric Twitch user ID.. The user account which is going to receive the entitlement associated with the code."
+      }
+    ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Param",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "data",
+        "type": "Array of payloads each of which includes code (string) and status (string).",
+        "description": "Indicates the current status of each key when checking key status. . . Indicates the success or error state of each key when redeeming."
+      }
+    ]
   },
   {
     "title": "Get Drops Entitlements",
@@ -890,7 +1486,43 @@
         "description": "Maximum number of entitlements to return.. Default: 20. Max: 100"
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "pagination",
+        "type": "string",
+        "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
+      },
+      {
+        "parameter": "data",
+        "type": "array",
+        "description": "Array of entitlements"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Unique Identifier of the entitlement"
+      },
+      {
+        "parameter": "benefit_id",
+        "type": "string",
+        "description": "Identifier of the Benefit"
+      },
+      {
+        "parameter": "timestamp",
+        "type": "string",
+        "description": "UTC timestamp in ISO format when this entitlement was granted on Twitch."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "Twitch User ID of the user who was granted the entitlement."
+      },
+      {
+        "parameter": "game_id",
+        "type": "string",
+        "description": "Twitch Game ID of the game that was being played when this benefit was entitled."
+      }
+    ]
   },
   {
     "title": "Redeem Code",
@@ -903,10 +1535,37 @@
       "method": "",
       "url": "https://api.twitch.tv/helix/entitlements/code"
     },
-    "required_query_parameters": [],
+    "required_query_parameters": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "code",
+        "type": "String",
+        "description": "The code to redeem to the authenticated user’s account.. . A fifteen character (plus optional hyphen separators) alphanumeric string, e.g. ABCDE-12345-FGHIJ. . Repeat this query parameter additional times to redeem multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
+      },
+      {
+        "parameter": "user_id",
+        "type": "Integer",
+        "description": "Represents a numeric Twitch user ID.. The user account which is going to receive the entitlement associated with the code."
+      }
+    ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "data",
+        "type": "Array of payloads each of which includes code (string) and status (string).",
+        "description": "Indicates the success or error state of each key when redeeming. "
+      }
+    ]
   },
   {
     "title": "Create EventSub Subscription",
@@ -1243,7 +1902,123 @@
         "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without id. If an ID is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "The distinct ID of the event"
+      },
+      {
+        "parameter": "event_type",
+        "type": "string",
+        "description": "Displays hypetrain.{event_name}, currently only hypetrain.progression"
+      },
+      {
+        "parameter": "event_timestamp",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp of event"
+      },
+      {
+        "parameter": "version",
+        "type": "string",
+        "description": "Returns the version of the endpoint"
+      },
+      {
+        "parameter": "event_data",
+        "type": "object",
+        "description": "(See below for the schema)"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "The distinct ID of this Hype Train"
+      },
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "Channel ID of which Hype Train events the clients are interested in"
+      },
+      {
+        "parameter": "started_at",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp of when this Hype Train started"
+      },
+      {
+        "parameter": "expires_at",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp of the expiration time of this Hype Train"
+      },
+      {
+        "parameter": "cooldown_end_time",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp of when another Hype Train can be started again"
+      },
+      {
+        "parameter": "level",
+        "type": "integer",
+        "description": "The highest level (in the scale of 1-5) reached of the Hype Train"
+      },
+      {
+        "parameter": "goal",
+        "type": "integer",
+        "description": "The goal value of the level above"
+      },
+      {
+        "parameter": "total",
+        "type": "integer",
+        "description": "The total score so far towards completing the level goal above"
+      },
+      {
+        "parameter": "top_contributions",
+        "type": "object",
+        "description": "An array of top contribution objects, one object for each type.  For example, one object would represent top contributor of BITS, by aggregate, and one would represent top contributor of SUBS by count."
+      },
+      {
+        "parameter": "total",
+        "type": "integer",
+        "description": "Total aggregated amount of all contributions by the top contributor. If type is BITS, total represents aggregate amount of bits used.  If type is SUBS, aggregate total where 500, 1000, or 2500 represent tier 1, 2, or 3 subscriptions respectively.  For example, if top contributor has gifted a tier 1, 2, and 3 subscription, total would be 4000."
+      },
+      {
+        "parameter": "type",
+        "type": "string",
+        "description": "Identifies the contribution method, either BITS or SUBS"
+      },
+      {
+        "parameter": "user",
+        "type": "string",
+        "description": "ID of the contributing user"
+      },
+      {
+        "parameter": "last_contribution",
+        "type": "object",
+        "description": "An object that represents the most recent contribution"
+      },
+      {
+        "parameter": "total",
+        "type": "integer",
+        "description": "Total amount contributed. If type is BITS, total represents amounts of bits used.  If type is SUBS, total is 500, 1000, or 2500 to represent tier 1, 2, or 3 subscriptions respectively"
+      },
+      {
+        "parameter": "type",
+        "type": "string",
+        "description": "Identifies the contribution method, either BITS or SUBS"
+      },
+      {
+        "parameter": "user",
+        "type": "string",
+        "description": "ID of the contributing user"
+      },
+      {
+        "parameter": "pagination",
+        "type": "string",
+        "description": "A cursor value, to be used in a subsequent requests to specify the starting point of the next set of results"
+      }
+    ]
   },
   {
     "title": "Check AutoMod Status",
@@ -1259,7 +2034,23 @@
     "required_query_parameters": [],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "msg_id",
+        "type": "string",
+        "description": "The msg_id passed in the body of the POST message. Maps each message to its status."
+      },
+      {
+        "parameter": "is_permitted",
+        "type": "Boolean",
+        "description": "Indicates if this message meets AutoMod requirements."
+      }
+    ]
   },
   {
     "title": "Get Banned Events",
@@ -1307,7 +2098,43 @@
         "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Event ID"
+      },
+      {
+        "parameter": "event_type",
+        "type": "string",
+        "description": "Displays moderation.user.ban or moderation.user.unban"
+      },
+      {
+        "parameter": "event_timestamp",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp for events."
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+      },
+      {
+        "parameter": "version",
+        "type": "string",
+        "description": "Returns the version of the endpoint."
+      },
+      {
+        "parameter": "event_data",
+        "type": "strings",
+        "description": "Returns broadcaster_id, broadcaster_login, broadcaster_name, user_id, user_login, user_name, and expires_at."
+      }
+    ]
   },
   {
     "title": "Get Banned Users",
@@ -1350,7 +2177,38 @@
         "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset. combinations. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "User ID of a user who has been banned."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "Login of a user who has been banned."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "Display name of a user who has been banned."
+      },
+      {
+        "parameter": "expires_at",
+        "type": "string",
+        "description": " "
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": " "
+      }
+    ]
   },
   {
     "title": "Get Moderators",
@@ -1388,7 +2246,33 @@
         "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "User ID of a moderator in the channel."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "Login of a moderator in the channel."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "Display name of a moderator in the channel."
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": "A cursor value, to be used in subsequent requests to specify the starting point of the next set of results."
+      }
+    ]
   },
   {
     "title": "Get Moderator Events",
@@ -1415,7 +2299,68 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "User ID of the moderator."
+      },
+      {
+        "parameter": "event_type",
+        "type": "string",
+        "description": "Displays moderation.moderator.add or moderation.moderator.remove"
+      },
+      {
+        "parameter": "event_timestamp",
+        "type": "string",
+        "description": "RFC3339 formatted timestamp for events."
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": "A cursor value to be used in a subsequent request to specify the starting point of the next set of results."
+      },
+      {
+        "parameter": "version",
+        "type": "string",
+        "description": "Returns the version of the endpoint."
+      },
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "ID of the broadcaster adding or removing moderators."
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Login of the broadcaster."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Name of the broadcaster."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "ID of the user being added or removed as moderator."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "Login of the user."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "Name of the user."
+      }
+    ]
   },
   {
     "title": "Search Categories",
@@ -1448,7 +2393,23 @@
         "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "box_art_url",
+        "type": "string",
+        "description": "Template URL for the game’s box art."
+      },
+      {
+        "parameter": "name",
+        "type": "string",
+        "description": "Game/category name."
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Game/category ID."
+      }
+    ]
   },
   {
     "title": "Search Channels",
@@ -1486,7 +2447,58 @@
         "description": "Filter results for live streams only.. Default: false"
       }
     ],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "game_id",
+        "type": "string",
+        "description": "ID of the game being played on the stream"
+      },
+      {
+        "parameter": "id",
+        "type": "string",
+        "description": "Channel ID"
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Login of the broadcaster."
+      },
+      {
+        "parameter": "display_name",
+        "type": "string",
+        "description": "Display name corresponding to user_id"
+      },
+      {
+        "parameter": "broadcaster_language",
+        "type": "string",
+        "description": "Channel language. (Broadcaster Language field from the Channels service). A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+      },
+      {
+        "parameter": "title",
+        "type": "string",
+        "description": "channel title"
+      },
+      {
+        "parameter": "thumbnail_url",
+        "type": "string",
+        "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image."
+      },
+      {
+        "parameter": "is_live",
+        "type": "Boolean",
+        "description": "Live status"
+      },
+      {
+        "parameter": "started_at",
+        "type": "string",
+        "description": "UTC timestamp. (live only)"
+      },
+      {
+        "parameter": "tag_ids",
+        "type": "string",
+        "description": "Shows tag IDs that apply to the stream (live only).See https://www.twitch.tv/directory/all/tags for tag types. Note: Category Tags are not returned"
+      }
+    ]
   },
   {
     "title": "Get Stream Key",
@@ -1499,7 +2511,13 @@
       "method": "",
       "url": "https://api.twitch.tv/helix/streams/key"
     },
-    "required_query_parameters": [],
+    "required_query_parameters": [
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "User ID of the broadcaster"
+      }
+    ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
     "response_fields": []
@@ -1789,7 +2807,63 @@
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [],
-    "response_fields": []
+    "response_fields": [
+      {
+        "parameter": "Parameter",
+        "type": "Type",
+        "description": "Description"
+      },
+      {
+        "parameter": "broadcaster_id",
+        "type": "string",
+        "description": "User ID of the broadcaster."
+      },
+      {
+        "parameter": "broadcaster_login",
+        "type": "string",
+        "description": "Login of the broadcaster."
+      },
+      {
+        "parameter": "broadcaster_name",
+        "type": "string",
+        "description": "Display name of the broadcaster."
+      },
+      {
+        "parameter": "is_gift",
+        "type": "Boolean",
+        "description": "Determines if the subscription is a gift subscription."
+      },
+      {
+        "parameter": "tier",
+        "type": "string",
+        "description": "Type of subscription (Tier 1, Tier 2, Tier 3).. 1000 = Tier 1, 2000 = Tier 2, 3000 = Tier 3 subscriptions."
+      },
+      {
+        "parameter": "plan_name",
+        "type": "string",
+        "description": "Name of the subscription."
+      },
+      {
+        "parameter": "user_id",
+        "type": "string",
+        "description": "ID of the subscribed user."
+      },
+      {
+        "parameter": "user_login",
+        "type": "string",
+        "description": "Login of the subscribed user."
+      },
+      {
+        "parameter": "user_name",
+        "type": "string",
+        "description": "Display name of the subscribed user. "
+      },
+      {
+        "parameter": "pagination",
+        "type": "object containing a string",
+        "description": "A cursor value,  to be used in a subsequent request to specify the starting point  of the next set of results. If this is empty, you are at the last page."
+      }
+    ]
   },
   {
     "title": "Get All Stream Tags",

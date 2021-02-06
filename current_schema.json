@@ -1275,36 +1275,36 @@
     "required_query_parameters": [
       {
         "parameter": "Parameter",
-        "type": "Required",
-        "description": "Type"
+        "type": "Type",
+        "description": "Description"
       },
       {
         "parameter": "broadcaster_id",
-        "type": "yes",
-        "description": "string"
+        "type": "string",
+        "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
       }
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [
       {
         "parameter": "Parameter",
-        "type": "Required",
-        "description": "Type"
+        "type": "Type",
+        "description": "Description"
       },
       {
         "parameter": "user_id",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Filters the results and only returns a status object for ban events that include users being banned or un-banned in this  channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
       },
       {
         "parameter": "after",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
       },
       {
         "parameter": "first",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
       }
     ],
     "response_fields": []
@@ -1323,31 +1323,31 @@
     "required_query_parameters": [
       {
         "parameter": "broadcaster_id",
-        "type": "yes",
-        "description": "string"
+        "type": "string",
+        "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
       }
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [
       {
         "parameter": "user_id",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Filters the results and only returns a status object for users who are banned in this channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
       },
       {
         "parameter": "first",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
       },
       {
         "parameter": "after",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
       },
       {
         "parameter": "before",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset. combinations. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
     "response_fields": []
@@ -1366,26 +1366,26 @@
     "required_query_parameters": [
       {
         "parameter": "broadcaster_id",
-        "type": "yes",
-        "description": "string"
+        "type": "string",
+        "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
       }
     ],
     "required_body_parameters": [],
     "optional_query_parameters": [
       {
         "parameter": "user_id",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Filters the results and only returns a status object for users who are moderators in this channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/moderators?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
       },
       {
         "parameter": "first",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
       },
       {
         "parameter": "after",
-        "type": "no",
-        "description": "string"
+        "type": "string",
+        "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
       }
     ],
     "response_fields": []
@@ -1404,13 +1404,13 @@
     "required_query_parameters": [
       {
         "parameter": "Parameter",
-        "type": "Required",
-        "description": "Type"
+        "type": "Type",
+        "description": "Description"
       },
       {
         "parameter": "broadcaster_id",
-        "type": "yes",
-        "description": "string"
+        "type": "string",
+        "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
       }
     ],
     "required_body_parameters": [],

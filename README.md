@@ -7,11 +7,11 @@ This repo has two components:
 
 Currently supported documentation components:
 - Title
-- Authentication
+- Authentication (scope)
 - Pagination support (reverse, forward)
 - Url (method, url)
-- Required query parameters
-- Required body parameters
-- Optional query parameters
-- Response fields
+- Required query parameters (parameter, type, description)
+- Required body parameters (parameter, type, description)
+- Optional query parameters (parameter, type, description)
+- Response fields (parameter, type, description)
 

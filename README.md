@@ -1,4 +1,4 @@
-# TwitchDevDocumentationChanges!
+# dev.twitch.tv Documentation Change Detection
 Automatically see changes to https://dev.twitch.tv/docs/api/reference . Currently only supports Helix api documentation.
 
 This repo has two components:

@@ -2941,11 +2941,6 @@
           "description": "User’s display name."
         },
         {
-          "parameter": "email",
-          "type": "string",
-          "description": "User’s verified email address. Returned if the request includes the user:read:email scope."
-        },
-        {
           "parameter": "id",
           "type": "string",
           "description": "User’s ID."
@@ -2974,6 +2969,11 @@
           "parameter": "view_count",
           "type": "integer",
           "description": "Total number of views of the user’s channel."
+        },
+        {
+          "parameter": "email",
+          "type": "string",
+          "description": "User’s verified email address. Returned if the request includes the user:read:email scope."
         },
         {
           "parameter": "created_at",

@@ -533,7 +533,7 @@
     },
     {
       "title": "Modify Channel Information",
-      "authentication": "user:edit:broadcast",
+      "authentication": "channel:manage:broadcast",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -1368,33 +1368,6 @@
       ]
     },
     {
-      "title": "Create Entitlement Grants Upload URL",
-      "authentication": "",
-      "pagination_support": {
-        "forward": false,
-        "reverse": false
-      },
-      "url": {
-        "method": "POST",
-        "url": "https://api.twitch.tv/helix/entitlements/upload"
-      },
-      "required_query_parameters": [
-        {
-          "parameter": "manifest_id",
-          "type": "string",
-          "description": "Unique identifier of the manifest file to be uploaded. Must be 1-64 characters."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "Type of entitlement being granted. Only bulk_drops_grant is supported."
-        }
-      ],
-      "required_body_parameters": [],
-      "optional_query_parameters": [],
-      "response_fields": []
-    },
-    {
       "title": "Get Code Status",
       "authentication": "",
       "pagination_support": {
@@ -1587,7 +1560,7 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "Status of the subscription. Valid values are:enabled: designates that the subscription is in an operable state and is valid.. . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request.. . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request.. . notification_failures_exceeded: notification delivery failure rate was too high.. . authorization_revoked: authorization for user(s) in the condition was revoked.. . user_removed: a user in the condition of the subscription was removed."
+          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
         },
         {
           "parameter": "type",
@@ -1665,7 +1638,7 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "Include this parameter to filter subscriptions by one status type. Valid values:. . enabled: the subscription is in an operable state and is valid.. . webhook_callback_verification_pending: subscription is pending verification of the callback specified in the subscription creation request.. . webhook_callback_verification_failed: subscription failed verification of the callback specified in the subscription creation request.. . notification_failures_exceeded: notification delivery failure rate was too high.. . authorization_revoked: authorization for user(s) in the condition was revoked.. . user_removed: a user in the condition of the subscription was removed."
+          "description": "Include this parameter to filter subscriptions by one status type. Valid values: . . enabled: the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: subscription is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: subscription failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
         },
         {
           "parameter": "type",
@@ -1687,7 +1660,7 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "Status of the subscription. Valid values are:enabled: designates that the subscription is in an operable state and is valid.. . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request.. . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request.. . notification_failures_exceeded: notification delivery failure rate was too high.. . authorization_revoked: authorization for user(s) in the condition was revoked.. . user_removed: a user in the condition of the subscription was removed."
+          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
         },
         {
           "parameter": "type",
@@ -2156,7 +2129,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+          "description": "Provided broadcaster_id must match the user_id in the auth token. Maximum: 1"
         }
       ],
       "required_body_parameters": [],
@@ -2563,7 +2536,7 @@
     },
     {
       "title": "Create Stream Marker",
-      "authentication": "user:edit:broadcast",
+      "authentication": "channel:manage:broadcast",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -2879,7 +2852,7 @@
     },
     {
       "title": "Replace Stream Tags",
-      "authentication": "user:edit:broadcast",
+      "authentication": "channel:manage:broadcast",
       "pagination_support": {
         "forward": false,
         "reverse": false

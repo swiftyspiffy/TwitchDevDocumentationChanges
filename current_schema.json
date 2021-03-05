@@ -2873,6 +2873,182 @@
       "response_fields": []
     },
     {
+      "title": "Get Channel Teams",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/teams/channel"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID for a Twitch user."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "background_image_url",
+          "type": "string",
+          "description": "URL for the Team background image."
+        },
+        {
+          "parameter": "banner",
+          "type": "string",
+          "description": "URL for the Team banner."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date and time the Team was created."
+        },
+        {
+          "parameter": "updated_at",
+          "type": "string",
+          "description": "Date and time the Team was last updated."
+        },
+        {
+          "parameter": "info",
+          "type": "string",
+          "description": "Team description."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Image URL for the Team logo."
+        },
+        {
+          "parameter": "team_name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "team_display_name",
+          "type": "string",
+          "description": "Team display name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ]
+    },
+    {
+      "title": "Get Teams",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/teams"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "users",
+          "type": "Array of user objects",
+          "description": "Users in the specified Team."
+        },
+        {
+          "parameter": "users.user_id",
+          "type": "string",
+          "description": "User ID of a Team member."
+        },
+        {
+          "parameter": "users.user_login",
+          "type": "string",
+          "description": "Login of a Team member."
+        },
+        {
+          "parameter": "users.user_name",
+          "type": "string",
+          "description": "Display name of a Team member."
+        },
+        {
+          "parameter": "background_image_url",
+          "type": "string",
+          "description": "URL of the Team background image."
+        },
+        {
+          "parameter": "banner",
+          "type": "string",
+          "description": "URL for the Team banner."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date and time the Team was created."
+        },
+        {
+          "parameter": "updated_at",
+          "type": "string",
+          "description": "Date and time the Team was last updated."
+        },
+        {
+          "parameter": "info",
+          "type": "string",
+          "description": "Team description."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Image URL for the Team logo."
+        },
+        {
+          "parameter": "team_name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "team_display_name",
+          "type": "string",
+          "description": "Team display name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ]
+    },
+    {
       "title": "Get Users",
       "authentication": "",
       "pagination_support": {

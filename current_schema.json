@@ -293,9 +293,14 @@
       "optional_query_parameters": [],
       "response_fields": [
         {
-          "parameter": "tiers",
+          "parameter": "prefix",
           "type": "string",
-          "description": "An array of Cheermotes with their metadata.  "
+          "description": "The string used to Cheer that precedes the Bits amount."
+        },
+        {
+          "parameter": "tiers",
+          "type": "array",
+          "description": "An array of Cheermotes with their metadata."
         },
         {
           "parameter": "min_bits",
@@ -314,7 +319,7 @@
         },
         {
           "parameter": "images",
-          "type": "string",
+          "type": "object",
           "description": "Structure containing both animated and static image sets, sorted by light and dark."
         },
         {
@@ -1486,8 +1491,8 @@
         "reverse": false
       },
       "url": {
-        "method": "",
-        "url": "https://api.twitch.tv/helix/entitlements/code"
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/entitlements/codes"
       },
       "required_query_parameters": [
         {
@@ -1596,6 +1601,16 @@
           "parameter": "total",
           "type": "integer",
           "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "total_cost",
+          "type": "integer",
+          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "max_total_cost",
+          "type": "integer",
+          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
         }
       ]
     },
@@ -1696,6 +1711,16 @@
           "parameter": "total",
           "type": "integer",
           "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "total_cost",
+          "type": "integer",
+          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "max_total_cost",
+          "type": "integer",
+          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
         },
         {
           "parameter": "pagination",
@@ -2680,7 +2705,7 @@
       },
       "url": {
         "method": "GET",
-        "url": "'https://api.twitch.tv/helix/subscriptions"
+        "url": "https://api.twitch.tv/helix/subscriptions"
       },
       "required_query_parameters": [
         {
@@ -2708,14 +2733,24 @@
           "description": "Display name of the broadcaster."
         },
         {
-          "parameter": "is_gift",
-          "type": "Boolean",
-          "description": "Determines if the subscription is a gift subscription."
+          "parameter": "gifter_id",
+          "type": "string",
+          "description": "If the subscription was gifted, this is the user ID of the gifter. Empty string otherwise."
         },
         {
-          "parameter": "tier",
+          "parameter": "gifter_login",
           "type": "string",
-          "description": "Type of subscription (Tier 1, Tier 2, Tier 3).. 1000 = Tier 1, 2000 = Tier 2, 3000 = Tier 3 subscriptions."
+          "description": "If the subscription was gifted, this is the login of the gifter. Empty string otherwise."
+        },
+        {
+          "parameter": "gifter_name",
+          "type": "string",
+          "description": "If the subscription was gifted, this is the display name of the gifter. Empty string otherwise."
+        },
+        {
+          "parameter": "is_gift",
+          "type": "Boolean",
+          "description": "true if the subscription is a gift subscription."
         },
         {
           "parameter": "plan_name",
@@ -2723,9 +2758,19 @@
           "description": "Name of the subscription."
         },
         {
+          "parameter": "tier",
+          "type": "string",
+          "description": "Type of subscription (Tier 1, Tier 2, Tier 3).. 1000 = Tier 1, 2000 = Tier 2, 3000 = Tier 3 subscriptions."
+        },
+        {
           "parameter": "user_id",
           "type": "string",
           "description": "ID of the subscribed user."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name of the subscribed user."
         },
         {
           "parameter": "user_login",
@@ -2733,14 +2778,72 @@
           "description": "Login of the subscribed user."
         },
         {
-          "parameter": "user_name",
-          "type": "string",
-          "description": "Display name of the subscribed user. "
-        },
-        {
           "parameter": "pagination",
           "type": "object containing a string",
           "description": "A cursor value,  to be used in a subsequent request to specify the starting point  of the next set of results. If this is empty, you are at the last page."
+        }
+      ]
+    },
+    {
+      "title": "Check User Subscription",
+      "authentication": "user:read:subscriptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/subscriptions/user"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of an Affiliate or Partner broadcaster."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of a Twitch viewer."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "is_gift",
+          "type": "boolean",
+          "description": "Indicates if the subscription is a gift."
+        },
+        {
+          "parameter": "gifter_login",
+          "type": "string",
+          "description": "Login of the gifter (if is_gift is true)."
+        },
+        {
+          "parameter": "gifter_name",
+          "type": "string",
+          "description": "Display name of the gifter (if is_gift is true)."
+        },
+        {
+          "parameter": "tier",
+          "type": "string",
+          "description": "Subscription tier. 1000 is tier 1, 2000 is tier 2, and 3000 is tier 3."
         }
       ]
     },
@@ -2776,7 +2879,7 @@
       ],
       "response_fields": [
         {
-          "parameter": "id",
+          "parameter": "tag_id",
           "type": "string",
           "description": "ID of the tag."
         },
@@ -2799,11 +2902,6 @@
           "parameter": "pagination",
           "type": "object containing a string",
           "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results.. Not supported when tag_id is provided."
-        },
-        {
-          "parameter": "tag_id",
-          "type": "string",
-          "description": "ID of the tag."
         }
       ]
     },
@@ -2822,12 +2920,17 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the stream thats tags are going to be fetched"
+          "description": "User ID of the channel to get tags."
         }
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": [
+        {
+          "parameter": "tag_id",
+          "type": "string",
+          "description": "ID of the tag."
+        },
         {
           "parameter": "is_auto",
           "type": "Boolean",
@@ -2842,11 +2945,6 @@
           "parameter": "localization_descriptions",
           "type": "map[string]string",
           "description": "All localized descriptions of the tag."
-        },
-        {
-          "parameter": "tag_id",
-          "type": "string",
-          "description": "ID of the tag. "
         }
       ]
     },

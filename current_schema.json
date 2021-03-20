@@ -1442,15 +1442,10 @@
         {
           "parameter": "first",
           "type": "integer",
-          "description": "Maximum number of entitlements to return.. Default: 20. Max: 100"
+          "description": "Maximum number of entitlements to return.. Default: 20. Max: 1000"
         }
       ],
       "response_fields": [
-        {
-          "parameter": "pagination",
-          "type": "string",
-          "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
-        },
         {
           "parameter": "data",
           "type": "array",
@@ -1480,6 +1475,11 @@
           "parameter": "game_id",
           "type": "string",
           "description": "Twitch Game ID of the game that was being played when this benefit was entitled."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },

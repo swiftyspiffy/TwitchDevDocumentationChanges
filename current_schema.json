@@ -1296,6 +1296,21 @@
       ],
       "response_fields": [
         {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the clip being queried."
+        },
+        {
+          "parameter": "url",
+          "type": "string",
+          "description": "URL where the clip can be viewed."
+        },
+        {
+          "parameter": "embed_url",
+          "type": "string",
+          "description": "URL to embed the clip."
+        },
+        {
           "parameter": "broadcaster_id",
           "type": "string",
           "description": "User ID of the stream from which the clip was created."
@@ -1304,11 +1319,6 @@
           "parameter": "broadcaster_name",
           "type": "string",
           "description": "Display name corresponding to broadcaster_id."
-        },
-        {
-          "parameter": "created_at",
-          "type": "string",
-          "description": "Date when the clip was created."
         },
         {
           "parameter": "creator_id",
@@ -1321,9 +1331,9 @@
           "description": "Display name corresponding to creator_id."
         },
         {
-          "parameter": "embed_url",
+          "parameter": "video_id",
           "type": "string",
-          "description": "URL to embed the clip."
+          "description": "ID of the video from which the clip was created."
         },
         {
           "parameter": "game_id",
@@ -1331,24 +1341,9 @@
           "description": "ID of the game assigned to the stream when the clip was created."
         },
         {
-          "parameter": "id",
-          "type": "string",
-          "description": "ID of the clip being queried."
-        },
-        {
           "parameter": "language",
           "type": "string",
           "description": "Language of the stream from which the clip was created. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
-        },
-        {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
-        },
-        {
-          "parameter": "thumbnail_url",
-          "type": "string",
-          "description": "URL of the clip thumbnail."
         },
         {
           "parameter": "title",
@@ -1356,19 +1351,29 @@
           "description": "Title of the clip."
         },
         {
-          "parameter": "url",
-          "type": "string",
-          "description": "URL where the clip can be viewed."
-        },
-        {
-          "parameter": "video_id",
-          "type": "string",
-          "description": "ID of the video from which the clip was created."
-        },
-        {
           "parameter": "view_count",
           "type": "int",
           "description": "Number of times the clip has been viewed."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date when the clip was created."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "URL of the clip thumbnail."
+        },
+        {
+          "parameter": "duration",
+          "type": "float",
+          "description": "Duration of the Clip in seconds (up to 0.1 precision)."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },
@@ -2034,7 +2039,7 @@
         {
           "parameter": "first",
           "type": "string",
-          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+          "description": "Maximum number of objects to return. Maximum: 100.  Default: 20."
         }
       ],
       "response_fields": [
@@ -2363,14 +2368,9 @@
       ],
       "response_fields": [
         {
-          "parameter": "game_id",
+          "parameter": "broadcaster_language",
           "type": "string",
-          "description": "ID of the game being played on the stream"
-        },
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "Channel ID"
+          "description": "Channel language. (Broadcaster Language field from the Channels service). A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
         },
         {
           "parameter": "broadcaster_login",
@@ -2380,17 +2380,32 @@
         {
           "parameter": "display_name",
           "type": "string",
-          "description": "Display name corresponding to user_id"
+          "description": "Display name of the broadcaster."
         },
         {
-          "parameter": "broadcaster_language",
+          "parameter": "game_id",
           "type": "string",
-          "description": "Channel language. (Broadcaster Language field from the Channels service). A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+          "description": "ID of the game being played on the stream."
         },
         {
-          "parameter": "title",
+          "parameter": "game_name",
           "type": "string",
-          "description": "channel title"
+          "description": "Name of the game being played on the stream."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Channel ID."
+        },
+        {
+          "parameter": "is_live",
+          "type": "Boolean",
+          "description": "Indicates if the channel is currenty live."
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string[]",
+          "description": "Tag IDs that apply to the stream. This array only contains strings when a channel is live. For all possibilities, see List of All Tags. Category Tags are not returned."
         },
         {
           "parameter": "thumbnail_url",
@@ -2398,19 +2413,14 @@
           "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image."
         },
         {
-          "parameter": "is_live",
-          "type": "Boolean",
-          "description": "Live status"
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
         },
         {
           "parameter": "started_at",
           "type": "string",
-          "description": "UTC timestamp. (live only)"
-        },
-        {
-          "parameter": "tag_ids",
-          "type": "string",
-          "description": "Shows tag IDs that apply to the stream (live only).See https://www.twitch.tv/directory/all/tags for tag types. Note: Category Tags are not returned"
+          "description": "UTC timestamp. Returns an empty string if the channel is not live."
         }
       ]
     },
@@ -2488,54 +2498,9 @@
       ],
       "response_fields": [
         {
-          "parameter": "game_id",
-          "type": "string",
-          "description": "ID of the game being played on the stream."
-        },
-        {
-          "parameter": "game_name",
-          "type": "string",
-          "description": "Name of the game being played."
-        },
-        {
           "parameter": "id",
           "type": "string",
           "description": "Stream ID."
-        },
-        {
-          "parameter": "language",
-          "type": "string",
-          "description": "Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
-        },
-        {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
-        },
-        {
-          "parameter": "started_at",
-          "type": "string",
-          "description": "UTC timestamp."
-        },
-        {
-          "parameter": "tag_ids",
-          "type": "string",
-          "description": "Shows tag IDs that apply to the stream."
-        },
-        {
-          "parameter": "thumbnail_url",
-          "type": "string",
-          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image"
-        },
-        {
-          "parameter": "title",
-          "type": "string",
-          "description": "Stream title."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "Stream type: \"live\" or \"\" (in case of error)."
         },
         {
           "parameter": "user_id",
@@ -2553,9 +2518,59 @@
           "description": "Display name corresponding to user_id."
         },
         {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played on the stream."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Stream type: \"live\" or \"\" (in case of error)."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
+        },
+        {
           "parameter": "viewer_count",
           "type": "int",
           "description": "Number of viewers watching the stream at the time of the query."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image"
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string",
+          "description": "Shows tag IDs that apply to the stream."
+        },
+        {
+          "parameter": "is_mature",
+          "type": "boolean",
+          "description": "Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },
@@ -2640,7 +2655,7 @@
         {
           "parameter": "first",
           "type": "string",
-          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100. Default: 20."
+          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100.     Default: 20."
         }
       ],
       "response_fields": [
@@ -3665,59 +3680,14 @@
       ],
       "response_fields": [
         {
-          "parameter": "created_at",
-          "type": "string",
-          "description": "Date when the video was created."
-        },
-        {
-          "parameter": "description",
-          "type": "string",
-          "description": "Description of the video."
-        },
-        {
-          "parameter": "duration",
-          "type": "string",
-          "description": "Length of the video."
-        },
-        {
           "parameter": "id",
           "type": "string",
           "description": "ID of the video."
         },
         {
-          "parameter": "language",
+          "parameter": "stream_id",
           "type": "string",
-          "description": "Language of the video. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
-        },
-        {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
-        },
-        {
-          "parameter": "published_at",
-          "type": "string",
-          "description": "Date when the video was published."
-        },
-        {
-          "parameter": "thumbnail_url",
-          "type": "object",
-          "description": "Template URL for the thumbnail of the video."
-        },
-        {
-          "parameter": "title",
-          "type": "string",
-          "description": "Title of the video."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "Type of video. Valid values: \"upload\", \"archive\", \"highlight\"."
-        },
-        {
-          "parameter": "url",
-          "type": "object",
-          "description": "URL of the video."
+          "description": "ID of the stream that the video originated from if the type is \"archive\". Otherwise set to null."
         },
         {
           "parameter": "user_id",
@@ -3735,14 +3705,79 @@
           "description": "Display name corresponding to user_id."
         },
         {
-          "parameter": "view_count",
-          "type": "int",
-          "description": "Number of times the video has been viewed."
+          "parameter": "title",
+          "type": "string",
+          "description": "Title of the video."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "Description of the video."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date when the video was created."
+        },
+        {
+          "parameter": "published_at",
+          "type": "string",
+          "description": "Date when the video was published."
+        },
+        {
+          "parameter": "url",
+          "type": "object",
+          "description": "URL of the video."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "object",
+          "description": "Template URL for the thumbnail of the video."
         },
         {
           "parameter": "viewable",
           "type": "string",
           "description": "Indicates whether the video is publicly viewable. Valid values: \"public\", \"private\"."
+        },
+        {
+          "parameter": "view_count",
+          "type": "int",
+          "description": "Number of times the video has been viewed."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Language of the video. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of video. Valid values: \"upload\", \"archive\", \"highlight\"."
+        },
+        {
+          "parameter": "duration",
+          "type": "string",
+          "description": "Length of the video."
+        },
+        {
+          "parameter": "muted_segments",
+          "type": "object[]",
+          "description": "Array of muted segments in the video. If there are no muted segments, the value will be null."
+        },
+        {
+          "parameter": "segment.duration",
+          "type": "integer",
+          "description": "Duration of the muted segment."
+        },
+        {
+          "parameter": "segment.offset",
+          "type": "integer",
+          "description": "Offset in the video at which the muted segment begins."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },

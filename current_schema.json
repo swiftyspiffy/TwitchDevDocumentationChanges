@@ -2575,6 +2575,110 @@
       ]
     },
     {
+      "title": "Get Followed Streams",
+      "authentication": "user:read:follows",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/streams/followed"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Results will only include active streams from the channels that this Twitch user follows. user_id must match the User ID in the bearer token."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 100."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played on the stream."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Stream ID."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp."
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string",
+          "description": "Shows tag IDs that apply to the stream."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Stream type: \"live\" or \"\" (in case of error)."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user who is streaming."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the user who is streaming."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        },
+        {
+          "parameter": "viewer_count",
+          "type": "int",
+          "description": "Number of viewers watching the stream at the time of the query."
+        }
+      ]
+    },
+    {
       "title": "Create Stream Marker",
       "authentication": "channel:manage:broadcast",
       "pagination_support": {
@@ -2655,7 +2759,7 @@
         {
           "parameter": "first",
           "type": "string",
-          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100.     Default: 20."
+          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100. Default: 20."
         }
       ],
       "response_fields": [

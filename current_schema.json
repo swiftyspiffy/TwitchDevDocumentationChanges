@@ -2282,6 +2282,834 @@
       ]
     },
     {
+      "title": "Get Polls",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice across all methods of voting."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time. Set to null if the poll is active."
+        }
+      ]
+    },
+    {
+      "title": "Create Poll",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll.. . Maximum: 60 characters."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices.. . Minimum: 2 choices. Maximum: 5 choices."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice.. . Maximum: 25 characters."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds).. . Minimum: 15. Maximum: 1800."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time. Set to null if the poll is active."
+        }
+      ]
+    },
+    {
+      "title": "End Poll",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "The poll status to be set. Valid values:. . TERMINATED: End the poll manually, but allow it to be viewed publicly.. . ARCHIVED: End the poll manually and do not allow it to be viewed publicly."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll Status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time."
+        }
+      ]
+    },
+    {
+      "title": "Get Predictions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running Predictions. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the Prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors. null if none."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the Prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who guessed the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the Prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
+      "title": "Create Prediction",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running Predictions. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction.. . Maximum: 45 characters."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of outcome objects with titles for the Prediction. Array size must be 2."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for the outcome choice.. . Maximum: 25 characters."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds).. . Minimum: 1. Maximum: 1800."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the Prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the Prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the Prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
+      "title": "End Prediction",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running prediction events. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "The Prediction status to be set. Valid values:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
       "title": "Search Categories",
       "authentication": "",
       "pagination_support": {

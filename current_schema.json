@@ -2007,6 +2007,38 @@
       ]
     },
     {
+      "title": "Manage Held AutoMod Messages",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/moderation/automod/message"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "The moderator who is approving or rejecting the held message. Must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "msg_id",
+          "type": "string",
+          "description": "ID of the message to be allowed or denied. These message IDs are retrieved from IRC or PubSub. Only one message ID can be provided."
+        },
+        {
+          "parameter": "action",
+          "type": "string",
+          "description": "The action to take for the message. Must be \"ALLOW\" or \"DENY\"."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
       "title": "Get Banned Events",
       "authentication": "",
       "pagination_support": {

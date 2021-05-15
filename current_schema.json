@@ -533,6 +533,11 @@
           "parameter": "title",
           "type": "string",
           "description": "Title of the stream"
+        },
+        {
+          "parameter": "delay",
+          "type": "integer",
+          "description": "Stream delay in seconds"
         }
       ]
     },
@@ -1598,11 +1603,6 @@
           "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
         },
         {
-          "parameter": "limit",
-          "type": "integer",
-          "description": "Subscription limit for client id that made the subscription creation request."
-        },
-        {
           "parameter": "total",
           "type": "integer",
           "description": "Total number of subscriptions for the client ID that made the subscription creation request."
@@ -1706,11 +1706,6 @@
           "parameter": "transport",
           "type": "transport",
           "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
-        },
-        {
-          "parameter": "limit",
-          "type": "integer",
-          "description": "Subscription limit for client id that made the subscription creation request."
         },
         {
           "parameter": "total",
@@ -2027,7 +2022,7 @@
         {
           "parameter": "msg_id",
           "type": "string",
-          "description": "ID of the message to be allowed or denied. These message IDs are retrieved from IRC or PubSub. Only one message ID can be provided."
+          "description": "ID of the message to be allowed or denied. These message IDs are retrieved from PubSub as mentioned above. Only one message ID can be provided."
         },
         {
           "parameter": "action",
@@ -2861,7 +2856,7 @@
         {
           "parameter": "outcomes",
           "type": "object[]",
-          "description": "Array of outcome objects with titles for the Prediction. Array size must be 2."
+          "description": "Array of outcome objects with titles for the Prediction. Array size must be 2. The first outcome object is the “blue” outcome and the second outcome object is the “pink” outcome when viewing the Prediction on Twitch."
         },
         {
           "parameter": "outcome.title",

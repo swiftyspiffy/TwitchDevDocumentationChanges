@@ -603,7 +603,7 @@
     },
     {
       "title": "Create Custom Rewards",
-      "authentication": "broadcaster_id",
+      "authentication": "channel:manage:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -616,16 +616,27 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token."
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         }
       ],
-      "required_body_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "The title of the reward."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The cost of the reward."
+        }
+      ],
       "optional_query_parameters": [],
       "response_fields": [
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the channel the reward is for"
+          "description": "ID of the channel the reward is for."
         },
         {
           "parameter": "broadcaster_login",
@@ -635,27 +646,27 @@
         {
           "parameter": "broadcaster_name",
           "type": "string",
-          "description": "Display name of the channel the reward is for"
+          "description": "Display name of the channel the reward is for."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the reward"
+          "description": "ID of the reward."
         },
         {
           "parameter": "title",
           "type": "string",
-          "description": "The title of the reward"
+          "description": "The title of the reward."
         },
         {
           "parameter": "prompt",
           "type": "string",
-          "description": "The prompt for the viewer when they are redeeming the reward"
+          "description": "The prompt for the viewer when they are redeeming the reward."
         },
         {
           "parameter": "cost",
           "type": "integer",
-          "description": "The cost of the reward"
+          "description": "The cost of the reward."
         },
         {
           "parameter": "image",
@@ -674,12 +685,12 @@
         },
         {
           "parameter": "is_enabled",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
         },
         {
           "parameter": "is_user_input_required",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Does the user need to enter information when redeeming the reward"
         },
         {
@@ -699,17 +710,17 @@
         },
         {
           "parameter": "is_paused",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Is the reward currently paused, if true viewers can’t redeem"
         },
         {
           "parameter": "is_in_stock",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Is the reward currently in stock, if false viewers can’t redeem"
         },
         {
           "parameter": "should_redemptions_skip_request_queue",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
         },
         {
@@ -726,7 +737,7 @@
     },
     {
       "title": "Delete Custom Reward",
-      "authentication": "broadcaster_id",
+      "authentication": "channel:manage:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -739,12 +750,12 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token"
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the Custom Reward to delete, must match a Custom Reward on broadcaster_id’s channel."
+          "description": "ID of the Custom Reward to delete, must match a Custom Reward on broadcaster_id’s channel."
         }
       ],
       "required_body_parameters": [],
@@ -753,7 +764,7 @@
     },
     {
       "title": "Get Custom Reward",
-      "authentication": "broadcaster_id",
+      "authentication": "channel:read:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -766,7 +777,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token"
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         }
       ],
       "required_body_parameters": [],
@@ -779,49 +790,49 @@
         {
           "parameter": "only_manageable_rewards",
           "type": "Boolean",
-          "description": "When set to true, only returns custom rewards that the calling client_id can manage. Defaults false."
+          "description": "When set to true, only returns custom rewards that the calling client_id can manage. Default: false."
         }
       ],
       "response_fields": [
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the channel the reward is for"
+          "description": "ID of the channel the reward is for."
         },
         {
           "parameter": "broadcaster_login",
           "type": "string",
-          "description": "Login of the channel the reward is for"
+          "description": "Login of the channel the reward is for."
         },
         {
           "parameter": "broadcaster_name",
           "type": "string",
-          "description": "Display name of the channel the reward is for"
+          "description": "Display name of the channel the reward is for."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the reward"
+          "description": "ID of the reward."
         },
         {
           "parameter": "title",
           "type": "string",
-          "description": "The title of the reward"
+          "description": "The title of the reward."
         },
         {
           "parameter": "prompt",
           "type": "string",
-          "description": "The prompt for the viewer when they are redeeming the reward"
+          "description": "The prompt for the viewer when redeeming the reward."
         },
         {
           "parameter": "cost",
           "type": "integer",
-          "description": "The cost of the reward"
+          "description": "The cost of the reward."
         },
         {
           "parameter": "image",
           "type": "object",
-          "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+          "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded."
         },
         {
           "parameter": "default_image",
@@ -831,16 +842,16 @@
         {
           "parameter": "background_color",
           "type": "string",
-          "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+          "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
         },
         {
           "parameter": "is_enabled",
-          "type": "Boolean",
-          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+          "type": "boolean",
+          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers."
         },
         {
           "parameter": "is_user_input_required",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Does the user need to enter information when redeeming the reward"
         },
         {
@@ -860,17 +871,17 @@
         },
         {
           "parameter": "is_paused",
-          "type": "Boolean",
-          "description": "Is the reward currently paused, if true viewers can’t redeem"
+          "type": "boolean",
+          "description": "Is the reward currently paused, if true viewers can’t redeem."
         },
         {
           "parameter": "is_in_stock",
-          "type": "Boolean",
-          "description": "Is the reward currently in stock, if false viewers can’t redeem"
+          "type": "boolean",
+          "description": "Is the reward currently in stock, if false viewers can’t redeem."
         },
         {
           "parameter": "should_redemptions_skip_request_queue",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
         },
         {
@@ -887,7 +898,7 @@
     },
     {
       "title": "Get Custom Reward Redemption",
-      "authentication": "broadcaster_id",
+      "authentication": "channel:read:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -900,12 +911,12 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token"
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         },
         {
           "parameter": "reward_id",
           "type": "string",
-          "description": "When ID is not provided, this parameter returns paginated Custom Reward Redemption objects for redemptions of the Custom Reward with ID reward_id"
+          "description": "When ID is not provided, this parameter returns paginated Custom Reward Redemption objects for redemptions of the Custom Reward with ID reward_id."
         }
       ],
       "required_body_parameters": [],
@@ -996,7 +1007,7 @@
     },
     {
       "title": "Update Custom Reward",
-      "authentication": "broadcaster_id",
+      "authentication": "hannel:manage:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -1009,12 +1020,12 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided&nbsp;broadcaster_id&nbsp;must match the&nbsp;user_id&nbsp;in the auth token."
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the Custom Reward to update, must match a Custom Reward on&nbsp;broadcaster_id&rsquo;s channel."
+          "description": "ID of the Custom Reward to update. Must match a Custom Reward on the channel of the broadcaster_id."
         }
       ],
       "required_body_parameters": [],
@@ -1023,7 +1034,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the channel the reward is for"
+          "description": "ID of the channel the reward is for."
         },
         {
           "parameter": "broadcaster_login",
@@ -1033,98 +1044,98 @@
         {
           "parameter": "broadcaster_name",
           "type": "string",
-          "description": "Display name of the channel the reward is for"
+          "description": "Display name of the channel the reward is for."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the reward"
+          "description": "ID of the reward."
         },
         {
           "parameter": "title",
           "type": "string",
-          "description": "The title of the reward"
+          "description": "The title of the reward."
         },
         {
           "parameter": "prompt",
           "type": "string",
-          "description": "The prompt for the viewer when they are redeeming the reward"
+          "description": "The prompt for the viewer when they are redeeming the reward."
         },
         {
           "parameter": "cost",
           "type": "integer",
-          "description": "The cost of the reward"
+          "description": "The cost of the reward."
         },
         {
           "parameter": "image",
           "type": "object",
-          "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+          "description": "Set of custom images of 1x, 2x, and 4x sizes for the reward, can be null if no images have been uploaded."
         },
         {
           "parameter": "default_image",
           "type": "object",
-          "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+          "description": "Set of default images of 1x, 2x, and 4x sizes for the reward."
         },
         {
           "parameter": "background_color",
           "type": "string",
-          "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+          "description": "Custom background color for the reward as a hexadecimal value. Example: #00E5CB."
         },
         {
           "parameter": "is_enabled",
-          "type": "Boolean",
-          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+          "type": "boolean",
+          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers."
         },
         {
           "parameter": "is_user_input_required",
-          "type": "Boolean",
-          "description": "Does the user need to enter information when redeeming the reward"
+          "type": "boolean",
+          "description": "Does the user need to enter information when redeeming the reward."
         },
         {
           "parameter": "max_per_stream_setting",
           "type": "object",
-          "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+          "description": "Whether a maximum per stream is enabled and what the maximum is."
         },
         {
           "parameter": "max_per_user_per_stream_setting",
           "type": "object",
-          "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+          "description": "Whether a maximum per user per stream is enabled and what the maximum is."
         },
         {
           "parameter": "global_cooldown_setting",
           "type": "object",
-          "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+          "description": "Whether a cooldown is enabled and what the cooldown is."
         },
         {
           "parameter": "is_paused",
-          "type": "Boolean",
-          "description": "Is the reward currently paused, if true viewers can’t redeem"
+          "type": "boolean",
+          "description": "Is the reward currently paused, if true viewers cannot redeem."
         },
         {
           "parameter": "is_in_stock",
-          "type": "Boolean",
-          "description": "Is the reward currently in stock, if false viewers can’t redeem"
+          "type": "boolean",
+          "description": "Is the reward currently in stock, if false viewers can’t redeem."
         },
         {
           "parameter": "should_redemptions_skip_request_queue",
-          "type": "Boolean",
+          "type": "boolean",
           "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
         },
         {
           "parameter": "redemptions_redeemed_current_stream",
           "type": "integer",
-          "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+          "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. null if the broadcasters stream is not live or max_per_stream_setting is not enabled."
         },
         {
           "parameter": "cooldown_expires_at",
           "type": "string",
-          "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown"
+          "description": "Timestamp of the cooldown expiration. null if the reward is not on cooldown."
         }
       ]
     },
     {
       "title": "Update Redemption Status",
-      "authentication": "broadcaster_id",
+      "authentication": "channel:manage:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -1137,12 +1148,12 @@
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the Custom Reward Redemption to update, must match a Custom Reward Redemption on broadcaster_id’s channel Max: 50"
+          "description": "ID of the Custom Reward Redemption to update, must match a Custom Reward Redemption on broadcaster_id’s channel. Maximum: 50."
         },
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token."
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
         },
         {
           "parameter": "reward_id",
@@ -1156,7 +1167,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "The id of the broadcaster that the reward belongs to."
+          "description": "The ID of the broadcaster that the reward belongs to."
         },
         {
           "parameter": "broadcaster_login",
@@ -1176,7 +1187,7 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "The ID of the user that redeemed the reward"
+          "description": "The ID of the user that redeemed the reward."
         },
         {
           "parameter": "user_name",
@@ -1201,7 +1212,7 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "One of UNFULFILLED, FULFILLED or CANCELED"
+          "description": "One of UNFULFILLED, FULFILLED or CANCELED."
         },
         {
           "parameter": "redeemed_at",

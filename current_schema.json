@@ -1007,7 +1007,7 @@
     },
     {
       "title": "Update Custom Reward",
-      "authentication": "hannel:manage:redemptions",
+      "authentication": "channel:manage:redemptions",
       "pagination_support": {
         "forward": false,
         "reverse": false
@@ -1218,6 +1218,116 @@
           "parameter": "redeemed_at",
           "type": "string",
           "description": "RFC3339 timestamp of when the reward was redeemed."
+        }
+      ]
+    },
+    {
+      "title": "Get Channel Chat Badges",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/badges"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster whose chat badges are being requested. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of objects",
+          "description": "An array of chat badge sets."
+        },
+        {
+          "parameter": "set.set_id",
+          "type": "string",
+          "description": "ID for the chat badge set."
+        },
+        {
+          "parameter": "set.versions",
+          "type": "Array of objects",
+          "description": "Contains chat badge objects for the set."
+        },
+        {
+          "parameter": "set.version.id",
+          "type": "string",
+          "description": "ID of the chat badge version."
+        },
+        {
+          "parameter": "set.version.image_url_1x",
+          "type": "string",
+          "description": "Small image URL."
+        },
+        {
+          "parameter": "set.version.image_url_2x",
+          "type": "string",
+          "description": "Medium image URL."
+        },
+        {
+          "parameter": "set.version.image_url_4x",
+          "type": "string",
+          "description": "Large image URL."
+        }
+      ]
+    },
+    {
+      "title": "Get Global Chat Badges",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/badges/global"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of objects",
+          "description": "An array of chat badge sets."
+        },
+        {
+          "parameter": "set.set_id",
+          "type": "string",
+          "description": "ID for the chat badge set."
+        },
+        {
+          "parameter": "set.versions",
+          "type": "Array of objects",
+          "description": "Contains chat badge objects for the set."
+        },
+        {
+          "parameter": "set.version.id",
+          "type": "string",
+          "description": "ID of the chat badge version."
+        },
+        {
+          "parameter": "set.version.image_url_1x",
+          "type": "string",
+          "description": "Small image URL."
+        },
+        {
+          "parameter": "set.version.image_url_2x",
+          "type": "string",
+          "description": "Medium image URL."
+        },
+        {
+          "parameter": "set.version.image_url_4x",
+          "type": "string",
+          "description": "Large image URL."
         }
       ]
     },

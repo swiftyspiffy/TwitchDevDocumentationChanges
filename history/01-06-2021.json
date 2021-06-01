@@ -1,0 +1,4940 @@
+{
+  "helix": [
+    {
+      "title": "Start Commercial",
+      "authentication": "channel:edit:commercial",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/channels/commercial"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel requesting a commercial. Minimum: 1 Maximum: 1"
+        },
+        {
+          "parameter": "length",
+          "type": "integer",
+          "description": "Desired length of the commercial in seconds. . Valid options are 30, 60, 90, 120, 150, 180."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "length",
+          "type": "integer",
+          "description": "Length of the triggered commercial"
+        },
+        {
+          "parameter": "message",
+          "type": "string",
+          "description": "Provides contextual information on why the request failed"
+        },
+        {
+          "parameter": "retry_after",
+          "type": "integer",
+          "description": "Seconds until the next commercial can be served on this channel"
+        }
+      ]
+    },
+    {
+      "title": "Get Extension Analytics",
+      "authentication": "analytics:read:extensions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/analytics/extensions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. This applies only to queries without extension_id. If an extension_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "Ending date/time for returned reports, in RFC3339 format with the hours, minutes, and seconds zeroed out and the UTC timezone: YYYY-MM-DDT00:00:00Z. The report covers the entire ending date; e.g., if 2018-05-01T00:00:00Z is specified, the report covers up to 2018-05-01T23:59:59Z.. . If this is provided, started_at also must be specified. If ended_at is later than the default end date, the default date is used. Default: 1-2 days before the request was issued (depending on report availability)."
+        },
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "Client ID value assigned to the extension when it is created. If this is specified, the returned URL points to an analytics report for just the specified extension. If this is not specified, the response includes multiple URLs (paginated), pointing to separate analytics reports for each of the authenticated user’s Extensions."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Starting date/time for returned reports, in RFC3339 format with the hours, minutes, and seconds zeroed out and the UTC timezone: YYYY-MM-DDT00:00:00Z. This must be on or after January 31, 2018.. . If this is provided, ended_at also must be specified. If started_at is earlier than the default start date, the default date is used.  The file contains one row of data per day."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of analytics report that is returned. Currently, this field has no affect on the response as there is only one report type. If additional types were added, using this field would return only the URL for the specified report. Limit: 1. Valid values: \"overview_v2\"."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "Report end date/time."
+        },
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID of the extension whose analytics data is being provided."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results. This is returned only if extension_id is not specified in the request."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Report start date/time. Note this may differ from (be later than) the started_at value in the request; the response value is the date when data for the extension is available."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of report."
+        },
+        {
+          "parameter": "URL",
+          "type": "string",
+          "description": "URL to the downloadable CSV file containing analytics data. Valid for 5 minutes."
+        }
+      ]
+    },
+    {
+      "title": "Get Game Analytics",
+      "authentication": "analytics:read:games",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/analytics/games"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. This applies only to queries without game_id. If a game_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "Ending date/time for returned reports, in RFC3339 format with the hours, minutes, and seconds zeroed out and the UTC timezone: YYYY-MM-DDT00:00:00Z. The report covers the entire ending date; e.g., if 2018-05-01T00:00:00Z is specified, the report covers up to 2018-05-01T23:59:59Z.. . If this is provided, started_at also must be specified. If ended_at is later than the default end date, the default date is used. Default: 1-2 days before the request was issued (depending on report availability)."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "Game ID. If this is specified, the returned URL points to an analytics report for just the specified game. If this is not specified, the response includes multiple URLs (paginated), pointing to separate analytics reports for each of the authenticated user’s games."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Starting date/time for returned reports, in RFC3339 format with the hours, minutes, and seconds zeroed out and the UTC timezone: YYYY-MM-DDT00:00:00Z.. . If this is provided, ended_at also must be specified. If started_at is earlier than the default start date, the default date is used. Default: 365 days before the report was issued. The file contains one row of data per day."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of analytics report that is returned. Currently, this field has no affect on the response as there is only one report type. If additional types were added, using this field would return only the URL for the specified report. Limit: 1. Valid values: \"overview_v2\"."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "Report end date/time."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game whose analytics data is being provided."
+        },
+        {
+          "parameter": "pagination",
+          "type": "Object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results. This is returned only if game_id is not specified in the request."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Report start date/time."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of report."
+        },
+        {
+          "parameter": "URL",
+          "type": "string",
+          "description": "URL to the downloadable CSV file containing analytics data. Valid for 5 minutes."
+        }
+      ]
+    },
+    {
+      "title": "Get Bits Leaderboard",
+      "authentication": "bits:read",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/bits/leaderboard"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "count",
+          "type": "integer",
+          "description": "Number of results to be returned. Maximum: 100. Default: 10."
+        },
+        {
+          "parameter": "period",
+          "type": "string",
+          "description": "Time period over which data is aggregated (PST time zone). This parameter interacts with started_at. Valid values follow. Default: \"all\".\"day\" &ndash; 00:00:00 on the day specified in started_at, through 00:00:00 on the following day.\"week\" &ndash; 00:00:00 on Monday of the week specified in started_at, through 00:00:00 on the following Monday.\"month\" &ndash; 00:00:00 on the first day of the month specified in started_at, through 00:00:00 on the first day of the following month.\"year\" &ndash; 00:00:00 on the first day of the year specified in started_at, through 00:00:00 on the first day of the following year.\"all\" &ndash; The lifetime of the broadcaster's channel. If this is specified (or used by default), started_at is ignored."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Timestamp for the period over which the returned data is aggregated. Must be in RFC 3339 format. If this is not provided, data is aggregated over the current period; e.g., the current day/week/month/year. This value is ignored if period is \"all\".. . Any + operator should be URL encoded.. . Currently, the HH:MM:SS part of this value is used only to identify a given day in PST and otherwise ignored. For example, if the started_at value resolves to 5PM PST yesterday and period is \"day\", data is returned for all of yesterday."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user whose results are returned; i.e., the person who paid for the Bits.. . As long as count is greater than 1, the returned data includes additional users, with Bits amounts above and below the user specified by user_id.. . If user_id is not provided, the endpoint returns the Bits leaderboard data across top users (subject to the value of count)."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "End of the date range for the returned data."
+        },
+        {
+          "parameter": "rank",
+          "type": "integer",
+          "description": "Leaderboard rank of the user."
+        },
+        {
+          "parameter": "score",
+          "type": "integer",
+          "description": "Leaderboard score (number of Bits) of the user."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Start of the date range for the returned data."
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "Total number of results (users) returned. This is count or the total number of entries in the leaderboard, whichever is less."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user (viewer) in the leaderboard entry."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "User login name."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        }
+      ]
+    },
+    {
+      "title": "Get Cheermotes",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/bits/cheermotes"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "prefix",
+          "type": "string",
+          "description": "The string used to Cheer that precedes the Bits amount."
+        },
+        {
+          "parameter": "tiers",
+          "type": "array",
+          "description": "An array of Cheermotes with their metadata."
+        },
+        {
+          "parameter": "min_bits",
+          "type": "integer",
+          "description": "Minimum number of bits needed to be used to hit the given tier of emote.  "
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the emote tier. Possible tiers are: 1,100,500,1000,5000, 10k, or 100k."
+        },
+        {
+          "parameter": "color",
+          "type": "string",
+          "description": "Hex code for the color associated with the bits of that tier. Grey, Purple, Teal, Blue, or Red color to match the base bit type."
+        },
+        {
+          "parameter": "images",
+          "type": "object",
+          "description": "Structure containing both animated and static image sets, sorted by light and dark."
+        },
+        {
+          "parameter": "can_cheer",
+          "type": "Boolean",
+          "description": "Indicates whether or not emote information is accessible to users."
+        },
+        {
+          "parameter": "show_in_bits_card",
+          "type": "Boolean",
+          "description": "Indicates whether or not we hide the emote from the bits card."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Shows whether the emote is global_first_party,  global_third_party, channel_custom, display_only, or sponsored."
+        },
+        {
+          "parameter": "order",
+          "type": "integer",
+          "description": "Order of the emotes as shown in the bits card, in ascending order."
+        },
+        {
+          "parameter": "last_updated",
+          "type": "string",
+          "description": "The data when this Cheermote was last updated."
+        },
+        {
+          "parameter": "is_charitable",
+          "type": "Boolean",
+          "description": "Indicates whether or not this emote provides a charity contribution match during charity campaigns."
+        }
+      ]
+    },
+    {
+      "title": "Get Extension Transactions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions/transactions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID of the extension to list transactions for. Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Transaction IDs to look up. Can include multiple to fetch multiple transactions in a single request.. . Format: Repeated Query Parameter, eg. /helix/extensions/transactions?extension_id=1234&amp;id=1&amp;id=2&amp;id=3. . Maximum: 100"
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "The cursor used to fetch the next page of data. This only applies to queries without ID. If an ID is specified, it supersedes the cursor."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20"
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
+        },
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array of requested transactions."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Unique identifier of the Bits in Extensions Transaction."
+        },
+        {
+          "parameter": "timestamp",
+          "type": "string",
+          "description": "UTC timestamp when this transaction occurred."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Twitch User ID of the channel the transaction occurred on."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Twitch Display Name of the broadcaster."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Twitch User ID of the user who generated the transaction."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login name of the user who generated the transaction."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Twitch Display Name of the user who generated the transaction."
+        },
+        {
+          "parameter": "product_type",
+          "type": "string",
+          "description": "Enum of the product type. Currently only BITS_IN_EXTENSION."
+        },
+        {
+          "parameter": "product_data",
+          "type": "object",
+          "description": "JSON Object representing the product acquired, as it looked at the time of the transaction."
+        },
+        {
+          "parameter": "domain",
+          "type": "string",
+          "description": "Set this field to twitch.ext + your extension ID."
+        },
+        {
+          "parameter": "broadcast",
+          "type": "Boolean",
+          "description": "Flag that denotes whether or not the data was sent over the extension pubsub to all instances of the extension."
+        },
+        {
+          "parameter": "expiration",
+          "type": "string",
+          "description": "Always empty since only unexpired products can be purchased."
+        },
+        {
+          "parameter": "sku",
+          "type": "string",
+          "description": "Unique identifier for the product across the extension."
+        },
+        {
+          "parameter": "cost",
+          "type": "object",
+          "description": "JSON Object representing the cost to acquire the product."
+        },
+        {
+          "parameter": "amount",
+          "type": "integer",
+          "description": "Number of Bits required to acquire the product."
+        }
+      ]
+    },
+    {
+      "title": "Get Channel Information",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/channels"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel to be updated"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Twitch User ID of this channel owner"
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Twitch user display name of this channel owner"
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played on the channel"
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "Current game ID being played on the channel"
+        },
+        {
+          "parameter": "broadcaster_language",
+          "type": "string",
+          "description": "Language of the channel. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title of the stream"
+        },
+        {
+          "parameter": "delay",
+          "type": "integer",
+          "description": "Stream delay in seconds"
+        }
+      ]
+    },
+    {
+      "title": "Modify Channel Information",
+      "authentication": "channel:manage:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/channels"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel to be updated"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Channel Editors",
+      "authentication": "channel:read:editors",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/channels/editors"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Broadcaster’s user ID associated with the channel."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of the editor."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name of the editor."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date and time the editor was given editor permissions."
+        }
+      ]
+    },
+    {
+      "title": "Create Custom Rewards",
+      "authentication": "channel:manage:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        }
+      ],
+      "required_body_parameters": [
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "The title of the reward."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The cost of the reward."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel the reward is for."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Broadcaster’s user login name."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the channel the reward is for."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the reward."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "The title of the reward."
+        },
+        {
+          "parameter": "prompt",
+          "type": "string",
+          "description": "The prompt for the viewer when they are redeeming the reward."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The cost of the reward."
+        },
+        {
+          "parameter": "image",
+          "type": "object",
+          "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded"
+        },
+        {
+          "parameter": "default_image",
+          "type": "object",
+          "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+        },
+        {
+          "parameter": "background_color",
+          "type": "string",
+          "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+        },
+        {
+          "parameter": "is_enabled",
+          "type": "boolean",
+          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers"
+        },
+        {
+          "parameter": "is_user_input_required",
+          "type": "boolean",
+          "description": "Does the user need to enter information when redeeming the reward"
+        },
+        {
+          "parameter": "max_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+        },
+        {
+          "parameter": "max_per_user_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+        },
+        {
+          "parameter": "global_cooldown_setting",
+          "type": "object",
+          "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+        },
+        {
+          "parameter": "is_paused",
+          "type": "boolean",
+          "description": "Is the reward currently paused, if true viewers can’t redeem"
+        },
+        {
+          "parameter": "is_in_stock",
+          "type": "boolean",
+          "description": "Is the reward currently in stock, if false viewers can’t redeem"
+        },
+        {
+          "parameter": "should_redemptions_skip_request_queue",
+          "type": "boolean",
+          "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+        },
+        {
+          "parameter": "redemptions_redeemed_current_stream",
+          "type": "integer",
+          "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+        },
+        {
+          "parameter": "cooldown_expires_at",
+          "type": "string",
+          "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown."
+        }
+      ]
+    },
+    {
+      "title": "Delete Custom Reward",
+      "authentication": "channel:manage:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Custom Reward to delete, must match a Custom Reward on broadcaster_id’s channel."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Custom Reward",
+      "authentication": "channel:read:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "When used, this parameter filters the results and only returns reward objects for the Custom Rewards with matching ID. Maximum: 50"
+        },
+        {
+          "parameter": "only_manageable_rewards",
+          "type": "Boolean",
+          "description": "When set to true, only returns custom rewards that the calling client_id can manage. Default: false."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel the reward is for."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the channel the reward is for."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the channel the reward is for."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the reward."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "The title of the reward."
+        },
+        {
+          "parameter": "prompt",
+          "type": "string",
+          "description": "The prompt for the viewer when redeeming the reward."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The cost of the reward."
+        },
+        {
+          "parameter": "image",
+          "type": "object",
+          "description": "Set of custom images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }, can be null if no images have been uploaded."
+        },
+        {
+          "parameter": "default_image",
+          "type": "object",
+          "description": "Set of default images of 1x, 2x and 4x sizes for the reward { url_1x: string, url_2x: string, url_4x: string }"
+        },
+        {
+          "parameter": "background_color",
+          "type": "string",
+          "description": "Custom background color for the reward. Format: Hex with # prefix. Example: #00E5CB."
+        },
+        {
+          "parameter": "is_enabled",
+          "type": "boolean",
+          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers."
+        },
+        {
+          "parameter": "is_user_input_required",
+          "type": "boolean",
+          "description": "Does the user need to enter information when redeeming the reward"
+        },
+        {
+          "parameter": "max_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per stream is enabled and what the maximum is. { is_enabled: bool, max_per_stream: int }"
+        },
+        {
+          "parameter": "max_per_user_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per user per stream is enabled and what the maximum is. { is_enabled: bool, max_per_user_per_stream: int }"
+        },
+        {
+          "parameter": "global_cooldown_setting",
+          "type": "object",
+          "description": "Whether a cooldown is enabled and what the cooldown is. { is_enabled: bool, global_cooldown_seconds: int }"
+        },
+        {
+          "parameter": "is_paused",
+          "type": "boolean",
+          "description": "Is the reward currently paused, if true viewers can’t redeem."
+        },
+        {
+          "parameter": "is_in_stock",
+          "type": "boolean",
+          "description": "Is the reward currently in stock, if false viewers can’t redeem."
+        },
+        {
+          "parameter": "should_redemptions_skip_request_queue",
+          "type": "boolean",
+          "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+        },
+        {
+          "parameter": "redemptions_redeemed_current_stream",
+          "type": "integer",
+          "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. Null if the broadcasters stream isn’t live or max_per_stream_setting isn’t enabled."
+        },
+        {
+          "parameter": "cooldown_expires_at",
+          "type": "string",
+          "description": "Timestamp of the cooldown expiration. Null if the reward isn’t on cooldown."
+        }
+      ]
+    },
+    {
+      "title": "Get Custom Reward Redemption",
+      "authentication": "channel:read:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "reward_id",
+          "type": "string",
+          "description": "When ID is not provided, this parameter returns paginated Custom Reward Redemption objects for redemptions of the Custom Reward with ID reward_id."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "When used, this param filters the results and only returns Custom Reward Redemption objects for the redemptions with matching ID. Maximum: 50"
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "When id is not provided, this param is required and filters the paginated Custom Reward Redemption objects for redemptions with the matching status. Can be one of UNFULFILLED, FULFILLED or CANCELED"
+        },
+        {
+          "parameter": "sort",
+          "type": "string",
+          "description": "Sort order of redemptions returned when getting the paginated Custom Reward Redemption objects for a reward. One of: OLDEST, NEWEST. Default: OLDEST."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. This applies only to queries without ID. If an ID is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Number of results to be returned when getting the paginated Custom Reward Redemption objects for a reward. Limit: 50. Default: 20."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The id of the broadcaster that the reward belongs to."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Broadcaster’s user login name."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "The display name of the broadcaster that the reward belongs to."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The ID of the redemption."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "The login of the user who redeemed the reward."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "The ID of the user that redeemed the reward."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "The display name of the user that redeemed the reward."
+        },
+        {
+          "parameter": "reward",
+          "type": "object",
+          "description": "Basic information about the Custom Reward that was redeemed at the time it was redeemed. { “id”: string, “title”: string, “prompt”: string, “cost”: int, }"
+        },
+        {
+          "parameter": "user_input",
+          "type": "string",
+          "description": "The user input provided. Empty string if not provided."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "One of UNFULFILLED, FULFILLED or CANCELED"
+        },
+        {
+          "parameter": "redeemed_at",
+          "type": "string",
+          "description": "RFC3339 timestamp of when the reward was redeemed."
+        }
+      ]
+    },
+    {
+      "title": "Update Custom Reward",
+      "authentication": "channel:manage:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Custom Reward to update. Must match a Custom Reward on the channel of the broadcaster_id."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the channel the reward is for."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Broadcaster’s user login name."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the channel the reward is for."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the reward."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "The title of the reward."
+        },
+        {
+          "parameter": "prompt",
+          "type": "string",
+          "description": "The prompt for the viewer when they are redeeming the reward."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The cost of the reward."
+        },
+        {
+          "parameter": "image",
+          "type": "object",
+          "description": "Set of custom images of 1x, 2x, and 4x sizes for the reward, can be null if no images have been uploaded."
+        },
+        {
+          "parameter": "default_image",
+          "type": "object",
+          "description": "Set of default images of 1x, 2x, and 4x sizes for the reward."
+        },
+        {
+          "parameter": "background_color",
+          "type": "string",
+          "description": "Custom background color for the reward as a hexadecimal value. Example: #00E5CB."
+        },
+        {
+          "parameter": "is_enabled",
+          "type": "boolean",
+          "description": "Is the reward currently enabled, if false the reward won’t show up to viewers."
+        },
+        {
+          "parameter": "is_user_input_required",
+          "type": "boolean",
+          "description": "Does the user need to enter information when redeeming the reward."
+        },
+        {
+          "parameter": "max_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per stream is enabled and what the maximum is."
+        },
+        {
+          "parameter": "max_per_user_per_stream_setting",
+          "type": "object",
+          "description": "Whether a maximum per user per stream is enabled and what the maximum is."
+        },
+        {
+          "parameter": "global_cooldown_setting",
+          "type": "object",
+          "description": "Whether a cooldown is enabled and what the cooldown is."
+        },
+        {
+          "parameter": "is_paused",
+          "type": "boolean",
+          "description": "Is the reward currently paused, if true viewers cannot redeem."
+        },
+        {
+          "parameter": "is_in_stock",
+          "type": "boolean",
+          "description": "Is the reward currently in stock, if false viewers can’t redeem."
+        },
+        {
+          "parameter": "should_redemptions_skip_request_queue",
+          "type": "boolean",
+          "description": "Should redemptions be set to FULFILLED status immediately when redeemed and skip the request queue instead of the normal UNFULFILLED status."
+        },
+        {
+          "parameter": "redemptions_redeemed_current_stream",
+          "type": "integer",
+          "description": "The number of redemptions redeemed during the current live stream. Counts against the max_per_stream_setting limit. null if the broadcasters stream is not live or max_per_stream_setting is not enabled."
+        },
+        {
+          "parameter": "cooldown_expires_at",
+          "type": "string",
+          "description": "Timestamp of the cooldown expiration. null if the reward is not on cooldown."
+        }
+      ]
+    },
+    {
+      "title": "Update Redemption Status",
+      "authentication": "channel:manage:redemptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Custom Reward Redemption to update, must match a Custom Reward Redemption on broadcaster_id’s channel. Maximum: 50."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "reward_id",
+          "type": "string",
+          "description": "ID of the Custom Reward the redemptions to be updated are for."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The ID of the broadcaster that the reward belongs to."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Broadcaster’s user login name."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "The display name of the broadcaster that the reward belongs to."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The ID of the redemption."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "The ID of the user that redeemed the reward."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "The display name of the user that redeemed the reward."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "The login of the user that redeemed the reward."
+        },
+        {
+          "parameter": "reward",
+          "type": "object",
+          "description": "Basic information about the Custom Reward that was redeemed at the time it was redeemed. { “id”: string, “title”: string, “prompt”: string, “cost”: int, }"
+        },
+        {
+          "parameter": "user_input",
+          "type": "string",
+          "description": "The user input provided. Null if not provided."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "One of UNFULFILLED, FULFILLED or CANCELED."
+        },
+        {
+          "parameter": "redeemed_at",
+          "type": "string",
+          "description": "RFC3339 timestamp of when the reward was redeemed."
+        }
+      ]
+    },
+    {
+      "title": "Get Channel Chat Badges",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/badges"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster whose chat badges are being requested. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of objects",
+          "description": "An array of chat badge sets."
+        },
+        {
+          "parameter": "set.set_id",
+          "type": "string",
+          "description": "ID for the chat badge set."
+        },
+        {
+          "parameter": "set.versions",
+          "type": "Array of objects",
+          "description": "Contains chat badge objects for the set."
+        },
+        {
+          "parameter": "set.version.id",
+          "type": "string",
+          "description": "ID of the chat badge version."
+        },
+        {
+          "parameter": "set.version.image_url_1x",
+          "type": "string",
+          "description": "Small image URL."
+        },
+        {
+          "parameter": "set.version.image_url_2x",
+          "type": "string",
+          "description": "Medium image URL."
+        },
+        {
+          "parameter": "set.version.image_url_4x",
+          "type": "string",
+          "description": "Large image URL."
+        }
+      ]
+    },
+    {
+      "title": "Get Global Chat Badges",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/badges/global"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of objects",
+          "description": "An array of chat badge sets."
+        },
+        {
+          "parameter": "set.set_id",
+          "type": "string",
+          "description": "ID for the chat badge set."
+        },
+        {
+          "parameter": "set.versions",
+          "type": "Array of objects",
+          "description": "Contains chat badge objects for the set."
+        },
+        {
+          "parameter": "set.version.id",
+          "type": "string",
+          "description": "ID of the chat badge version."
+        },
+        {
+          "parameter": "set.version.image_url_1x",
+          "type": "string",
+          "description": "Small image URL."
+        },
+        {
+          "parameter": "set.version.image_url_2x",
+          "type": "string",
+          "description": "Medium image URL."
+        },
+        {
+          "parameter": "set.version.image_url_4x",
+          "type": "string",
+          "description": "Large image URL."
+        }
+      ]
+    },
+    {
+      "title": "Create Clip",
+      "authentication": "clips:edit",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/clips"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the stream from which the clip will be made."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "edit_url",
+          "type": "string",
+          "description": "URL of the edit page for the clip."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the clip that was created."
+        }
+      ]
+    },
+    {
+      "title": "Get Clips",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/clips"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster for whom clips are returned. The number of clips returned is determined by the first query-string parameter (default: 20). Results are ordered by view count."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game for which clips are returned. The number of clips returned is determined by the first query-string parameter (default: 20). Results are ordered by view count."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the clip being queried. Limit: 100."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. This applies only to queries specifying broadcaster_id or game_id. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response. This applies only to queries specifying broadcaster_id or game_id. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "Ending date/time for returned clips, in RFC3339 format. (Note that the seconds value is ignored.) If this is specified, started_at also must be specified; otherwise, the time period is ignored."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "Starting date/time for returned clips, in RFC3339 format. (The seconds value is ignored.) If this is specified, ended_at also should be specified; otherwise, the ended_at date/time will be 1 week after the started_at value."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the clip being queried."
+        },
+        {
+          "parameter": "url",
+          "type": "string",
+          "description": "URL where the clip can be viewed."
+        },
+        {
+          "parameter": "embed_url",
+          "type": "string",
+          "description": "URL to embed the clip."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the stream from which the clip was created."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name corresponding to broadcaster_id."
+        },
+        {
+          "parameter": "creator_id",
+          "type": "string",
+          "description": "ID of the user who created the clip."
+        },
+        {
+          "parameter": "creator_name",
+          "type": "string",
+          "description": "Display name corresponding to creator_id."
+        },
+        {
+          "parameter": "video_id",
+          "type": "string",
+          "description": "ID of the video from which the clip was created."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game assigned to the stream when the clip was created."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Language of the stream from which the clip was created. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title of the clip."
+        },
+        {
+          "parameter": "view_count",
+          "type": "int",
+          "description": "Number of times the clip has been viewed."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date when the clip was created."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "URL of the clip thumbnail."
+        },
+        {
+          "parameter": "duration",
+          "type": "float",
+          "description": "Duration of the Clip in seconds (up to 0.1 precision)."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Get Code Status",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/entitlements/codes"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "code",
+          "type": "String",
+          "description": "The code to get the status of. Repeat this query parameter additional times to get the status of multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
+        },
+        {
+          "parameter": "user_id",
+          "type": "Integer",
+          "description": "Represents a numeric Twitch user ID.. The user account which is going to receive the entitlement associated with the code."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of payloads each of which includes code (string) and status (string).",
+          "description": "Indicates the current status of each key when checking key status. . . Indicates the success or error state of each key when redeeming."
+        }
+      ]
+    },
+    {
+      "title": "Get Drops Entitlements",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/entitlements/drops"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Unique Identifier of the entitlement"
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "A Twitch User ID"
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "A Twitch Game ID"
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "The cursor used to fetch the next page of data."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of entitlements to return.. Default: 20. Max: 1000"
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array of entitlements"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Unique Identifier of the entitlement"
+        },
+        {
+          "parameter": "benefit_id",
+          "type": "string",
+          "description": "Identifier of the Benefit"
+        },
+        {
+          "parameter": "timestamp",
+          "type": "string",
+          "description": "UTC timestamp in ISO format when this entitlement was granted on Twitch."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Twitch User ID of the user who was granted the entitlement."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "Twitch Game ID of the game that was being played when this benefit was entitled."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Redeem Code",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/entitlements/codes"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "code",
+          "type": "String",
+          "description": "The code to redeem to the authenticated user’s account.. . A fifteen character (plus optional hyphen separators) alphanumeric string, e.g. ABCDE-12345-FGHIJ. . Repeat this query parameter additional times to redeem multiple codes.. Ex: ?code=code1&amp;code=code2. 1-20 code parameters are allowed."
+        },
+        {
+          "parameter": "user_id",
+          "type": "Integer",
+          "description": "Represents a numeric Twitch user ID.. The user account which is going to receive the entitlement associated with the code."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "Array of payloads each of which includes code (string) and status (string).",
+          "description": "Indicates the success or error state of each key when redeeming. "
+        }
+      ]
+    },
+    {
+      "title": "Create EventSub Subscription",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/eventsub/subscriptions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "The category of the subscription that is being created. Valid subscription types can be found here."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "The version of the subscription type that is being created. Each subscription type has independent versioning."
+        },
+        {
+          "parameter": "condition",
+          "type": "condition",
+          "description": "JSON object containing custom parameters for a particular subscription."
+        },
+        {
+          "parameter": "transport",
+          "type": "transport",
+          "description": "JSON object containing notification delivery specific configuration including a method string. Valid transport methods include: webhook. In addition to the method string, a webhook transport must include the callback and secret information."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array containing 1 element: the created subscription."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the subscription created."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "The category of the subscription that was created."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "The version of the subscription type that was created."
+        },
+        {
+          "parameter": "condition",
+          "type": "condition",
+          "description": "JSON object specifying custom parameters for the subscription."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "RFC3339 timestamp indicating when the subscription was created."
+        },
+        {
+          "parameter": "transport",
+          "type": "transport",
+          "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "total_cost",
+          "type": "integer",
+          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "max_total_cost",
+          "type": "integer",
+          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
+        }
+      ]
+    },
+    {
+      "title": "Delete EventSub Subscription",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/eventsub/subscriptions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The subscription ID for the subscription you want to delete."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get EventSub Subscriptions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/eventsub/subscriptions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Include this parameter to filter subscriptions by one status type. Valid values: . . enabled: the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: subscription is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: subscription failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Include this parameter to filter subscriptions by subscription type name (e.g., channel.update)."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array containing subscriptions."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the subscription."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "The category of the subscription."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "The version of the subscription."
+        },
+        {
+          "parameter": "condition",
+          "type": "condition",
+          "description": "JSON object specifying custom parameters for the subscription."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "RFC3339 timestamp indicating when the subscription was created."
+        },
+        {
+          "parameter": "transport",
+          "type": "transport",
+          "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "total_cost",
+          "type": "integer",
+          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "max_total_cost",
+          "type": "integer",
+          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object",
+          "description": "A cursor value to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Get Top Games",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/games/top"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "box_art_url",
+          "type": "object",
+          "description": "Template URL for a game’s box art."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Game ID."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Game name."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Get Games",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/games"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Game ID. At most 100 id values can be specified."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Game name. The name must be an exact match. For example, “Pokemon” will not return a list of Pokemon games; instead, query any specific Pokemon games in which you are interested. At most 100 name values can be specified."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "box_art_url",
+          "type": "object",
+          "description": "Template URL for the game’s box art."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Game ID."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Game name."
+        }
+      ]
+    },
+    {
+      "title": "Get Hype Train Events",
+      "authentication": "channel:read:hype_train",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/hypetrain/events"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster. Must match the User ID in the Bearer token if User Token is used."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 1."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The id of the wanted event, if known"
+        },
+        {
+          "parameter": "cursor",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without id. If an ID is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The distinct ID of the event"
+        },
+        {
+          "parameter": "event_type",
+          "type": "string",
+          "description": "Displays hypetrain.{event_name}, currently only hypetrain.progression"
+        },
+        {
+          "parameter": "event_timestamp",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp of event"
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Returns the version of the endpoint"
+        },
+        {
+          "parameter": "event_data",
+          "type": "object",
+          "description": "(See below for the schema)"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The distinct ID of this Hype Train"
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Channel ID of which Hype Train events the clients are interested in"
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp of when this Hype Train started"
+        },
+        {
+          "parameter": "expires_at",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp of the expiration time of this Hype Train"
+        },
+        {
+          "parameter": "cooldown_end_time",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp of when another Hype Train can be started again"
+        },
+        {
+          "parameter": "level",
+          "type": "integer",
+          "description": "The highest level (in the scale of 1-5) reached of the Hype Train"
+        },
+        {
+          "parameter": "goal",
+          "type": "integer",
+          "description": "The goal value of the level above"
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "The total score so far towards completing the level goal above"
+        },
+        {
+          "parameter": "top_contributions",
+          "type": "object",
+          "description": "An array of top contribution objects, one object for each type.  For example, one object would represent top contributor of BITS, by aggregate, and one would represent top contributor of SUBS by count."
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "Total aggregated amount of all contributions by the top contributor. If type is BITS, total represents aggregate amount of bits used.  If type is SUBS, aggregate total where 500, 1000, or 2500 represent tier 1, 2, or 3 subscriptions respectively.  For example, if top contributor has gifted a tier 1, 2, and 3 subscription, total would be 4000."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Identifies the contribution method, either BITS or SUBS"
+        },
+        {
+          "parameter": "user",
+          "type": "string",
+          "description": "ID of the contributing user"
+        },
+        {
+          "parameter": "last_contribution",
+          "type": "object",
+          "description": "An object that represents the most recent contribution"
+        },
+        {
+          "parameter": "total",
+          "type": "integer",
+          "description": "Total amount contributed. If type is BITS, total represents amounts of bits used.  If type is SUBS, total is 500, 1000, or 2500 to represent tier 1, 2, or 3 subscriptions respectively"
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Identifies the contribution method, either BITS or SUBS"
+        },
+        {
+          "parameter": "user",
+          "type": "string",
+          "description": "ID of the contributing user"
+        },
+        {
+          "parameter": "pagination",
+          "type": "string",
+          "description": "A cursor value, to be used in a subsequent requests to specify the starting point of the next set of results"
+        }
+      ]
+    },
+    {
+      "title": "Check AutoMod Status",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/moderation/enforcements/status"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "msg_id",
+          "type": "string",
+          "description": "The msg_id passed in the body of the POST message. Maps each message to its status."
+        },
+        {
+          "parameter": "is_permitted",
+          "type": "Boolean",
+          "description": "Indicates if this message meets AutoMod requirements."
+        }
+      ]
+    },
+    {
+      "title": "Manage Held AutoMod Messages",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/moderation/automod/message"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "The moderator who is approving or rejecting the held message. Must match the user_id in the user OAuth token."
+        },
+        {
+          "parameter": "msg_id",
+          "type": "string",
+          "description": "ID of the message to be allowed or denied. These message IDs are retrieved from PubSub as mentioned above. Only one message ID can be provided."
+        },
+        {
+          "parameter": "action",
+          "type": "string",
+          "description": "The action to take for the message. Must be \"ALLOW\" or \"DENY\"."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Banned Events",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/moderation/banned/events"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Filters the results and only returns a status object for ban events that include users being banned or un-banned in this  channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Maximum number of objects to return. Maximum: 100.  Default: 20."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Event ID"
+        },
+        {
+          "parameter": "event_type",
+          "type": "string",
+          "description": "Displays moderation.user.ban or moderation.user.unban"
+        },
+        {
+          "parameter": "event_timestamp",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp for events."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Returns the version of the endpoint."
+        },
+        {
+          "parameter": "event_data",
+          "type": "strings",
+          "description": "Returns broadcaster_id, broadcaster_login, broadcaster_name, user_id, user_login, user_name, and expires_at."
+        }
+      ]
+    },
+    {
+      "title": "Get Banned Users",
+      "authentication": "moderation:read",
+      "pagination_support": {
+        "forward": true,
+        "reverse": true
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/moderation/banned"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Filters the results and only returns a status object for users who are banned in this channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset. combinations. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of a user who has been banned."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of a user who has been banned."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name of a user who has been banned."
+        },
+        {
+          "parameter": "expires_at",
+          "type": "string",
+          "description": " "
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": " "
+        }
+      ]
+    },
+    {
+      "title": "Get Moderators",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/moderation/moderators"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the auth token. Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Filters the results and only returns a status object for users who are moderators in this channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/moderators?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. This applies only to queries without user_id. If a user_id is specified, it supersedes any cursor/offset combinations. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of a moderator in the channel."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of a moderator in the channel."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name of a moderator in the channel."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in subsequent requests to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Get Moderator Events",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/moderation/moderators/events"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "User ID of the moderator."
+        },
+        {
+          "parameter": "event_type",
+          "type": "string",
+          "description": "Displays moderation.moderator.add or moderation.moderator.remove"
+        },
+        {
+          "parameter": "event_timestamp",
+          "type": "string",
+          "description": "RFC3339 formatted timestamp for events."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value to be used in a subsequent request to specify the starting point of the next set of results."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Returns the version of the endpoint."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster adding or removing moderators."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user being added or removed as moderator."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Name of the user."
+        }
+      ]
+    },
+    {
+      "title": "Get Polls",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice across all methods of voting."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time. Set to null if the poll is active."
+        }
+      ]
+    },
+    {
+      "title": "Create Poll",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll.. . Maximum: 60 characters."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices.. . Minimum: 2 choices. Maximum: 5 choices."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice.. . Maximum: 25 characters."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds).. . Minimum: 15. Maximum: 1800."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time. Set to null if the poll is active."
+        }
+      ]
+    },
+    {
+      "title": "End Poll",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/polls"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running polls. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "The poll status to be set. Valid values:. . TERMINATED: End the poll manually, but allow it to be viewed publicly.. . ARCHIVED: End the poll manually and do not allow it to be viewed publicly."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the poll."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Question displayed for the poll."
+        },
+        {
+          "parameter": "choices",
+          "type": "object[]",
+          "description": "Array of the poll choices."
+        },
+        {
+          "parameter": "choice.id",
+          "type": "string",
+          "description": "ID for the choice."
+        },
+        {
+          "parameter": "choice.title",
+          "type": "string",
+          "description": "Text displayed for the choice."
+        },
+        {
+          "parameter": "choice.votes",
+          "type": "integer",
+          "description": "Total number of votes received for the choice."
+        },
+        {
+          "parameter": "choice.channel_points_votes",
+          "type": "integer",
+          "description": "Number of votes received via Channel Points."
+        },
+        {
+          "parameter": "choice.bits_votes",
+          "type": "integer",
+          "description": "Number of votes received via Bits."
+        },
+        {
+          "parameter": "bits_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Bits can be used for voting."
+        },
+        {
+          "parameter": "bits_per_vote",
+          "type": "integer",
+          "description": "Number of Bits required to vote once with Bits."
+        },
+        {
+          "parameter": "channel_points_voting_enabled",
+          "type": "boolean",
+          "description": "Indicates if Channel Points can be used for voting."
+        },
+        {
+          "parameter": "channel_points_per_vote",
+          "type": "integer",
+          "description": "Number of Channel Points required to vote once with Channel Points."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Poll Status. Valid values are:. . ACTIVE: Poll is currently in progress.. . COMPLETED: Poll has reached its ended_at time.. . TERMINATED: Poll has been manually terminated before its ended_at time.. . ARCHIVED: Poll is no longer visible on the channel.. . MODERATED: Poll is no longer visible to any user on Twitch.. . INVALID: Something went wrong determining the state."
+        },
+        {
+          "parameter": "duration",
+          "type": "integer",
+          "description": "Total duration for the poll (in seconds)."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for the poll’s end time."
+        }
+      ]
+    },
+    {
+      "title": "Get Predictions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running Predictions. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the Prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors. null if none."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the Prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who guessed the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the Prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
+      "title": "Create Prediction",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running Predictions. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction.. . Maximum: 45 characters."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of outcome objects with titles for the Prediction. Array size must be 2. The first outcome object is the “blue” outcome and the second outcome object is the “pink” outcome when viewing the Prediction on Twitch."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for the outcome choice.. . Maximum: 25 characters."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds).. . Minimum: 1. Maximum: 1800."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the Prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the Prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the Prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the Prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the Prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the Prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
+      "title": "End Prediction",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/predictions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster running prediction events. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the Prediction."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "The Prediction status to be set. Valid values:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the prediction."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Name of the broadcaster."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title for the prediction."
+        },
+        {
+          "parameter": "winning_outcome_id",
+          "type": "string",
+          "description": "ID of the winning outcome."
+        },
+        {
+          "parameter": "outcomes",
+          "type": "object[]",
+          "description": "Array of possible outcomes for the prediction."
+        },
+        {
+          "parameter": "outcome.id",
+          "type": "string",
+          "description": "ID for the outcome."
+        },
+        {
+          "parameter": "outcome.title",
+          "type": "string",
+          "description": "Text displayed for outcome."
+        },
+        {
+          "parameter": "outcome.users",
+          "type": "integer",
+          "description": "Number of unique uesrs that chose the outcome."
+        },
+        {
+          "parameter": "outcome.channel_points",
+          "type": "integer",
+          "description": "Number of Channel Points used for the outcome."
+        },
+        {
+          "parameter": "outcome.color",
+          "type": "string",
+          "description": "Color for the outcome. Valid values: BLUE, PINK"
+        },
+        {
+          "parameter": "outcome.top_predictors",
+          "type": "object[]",
+          "description": "Array of users who were the top predictors."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.id",
+          "type": "string",
+          "description": "ID of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.name",
+          "type": "string",
+          "description": "Display name of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.login",
+          "type": "string",
+          "description": "Login of the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_used",
+          "type": "integer",
+          "description": "Number of Channel Points used by the user."
+        },
+        {
+          "parameter": "outcome.top_predictors.user.channel_points_won",
+          "type": "integer",
+          "description": "Number of Channel Points won by the user."
+        },
+        {
+          "parameter": "prediction_window",
+          "type": "integer",
+          "description": "Total duration for the prediction (in seconds)."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status of the prediction. Valid values are:. . RESOLVED: A winning outcome has been chosen and the Channel Points have been distributed to the users who predicted the correct outcome.. . ACTIVE: The Prediction is active and viewers can make predictions.. . CANCELED: The Prediction has been canceled and the Channel Points have been refunded to participants.. . LOCKED: The Prediction has been locked and viewers can no longer make predictions."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "UTC timestamp for the prediction’s start time."
+        },
+        {
+          "parameter": "ended_at",
+          "type": "string",
+          "description": "UTC timestamp for when the prediction ended. If the status is ACTIVE, this is set to null."
+        },
+        {
+          "parameter": "locked_at",
+          "type": "string",
+          "description": "UTC timestamp for when the prediction was locked. If the status is not LOCKED, this is set to null."
+        }
+      ]
+    },
+    {
+      "title": "Search Categories",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/search/categories"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "query",
+          "type": "string",
+          "description": "URl encoded search query"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return.. Maximum: 100.. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "box_art_url",
+          "type": "string",
+          "description": "Template URL for the game’s box art."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Game/category name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Game/category ID."
+        }
+      ]
+    },
+    {
+      "title": "Search Channels",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "helix/search/channels"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "query",
+          "type": "string",
+          "description": "URl encoded search query"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return.. Maximum: 100. Default: 20"
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "live_only",
+          "type": "Boolean",
+          "description": "Filter results for live streams only.. Default: false"
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_language",
+          "type": "string",
+          "description": "Channel language. (Broadcaster Language field from the Channels service). A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played on the stream."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played on the stream."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Channel ID."
+        },
+        {
+          "parameter": "is_live",
+          "type": "Boolean",
+          "description": "Indicates if the channel is currenty live."
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string[]",
+          "description": "Tag IDs that apply to the stream. This array only contains strings when a channel is live. For all possibilities, see List of All Tags. Category Tags are not returned."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp. Returns an empty string if the channel is not live."
+        }
+      ]
+    },
+    {
+      "title": "Get Stream Key",
+      "authentication": "channel:read:stream_key",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "",
+        "url": "https://api.twitch.tv/helix/streams/key"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Streams",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/streams"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "Returns streams broadcasting a specified game ID. You can specify up to 100 IDs."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Stream language. You can specify up to 100 languages. A language value must be either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Returns streams broadcast by one or more specified user IDs. You can specify up to 100 IDs."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Returns streams broadcast by one or more specified user login names. You can specify up to 100 names."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Stream ID."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user who is streaming."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the user who is streaming."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played on the stream."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Stream type: \"live\" or \"\" (in case of error)."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
+        },
+        {
+          "parameter": "viewer_count",
+          "type": "int",
+          "description": "Number of viewers watching the stream at the time of the query."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image"
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string",
+          "description": "Shows tag IDs that apply to the stream."
+        },
+        {
+          "parameter": "is_mature",
+          "type": "boolean",
+          "description": "Indicates if the broadcaster has specified their channel contains mature content that may be inappropriate for younger audiences."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Get Followed Streams",
+      "authentication": "user:read:follows",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/streams/followed"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Results will only include active streams from the channels that this Twitch user follows. user_id must match the User ID in the bearer token."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 100."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played on the stream."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Stream ID."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Stream language. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        },
+        {
+          "parameter": "started_at",
+          "type": "string",
+          "description": "UTC timestamp."
+        },
+        {
+          "parameter": "tag_ids",
+          "type": "string",
+          "description": "Shows tag IDs that apply to the stream."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image"
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Stream title."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Stream type: \"live\" or \"\" (in case of error)."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user who is streaming."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the user who is streaming."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        },
+        {
+          "parameter": "viewer_count",
+          "type": "int",
+          "description": "Number of viewers watching the stream at the time of the query."
+        }
+      ]
+    },
+    {
+      "title": "Create Stream Marker",
+      "authentication": "channel:manage:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/streams/markers"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the broadcaster in whose live stream the marker is created."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "RFC3339 timestamp of the marker."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "Description of the marker."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Unique ID of the marker."
+        },
+        {
+          "parameter": "position_seconds",
+          "type": "integer",
+          "description": "Relative offset (in seconds) of the marker, from the beginning of the stream."
+        }
+      ]
+    },
+    {
+      "title": "Get Stream Markers",
+      "authentication": "user:read:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/streams/markers"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the broadcaster from whose stream markers are returned."
+        },
+        {
+          "parameter": "video_id",
+          "type": "string",
+          "description": "ID of the VOD/video whose stream markers are returned."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100. Default: 20."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the marker."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "RFC3339 timestamp of the marker."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "Description of the marker."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results. If this is empty, you are at the last page."
+        },
+        {
+          "parameter": "position_seconds",
+          "type": "integer",
+          "description": "Relative offset (in seconds) of the marker, from the beginning of the stream."
+        },
+        {
+          "parameter": "URL",
+          "type": "string",
+          "description": "A link to the stream with a query parameter that is a timestamp of the marker's location."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user whose markers are returned."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login corresponding to user_id."
+        },
+        {
+          "parameter": "video_id",
+          "type": "string",
+          "description": "ID of the stream (VOD/video) that was marked."
+        }
+      ]
+    },
+    {
+      "title": "Get Broadcaster Subscriptions",
+      "authentication": "channel:read:subscriptions",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/subscriptions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster. Must match the User ID in the Bearer token."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "gifter_id",
+          "type": "string",
+          "description": "If the subscription was gifted, this is the user ID of the gifter. Empty string otherwise."
+        },
+        {
+          "parameter": "gifter_login",
+          "type": "string",
+          "description": "If the subscription was gifted, this is the login of the gifter. Empty string otherwise."
+        },
+        {
+          "parameter": "gifter_name",
+          "type": "string",
+          "description": "If the subscription was gifted, this is the display name of the gifter. Empty string otherwise."
+        },
+        {
+          "parameter": "is_gift",
+          "type": "Boolean",
+          "description": "true if the subscription is a gift subscription."
+        },
+        {
+          "parameter": "plan_name",
+          "type": "string",
+          "description": "Name of the subscription."
+        },
+        {
+          "parameter": "tier",
+          "type": "string",
+          "description": "Type of subscription (Tier 1, Tier 2, Tier 3).. 1000 = Tier 1, 2000 = Tier 2, 3000 = Tier 3 subscriptions."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the subscribed user."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name of the subscribed user."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the subscribed user."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value,  to be used in a subsequent request to specify the starting point  of the next set of results. If this is empty, you are at the last page."
+        }
+      ]
+    },
+    {
+      "title": "Check User Subscription",
+      "authentication": "user:read:subscriptions",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/subscriptions/user"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of an Affiliate or Partner broadcaster."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of a Twitch viewer."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "is_gift",
+          "type": "boolean",
+          "description": "Indicates if the subscription is a gift."
+        },
+        {
+          "parameter": "gifter_login",
+          "type": "string",
+          "description": "Login of the gifter (if is_gift is true)."
+        },
+        {
+          "parameter": "gifter_name",
+          "type": "string",
+          "description": "Display name of the gifter (if is_gift is true)."
+        },
+        {
+          "parameter": "tier",
+          "type": "string",
+          "description": "Subscription tier. 1000 is tier 1, 2000 is tier 2, and 3000 is tier 3."
+        }
+      ]
+    },
+    {
+      "title": "Get All Stream Tags",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/tags/streams"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "tag_id",
+          "type": "string",
+          "description": "ID of a tag. Multiple IDs can be specified, separated by ampersands. If provided, only the specified tag(s) is(are) returned.. . Maximum of 100."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "tag_id",
+          "type": "string",
+          "description": "ID of the tag."
+        },
+        {
+          "parameter": "is_auto",
+          "type": "Boolean",
+          "description": "true if the tag is auto-generated; otherwise, false . An auto-generated tag is one automatically applied by Twitch (e.g., a language tag based on the broadcaster’s settings); these tags cannot be added or removed by the user."
+        },
+        {
+          "parameter": "localization_names",
+          "type": "map[string]string",
+          "description": "All localized names of the tag."
+        },
+        {
+          "parameter": "localization_descriptions",
+          "type": "map[string]string",
+          "description": "All localized descriptions of the tag."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results.. Not supported when tag_id is provided."
+        }
+      ]
+    },
+    {
+      "title": "Get Stream Tags",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/streams/tags"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the channel to get tags."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "tag_id",
+          "type": "string",
+          "description": "ID of the tag."
+        },
+        {
+          "parameter": "is_auto",
+          "type": "Boolean",
+          "description": "true if the tag is auto-generated; otherwise, false . An auto-generated tag is one automatically applied by Twitch (e.g., a language tag based on the broadcaster’s settings); tags these cannot be added or removed by the user."
+        },
+        {
+          "parameter": "localization_names",
+          "type": "map[string]string",
+          "description": "All localized names of the tag."
+        },
+        {
+          "parameter": "localization_descriptions",
+          "type": "map[string]string",
+          "description": "All localized descriptions of the tag."
+        }
+      ]
+    },
+    {
+      "title": "Replace Stream Tags",
+      "authentication": "channel:manage:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/streams/tags"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the stream for which tags are to be replaced."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Channel Teams",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/teams/channel"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID for a Twitch user."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "background_image_url",
+          "type": "string",
+          "description": "URL for the Team background image."
+        },
+        {
+          "parameter": "banner",
+          "type": "string",
+          "description": "URL for the Team banner."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date and time the Team was created."
+        },
+        {
+          "parameter": "updated_at",
+          "type": "string",
+          "description": "Date and time the Team was last updated."
+        },
+        {
+          "parameter": "info",
+          "type": "string",
+          "description": "Team description."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Image URL for the Team logo."
+        },
+        {
+          "parameter": "team_name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "team_display_name",
+          "type": "string",
+          "description": "Team display name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ]
+    },
+    {
+      "title": "Get Teams",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/teams"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "users",
+          "type": "Array of user objects",
+          "description": "Users in the specified Team."
+        },
+        {
+          "parameter": "users.user_id",
+          "type": "string",
+          "description": "User ID of a Team member."
+        },
+        {
+          "parameter": "users.user_login",
+          "type": "string",
+          "description": "Login of a Team member."
+        },
+        {
+          "parameter": "users.user_name",
+          "type": "string",
+          "description": "Display name of a Team member."
+        },
+        {
+          "parameter": "background_image_url",
+          "type": "string",
+          "description": "URL of the Team background image."
+        },
+        {
+          "parameter": "banner",
+          "type": "string",
+          "description": "URL for the Team banner."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date and time the Team was created."
+        },
+        {
+          "parameter": "updated_at",
+          "type": "string",
+          "description": "Date and time the Team was last updated."
+        },
+        {
+          "parameter": "info",
+          "type": "string",
+          "description": "Team description."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "string",
+          "description": "Image URL for the Team logo."
+        },
+        {
+          "parameter": "team_name",
+          "type": "string",
+          "description": "Team name."
+        },
+        {
+          "parameter": "team_display_name",
+          "type": "string",
+          "description": "Team display name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Team ID."
+        }
+      ]
+    },
+    {
+      "title": "Get Users",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/users"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "User ID. Multiple user IDs can be specified. Limit: 100."
+        },
+        {
+          "parameter": "login",
+          "type": "string",
+          "description": "User login name. Multiple login names can be specified. Limit: 100."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "broadcaster_type",
+          "type": "string",
+          "description": "User’s broadcaster type: \"partner\", \"affiliate\", or \"\"."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "User’s channel description."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "User’s display name."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "User’s ID."
+        },
+        {
+          "parameter": "login",
+          "type": "string",
+          "description": "User’s login name."
+        },
+        {
+          "parameter": "offline_image_url",
+          "type": "string",
+          "description": "URL of the user’s offline image."
+        },
+        {
+          "parameter": "profile_image_url",
+          "type": "string",
+          "description": "URL of the user’s profile image."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "User’s type: \"staff\", \"admin\", \"global_mod\", or \"\"."
+        },
+        {
+          "parameter": "view_count",
+          "type": "integer",
+          "description": "Total number of views of the user’s channel."
+        },
+        {
+          "parameter": "email",
+          "type": "string",
+          "description": "User’s verified email address. Returned if the request includes the user:read:email scope."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date when the user was created."
+        }
+      ]
+    },
+    {
+      "title": "Update User",
+      "authentication": "user:edit",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/users?description=&lt;description&gt;"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "string",
+          "description": "User’s account description"
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Get Users Follows",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/users/follows?from_id=&lt;user"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "followed_at",
+          "type": "string",
+          "description": "Date and time when the from_id user followed the to_id user."
+        },
+        {
+          "parameter": "from_id",
+          "type": "string",
+          "description": "ID of the user following the to_id user."
+        },
+        {
+          "parameter": "from_login",
+          "type": "string",
+          "description": "Login of the user following the to_id user."
+        },
+        {
+          "parameter": "from_name",
+          "type": "string",
+          "description": "Display name corresponding to from_id."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        },
+        {
+          "parameter": "to_id",
+          "type": "string",
+          "description": "ID of the user being followed by the from_id user."
+        },
+        {
+          "parameter": "to_login",
+          "type": "string",
+          "description": "Login of the user being followed by the from_id user."
+        },
+        {
+          "parameter": "to_name",
+          "type": "string",
+          "description": "Display name corresponding to to_id."
+        },
+        {
+          "parameter": "total",
+          "type": "int",
+          "description": "Total number of items returned.If only from_id was in the request, this is the total number of followed users.If only to_id was in the request, this is the total number of followers.If both from_id and to_id were in the request, this is 1 (if the \"from\" user follows the \"to\" user) or 0."
+        }
+      ]
+    },
+    {
+      "title": "Create User Follows",
+      "authentication": "user:edit:follows",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/users/follows"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "from_id",
+          "type": "string",
+          "description": "User ID of the follower"
+        },
+        {
+          "parameter": "to_id",
+          "type": "string",
+          "description": "ID of the channel to be followed by the user"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "allow_notifications",
+          "type": "Boolean",
+          "description": "If true, the user gets email or push notifications (depending on the user’s notification settings) when the channel goes live. Default value is false."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Delete User Follows",
+      "authentication": "user:edit:follows",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/users/follows"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "from_id",
+          "type": "string",
+          "description": "User ID of the follower"
+        },
+        {
+          "parameter": "to_id",
+          "type": "string",
+          "description": "Channel to be unfollowed by the user"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get User Block List",
+      "authentication": "user:read:blocked_users",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/users/blocks"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID for a Twitch user."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "User ID of the blocked user."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the blocked user."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "Display name of the blocked user."
+        }
+      ]
+    },
+    {
+      "title": "Block User",
+      "authentication": "user:manage:blocked_users",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/users/blocks"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "target_user_id",
+          "type": "string",
+          "description": "User ID of the user to be blocked."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "source_context",
+          "type": "string",
+          "description": "Source context for blocking the user. Valid values: \"chat\", \"whisper\"."
+        },
+        {
+          "parameter": "reason",
+          "type": "string",
+          "description": "Reason for blocking the user. Valid values: \"spam\", \"harassment\", or \"other\"."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Unblock User",
+      "authentication": "user:manage:blocked_users",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/users/blocks"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "target_user_id",
+          "type": "string",
+          "description": "User ID of the user to be unblocked."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get User Extensions",
+      "authentication": "user:read:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/users/extensions/list"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "can_activate",
+          "type": "boolean",
+          "description": "Indicates whether the extension is configured such that it can be activated."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the extension."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Name of the extension."
+        },
+        {
+          "parameter": "type",
+          "type": "string array",
+          "description": "Types for which the extension can be activated. Valid values: \"component\", \"mobile\", \"panel\", \"overlay\"."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Version of the extension."
+        }
+      ]
+    },
+    {
+      "title": "Get User Active Extensions",
+      "authentication": "user:read:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/users/extensions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "active",
+          "type": "boolean",
+          "description": "Activation state of the extension, for each extension type (component, overlay, mobile, panel). If false, no other data is provided."
+        },
+        {
+          "parameter": "component",
+          "type": "map",
+          "description": "Contains data for video-component Extensions."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the extension."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Name of the extension."
+        },
+        {
+          "parameter": "overlay",
+          "type": "map",
+          "description": "Contains data for video-overlay Extensions."
+        },
+        {
+          "parameter": "panel",
+          "type": "map",
+          "description": "Contains data for panel Extensions."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Version of the extension."
+        },
+        {
+          "parameter": "x",
+          "type": "int",
+          "description": "(Video-component Extensions only) X-coordinate of the placement of the extension."
+        },
+        {
+          "parameter": "y",
+          "type": "int",
+          "description": "(Video-component Extensions only) Y-coordinate of the placement of the extension."
+        }
+      ]
+    },
+    {
+      "title": "Update User Extensions",
+      "authentication": "user:edit:broadcast",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/users/extensions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Videos",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/videos"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the video being queried. Limit: 100. If this is specified, you cannot use any of the optional query parameters below."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user who owns the video. Limit 1."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game the video is of. Limit 1."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "before",
+          "type": "string",
+          "description": "Cursor for backward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Number of values to be returned when getting videos by user or game ID. Limit: 100. Default: 20."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Language of the video being queried. Limit: 1. A language value must be either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "period",
+          "type": "string",
+          "description": "Period during which the video was created. Valid values: \"all\", \"day\", \"week\", \"month\". Default: \"all\"."
+        },
+        {
+          "parameter": "sort",
+          "type": "string",
+          "description": "Sort order of the videos. Valid values: \"time\", \"trending\", \"views\". Default: \"time\"."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of video. Valid values: \"all\", \"upload\", \"archive\", \"highlight\". Default: \"all\"."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the video."
+        },
+        {
+          "parameter": "stream_id",
+          "type": "string",
+          "description": "ID of the stream that the video originated from if the type is \"archive\". Otherwise set to null."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "ID of the user who owns the video."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login of the user who owns the video."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Display name corresponding to user_id."
+        },
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title of the video."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "Description of the video."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "Date when the video was created."
+        },
+        {
+          "parameter": "published_at",
+          "type": "string",
+          "description": "Date when the video was published."
+        },
+        {
+          "parameter": "url",
+          "type": "object",
+          "description": "URL of the video."
+        },
+        {
+          "parameter": "thumbnail_url",
+          "type": "object",
+          "description": "Template URL for the thumbnail of the video."
+        },
+        {
+          "parameter": "viewable",
+          "type": "string",
+          "description": "Indicates whether the video is publicly viewable. Valid values: \"public\", \"private\"."
+        },
+        {
+          "parameter": "view_count",
+          "type": "int",
+          "description": "Number of times the video has been viewed."
+        },
+        {
+          "parameter": "language",
+          "type": "string",
+          "description": "Language of the video. A language value is either the ISO 639-1 two-letter code for a supported stream language or “other”."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "Type of video. Valid values: \"upload\", \"archive\", \"highlight\"."
+        },
+        {
+          "parameter": "duration",
+          "type": "string",
+          "description": "Length of the video."
+        },
+        {
+          "parameter": "muted_segments",
+          "type": "object[]",
+          "description": "Array of muted segments in the video. If there are no muted segments, the value will be null."
+        },
+        {
+          "parameter": "segment.duration",
+          "type": "integer",
+          "description": "Duration of the muted segment."
+        },
+        {
+          "parameter": "segment.offset",
+          "type": "integer",
+          "description": "Offset in the video at which the muted segment begins."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Delete Videos",
+      "authentication": "channel:manage:videos",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/videos"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the video(s) to be deleted. Limit: 5."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Webhook Subscriptions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/webhooks/subscriptions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        },
+        {
+          "parameter": "first",
+          "type": "string",
+          "description": "Number of values to be returned per page. Limit: 100. Default: 20."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "callback",
+          "type": "string",
+          "description": "The callback provided for this subscription."
+        },
+        {
+          "parameter": "expires_at",
+          "type": "string",
+          "description": "Date and time when this subscription expires. Encoded as RFC3339. The timezone is always UTC (&ldquo;Z&rdquo;)."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results. If this is empty, you are at the last page."
+        },
+        {
+          "parameter": "topic",
+          "type": "string",
+          "description": "The topic used in the initial subscription."
+        },
+        {
+          "parameter": "total",
+          "type": "int",
+          "description": "A hint at the total number of results returned, on all pages. This is an approximation: as you page through the list, some subscriptions may expire and others may be added."
+        }
+      ]
+    }
+  ]
+}

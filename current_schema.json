@@ -1222,6 +1222,189 @@
       ]
     },
     {
+      "title": "Get Channel Emotes",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/emotes"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster whose emotes are being requested.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the emote."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+        },
+        {
+          "parameter": "images",
+          "type": "object",
+          "description": "Object of image URLs for the emote."
+        },
+        {
+          "parameter": "images.url_1x",
+          "type": "string",
+          "description": "Small emote image URL."
+        },
+        {
+          "parameter": "images.url_2x",
+          "type": "string",
+          "description": "Medium emote image URL."
+        },
+        {
+          "parameter": "images.url_4x",
+          "type": "string",
+          "description": "Large emote image URL."
+        },
+        {
+          "parameter": "tier",
+          "type": "string",
+          "description": "If the emote_type is \"subscriptions\", this indicates the subscriber tier at which the emote is unlocked. Set to an empty string otherwise."
+        },
+        {
+          "parameter": "emote_type",
+          "type": "string",
+          "description": "The type of emote. The most common values for custom channel emotes are:. . subscriptions: Indicates a custom subscriber emote.. . bitstier: Indicates a custom Bits tier emote.. . follower: Indicates a custom follower emote."
+        },
+        {
+          "parameter": "emote_set_id",
+          "type": "string",
+          "description": "ID of the emote set the emote belongs to."
+        }
+      ]
+    },
+    {
+      "title": "Get Global Emotes",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/emotes/global"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "ID of the emote."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+        },
+        {
+          "parameter": "images",
+          "type": "object",
+          "description": "Object of image URLs for the emote."
+        },
+        {
+          "parameter": "images.url_1x",
+          "type": "string",
+          "description": "Small emote image URL."
+        },
+        {
+          "parameter": "images.url_2x",
+          "type": "string",
+          "description": "Medium emote image URL."
+        },
+        {
+          "parameter": "images.url_4x",
+          "type": "string",
+          "description": "Large emote image URL."
+        }
+      ]
+    },
+    {
+      "title": "Get Emote Sets",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/emotes/set"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "emote_set_id",
+          "type": "string",
+          "description": "ID(s) of the emote set.. . Minimum: 1. Maximum: 25."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Emote ID."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+        },
+        {
+          "parameter": "images",
+          "type": "object",
+          "description": "Object of image URLs for the emote."
+        },
+        {
+          "parameter": "images.url_1x",
+          "type": "string",
+          "description": "Small emote image URL."
+        },
+        {
+          "parameter": "images.url_2x",
+          "type": "string",
+          "description": "Medium emote image URL."
+        },
+        {
+          "parameter": "images.url_4x",
+          "type": "string",
+          "description": "Large emote image URL."
+        },
+        {
+          "parameter": "emote_type",
+          "type": "string",
+          "description": "The type of emote."
+        },
+        {
+          "parameter": "emote_set_id",
+          "type": "string",
+          "description": "ID of the emote set the emote belongs to."
+        },
+        {
+          "parameter": "owner_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the emote."
+        }
+      ]
+    },
+    {
       "title": "Get Channel Chat Badges",
       "authentication": "",
       "pagination_support": {

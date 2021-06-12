@@ -4882,7 +4882,7 @@
     },
     {
       "title": "Get Videos",
-      "authentication": "",
+      "authentication": "user_id",
       "pagination_support": {
         "forward": false,
         "reverse": false

@@ -3441,6 +3441,454 @@
       ]
     },
     {
+      "title": "Get Channel Stream Schedule",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/schedule"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The ID of the stream segment to return.. . Maximum: 100."
+        },
+        {
+          "parameter": "start_time",
+          "type": "string",
+          "description": "A timestamp in RFC3339 format to start returning stream segments from. If not specified, the current date and time is used."
+        },
+        {
+          "parameter": "utc_offset",
+          "type": "string",
+          "description": "A timezone offset for the requester specified in minutes. This is recommended to ensure stream segments are returned for the correct week. For example, a timezone that is +4 hours from GMT would be “240.” If not specified, “0” is used for GMT."
+        },
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of stream segments to return.. . Maximum: 25. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "segments",
+          "type": "array of objects",
+          "description": "Scheduled broadcasts for this stream schedule."
+        },
+        {
+          "parameter": "segment.id",
+          "type": "string",
+          "description": "The ID for the scheduled broadcast."
+        },
+        {
+          "parameter": "segment.start_time",
+          "type": "string",
+          "description": "Scheduled start time for the scheduled broadcast in RFC3339 format."
+        },
+        {
+          "parameter": "segment.end_time",
+          "type": "string",
+          "description": "Scheduled end time for the scheduled broadcast in RFC3339 format."
+        },
+        {
+          "parameter": "segment.title",
+          "type": "string",
+          "description": "Title for the scheduled broadcast."
+        },
+        {
+          "parameter": "segment.canceled_until",
+          "type": "string",
+          "description": "Used with recurring scheduled broadcasts. Specifies the date of the next recurring broadcast in RFC3339 format if one or more specific broadcasts have been deleted in the series. Set to null otherwise."
+        },
+        {
+          "parameter": "segment.category",
+          "type": "object",
+          "description": "The category for the scheduled broadcast. Set to null if no category has been specified."
+        },
+        {
+          "parameter": "segment.category.id",
+          "type": "string",
+          "description": "Game/category ID."
+        },
+        {
+          "parameter": "segment.category.name",
+          "type": "string",
+          "description": "Game/category name."
+        },
+        {
+          "parameter": "is_recurring",
+          "type": "boolean",
+          "description": "Indicates if the scheduled broadcast is recurring weekly."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "vacation",
+          "type": "object",
+          "description": "If Vacation Mode is enabled, this includes start and end dates for the vacation. If Vacation Mode is disabled, value is set to null."
+        },
+        {
+          "parameter": "vacation.start_time",
+          "type": "string",
+          "description": "Start time for vacation specified in RFC3339 format."
+        },
+        {
+          "parameter": "vacation.end_time",
+          "type": "string",
+          "description": "End time for vacation specified in RFC3339 format."
+        }
+      ]
+    },
+    {
+      "title": "Get Channel iCalendar",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/schedule/icalendar"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Update Channel Stream Schedule",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/schedule/settings"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "is_vacation_enabled",
+          "type": "boolean",
+          "description": "Indicates if Vacation Mode is enabled. Set to true to add a vacation or false to remove vacation from the channel streaming schedule."
+        },
+        {
+          "parameter": "vacation_start_time",
+          "type": "string",
+          "description": "Start time for vacation specified in RFC3339 format. Required if is_vacation_enabled is set to true."
+        },
+        {
+          "parameter": "vacation_end_time",
+          "type": "string",
+          "description": "End time for vacation specified in RFC3339 format. Required if is_vacation_enabled is set to true."
+        },
+        {
+          "parameter": "timezone",
+          "type": "string",
+          "description": "The timezone for when the vacation is being scheduled using the IANA time zone database format. Required if is_vacation_enabled is set to true."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Create Channel Stream Schedule Segment",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/schedule/segment"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [
+        {
+          "parameter": "start_time",
+          "type": "string",
+          "description": "Start time for the scheduled broadcast specified in RFC3339 format."
+        },
+        {
+          "parameter": "timezone",
+          "type": "string",
+          "description": "The timezone of the application creating the scheduled broadcast using the IANA time zone database format."
+        },
+        {
+          "parameter": "is_recurring",
+          "type": "boolean",
+          "description": "Indicates if the scheduled broadcast is recurring weekly."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "segments",
+          "type": "array of objects",
+          "description": "Scheduled broadcasts for this stream schedule."
+        },
+        {
+          "parameter": "segment.id",
+          "type": "string",
+          "description": "The ID for the scheduled broadcast."
+        },
+        {
+          "parameter": "segment.start_time",
+          "type": "string",
+          "description": "Scheduled start time for the scheduled broadcast in RFC3339 format."
+        },
+        {
+          "parameter": "segment.end_time",
+          "type": "string",
+          "description": "Scheduled end time for the scheduled broadcast in RFC3339 format."
+        },
+        {
+          "parameter": "segment.title",
+          "type": "string",
+          "description": "Title for the scheduled broadcast."
+        },
+        {
+          "parameter": "segment.canceled_until",
+          "type": "string",
+          "description": "Used with recurring scheduled broadcasts. Specifies the date of the next recurring broadcast in RFC3339 format if one or more specific broadcasts have been deleted in the series. Set to null otherwise."
+        },
+        {
+          "parameter": "segment.category",
+          "type": "object",
+          "description": "The category for the scheduled broadcast. Set to null if no category has been specified."
+        },
+        {
+          "parameter": "segment.category.id",
+          "type": "string",
+          "description": "Game/category ID."
+        },
+        {
+          "parameter": "segment.category.name",
+          "type": "string",
+          "description": "Game/category name."
+        },
+        {
+          "parameter": "is_recurring",
+          "type": "boolean",
+          "description": "Indicates if the scheduled broadcast is recurring weekly."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "vacation",
+          "type": "object",
+          "description": "If Vacation Mode is enabled, this includes start and end dates for the vacation. If Vacation Mode is disabled, value is set to null."
+        },
+        {
+          "parameter": "vacation.start_time",
+          "type": "string",
+          "description": "Start time for vacation specified in RFC3339 format."
+        },
+        {
+          "parameter": "vacation.end_time",
+          "type": "string",
+          "description": "End time for vacation specified in RFC3339 format."
+        }
+      ]
+    },
+    {
+      "title": "Update Channel Stream Schedule Segment",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/schedule/segment"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The ID of the streaming segment to update.. . Maximum: 1"
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "segments",
+          "type": "array of objects",
+          "description": "Scheduled events for this stream schedule."
+        },
+        {
+          "parameter": "segment.id",
+          "type": "string",
+          "description": "The ID for the scheduled event."
+        },
+        {
+          "parameter": "segment.start_time",
+          "type": "string",
+          "description": "Scheduled start time for the scheduled event in RFC3339 format."
+        },
+        {
+          "parameter": "segment.end_time",
+          "type": "string",
+          "description": "Scheduled end time for the scheduled event in RFC3339 format."
+        },
+        {
+          "parameter": "segment.title",
+          "type": "string",
+          "description": "Title for the scheduled event."
+        },
+        {
+          "parameter": "segment.canceled_until",
+          "type": "string",
+          "description": "Used with recurring scheduled events. Specifies the date of the next recurring event in RFC3339 format if one or more specific events have been deleted in the series. Set to null otherwise."
+        },
+        {
+          "parameter": "segment.category",
+          "type": "object",
+          "description": "The category for the scheduled broadcast. Set to null if no category has been specified."
+        },
+        {
+          "parameter": "segment.category.id",
+          "type": "string",
+          "description": "Game/category ID."
+        },
+        {
+          "parameter": "segment.category.name",
+          "type": "string",
+          "description": "Game/category name."
+        },
+        {
+          "parameter": "segment.is_recurring",
+          "type": "boolean",
+          "description": "Indicates if the scheduled event is recurring."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "vacation",
+          "type": "object",
+          "description": "If Vacation Mode is enabled, this includes start and end dates for the vacation. If Vacation Mode is disabled, value is set to null."
+        },
+        {
+          "parameter": "vacation.start_time",
+          "type": "string",
+          "description": "Start time for vacation specified in RFC3339 format."
+        },
+        {
+          "parameter": "vacation.end_time",
+          "type": "string",
+          "description": "End time for vacation specified in RFC3339 format."
+        }
+      ]
+    },
+    {
+      "title": "Delete Channel Stream Schedule Segment",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/schedule/segment"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who owns the channel streaming schedule. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The ID of the streaming segment to delete."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
       "title": "Search Categories",
       "authentication": "",
       "pagination_support": {

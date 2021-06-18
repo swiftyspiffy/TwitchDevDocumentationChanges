@@ -390,98 +390,7 @@
           "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20"
         }
       ],
-      "response_fields": [
-        {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
-        },
-        {
-          "parameter": "data",
-          "type": "array",
-          "description": "Array of requested transactions."
-        },
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "Unique identifier of the Bits in Extensions Transaction."
-        },
-        {
-          "parameter": "timestamp",
-          "type": "string",
-          "description": "UTC timestamp when this transaction occurred."
-        },
-        {
-          "parameter": "broadcaster_id",
-          "type": "string",
-          "description": "Twitch User ID of the channel the transaction occurred on."
-        },
-        {
-          "parameter": "broadcaster_login",
-          "type": "string",
-          "description": "Login name of the broadcaster."
-        },
-        {
-          "parameter": "broadcaster_name",
-          "type": "string",
-          "description": "Twitch Display Name of the broadcaster."
-        },
-        {
-          "parameter": "user_id",
-          "type": "string",
-          "description": "Twitch User ID of the user who generated the transaction."
-        },
-        {
-          "parameter": "user_login",
-          "type": "string",
-          "description": "Login name of the user who generated the transaction."
-        },
-        {
-          "parameter": "user_name",
-          "type": "string",
-          "description": "Twitch Display Name of the user who generated the transaction."
-        },
-        {
-          "parameter": "product_type",
-          "type": "string",
-          "description": "Enum of the product type. Currently only BITS_IN_EXTENSION."
-        },
-        {
-          "parameter": "product_data",
-          "type": "object",
-          "description": "JSON Object representing the product acquired, as it looked at the time of the transaction."
-        },
-        {
-          "parameter": "domain",
-          "type": "string",
-          "description": "Set this field to twitch.ext + your extension ID."
-        },
-        {
-          "parameter": "broadcast",
-          "type": "Boolean",
-          "description": "Flag that denotes whether or not the data was sent over the extension pubsub to all instances of the extension."
-        },
-        {
-          "parameter": "expiration",
-          "type": "string",
-          "description": "Always empty since only unexpired products can be purchased."
-        },
-        {
-          "parameter": "sku",
-          "type": "string",
-          "description": "Unique identifier for the product across the extension."
-        },
-        {
-          "parameter": "cost",
-          "type": "object",
-          "description": "JSON Object representing the cost to acquire the product."
-        },
-        {
-          "parameter": "amount",
-          "type": "integer",
-          "description": "Number of Bits required to acquire the product."
-        }
-      ]
+      "response_fields": []
     },
     {
       "title": "Get Channel Information",
@@ -2466,12 +2375,12 @@
         {
           "parameter": "expires_at",
           "type": "string",
-          "description": " "
+          "description": "Timestamp of the ban expiration. Set to null if the ban is permanent."
         },
         {
           "parameter": "pagination",
           "type": "object containing a string",
-          "description": " "
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },

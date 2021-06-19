@@ -369,7 +369,7 @@
         {
           "parameter": "extension_id",
           "type": "string",
-          "description": "ID of the extension to list transactions for. Maximum: 1"
+          "description": "ID of the Extension to list transactions for.. . Maximum: 1"
         }
       ],
       "required_body_parameters": [],
@@ -377,7 +377,7 @@
         {
           "parameter": "id",
           "type": "string",
-          "description": "Transaction IDs to look up. Can include multiple to fetch multiple transactions in a single request.. . Format: Repeated Query Parameter, eg. /helix/extensions/transactions?extension_id=1234&amp;id=1&amp;id=2&amp;id=3. . Maximum: 100"
+          "description": "Transaction IDs to look up. Can include multiple to fetch multiple transactions in a single request.. . For example, /helix/extensions/transactions?extension_id=1234&amp;id=1&amp;id=2&amp;id=3. . Maximum: 100."
         },
         {
           "parameter": "after",
@@ -387,10 +387,116 @@
         {
           "parameter": "first",
           "type": "integer",
-          "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20"
+          "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20."
         }
       ],
-      "response_fields": []
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array of requested transactions."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "Unique identifier of the Bits-in-Extensions transaction."
+        },
+        {
+          "parameter": "timestamp",
+          "type": "string",
+          "description": "UTC timestamp when this transaction occurred."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "Twitch user ID of the channel the transaction occurred on."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Login name of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Twitch display name of the broadcaster."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Twitch user ID of the user who generated the transaction."
+        },
+        {
+          "parameter": "user_login",
+          "type": "string",
+          "description": "Login name of the user who generated the transaction."
+        },
+        {
+          "parameter": "user_name",
+          "type": "string",
+          "description": "Twitch display name of the user who generated the transaction."
+        },
+        {
+          "parameter": "product_type",
+          "type": "string",
+          "description": "Enum of the product type. Currently only BITS_IN_EXTENSION."
+        },
+        {
+          "parameter": "product_data",
+          "type": "object",
+          "description": "Represents the product acquired, as it looked at the time of the transaction."
+        },
+        {
+          "parameter": "product_data.domain",
+          "type": "string",
+          "description": "Set to twitch.ext + your Extension ID."
+        },
+        {
+          "parameter": "product_data.sku",
+          "type": "string",
+          "description": "Unique identifier for the product across the Extension."
+        },
+        {
+          "parameter": "product_data.cost",
+          "type": "object",
+          "description": "Represents the cost to acquire the product."
+        },
+        {
+          "parameter": "product_data.cost.amount",
+          "type": "integer",
+          "description": "Number of Bits required to acquire the product."
+        },
+        {
+          "parameter": "product_data.cost.type",
+          "type": "string",
+          "description": "Identifies the contribution method. Currently only bits."
+        },
+        {
+          "parameter": "product_data.inDevelopment",
+          "type": "boolean",
+          "description": "Indicates if the product is in development."
+        },
+        {
+          "parameter": "product_data.displayName",
+          "type": "string",
+          "description": "Display name of the product."
+        },
+        {
+          "parameter": "expiration",
+          "type": "string",
+          "description": "Always empty since only unexpired products can be purchased."
+        },
+        {
+          "parameter": "broadcast",
+          "type": "boolean",
+          "description": "Indicates whether or not the data was sent over the Extension PubSub to all instances of the Extension."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "If provided, is the key used to fetch the next page of data. If not provided, the current response is the last page of data available."
+        }
+      ]
     },
     {
       "title": "Get Channel Information",

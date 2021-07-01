@@ -1751,17 +1751,22 @@
         {
           "parameter": "id",
           "type": "string",
-          "description": "Unique Identifier of the entitlement"
+          "description": "Unique identifier of the entitlement."
         },
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "A Twitch User ID"
+          "description": "A Twitch user ID."
         },
         {
           "parameter": "game_id",
           "type": "string",
-          "description": "A Twitch Game ID"
+          "description": "A Twitch game ID."
+        },
+        {
+          "parameter": "fulfillment_status",
+          "type": "string",
+          "description": "An optional fulfillment status used to filter entitlements. Valid values are \"CLAIMED\" or \"FULFILLED\"."
         },
         {
           "parameter": "after",
@@ -1771,24 +1776,24 @@
         {
           "parameter": "first",
           "type": "integer",
-          "description": "Maximum number of entitlements to return.. Default: 20. Max: 1000"
+          "description": "Maximum number of entitlements to return.. . Default: 20. Max: 1000"
         }
       ],
       "response_fields": [
         {
           "parameter": "data",
           "type": "array",
-          "description": "Array of entitlements"
+          "description": "Array of entitlements."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "Unique Identifier of the entitlement"
+          "description": "Unique identifier of the entitlement."
         },
         {
           "parameter": "benefit_id",
           "type": "string",
-          "description": "Identifier of the Benefit"
+          "description": "Identifier of the benefit."
         },
         {
           "parameter": "timestamp",
@@ -1798,17 +1803,70 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "Twitch User ID of the user who was granted the entitlement."
+          "description": "Twitch user ID of the user who was granted the entitlement."
         },
         {
           "parameter": "game_id",
           "type": "string",
-          "description": "Twitch Game ID of the game that was being played when this benefit was entitled."
+          "description": "Twitch game ID of the game that was being played when this benefit was entitled."
+        },
+        {
+          "parameter": "fulfillment_status",
+          "type": "string",
+          "description": "The fulfillment status of the entitlement as determined by the game developer. Valid values are \"CLAIMED\" or \"FULFILLED\"."
+        },
+        {
+          "parameter": "updated_at",
+          "type": "string",
+          "description": "UTC timestamp in ISO format for when this entitlement was last updated."
         },
         {
           "parameter": "pagination",
-          "type": "object containing a string",
+          "type": "object",
           "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
+        }
+      ]
+    },
+    {
+      "title": "Update Drops Entitlements",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PATCH",
+        "url": "https://api.twitch.tv/helix/entitlements/drops"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "entitlement_ids",
+          "type": "array",
+          "description": "An array of unique identifiers of the entitlements to update.. . Maximum: 100."
+        },
+        {
+          "parameter": "fulfillment_status",
+          "type": "string",
+          "description": "A fulfillment status. Valid values are \"CLAIMED\" or \"FULFILLED\"."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "array",
+          "description": "Array of entitlement update statuses."
+        },
+        {
+          "parameter": "status",
+          "type": "string",
+          "description": "Status code applied to a set of entitlements for the update operation that can be used to indicate partial success. Valid values are:. . SUCCESS: Entitlement was successfully updated.. . INVALID_ID: Invalid format for entitlement ID.. . NOT_FOUND: Entitlement ID does not exist.. . UNAUTHORIZED: Entitlement is not owned by the organization or the user when called with a user OAuth token.. . UPDATE_FAILED: Indicates the entitlement update operation failed. Errors in the this state are expected to be be transient and should be retried later."
+        },
+        {
+          "parameter": "ids",
+          "type": "array",
+          "description": "Array of unique identifiers of the entitlements for the specified status."
         }
       ]
     },

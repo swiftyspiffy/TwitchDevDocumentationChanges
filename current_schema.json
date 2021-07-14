@@ -1904,6 +1904,777 @@
       ]
     },
     {
+      "title": "Get Extension Configuration Segment",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions/configurations"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID for the Extension which the configuration is for."
+        },
+        {
+          "parameter": "segment",
+          "type": "string",
+          "description": "The configuration segment type to return. Valid values are \"developer\", \"broadcaster\", and \"global\". Multiple segments can be specified."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "segment",
+          "type": "string",
+          "description": "The type of segment. Either \"developer\", \"broadcaster\", or \"global\"."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The broadcaster ID if the segment type is \"developer\" or \"broadcaster\". Otherwise, this parameter is not included."
+        },
+        {
+          "parameter": "content",
+          "type": "string",
+          "description": "Configuration in a string-encoded format."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "Configuration version with the segment type."
+        }
+      ]
+    },
+    {
+      "title": "Set Extension Configuration Segment",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/extensions/configurations"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID for the Extension which the configuration is for."
+        },
+        {
+          "parameter": "segment",
+          "type": "string",
+          "description": "Configuration type. Valid values are \"global\", \"developer\", or \"broadcaster\"."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Set Extension Required Configuration",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "helix/extensions/required_configuration"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster who has activated the specified Extension on their channel."
+        }
+      ],
+      "required_body_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID for the Extension to activate."
+        },
+        {
+          "parameter": "extension_version",
+          "type": "string",
+          "description": "The version fo the Extension to release."
+        },
+        {
+          "parameter": "configuration_version",
+          "type": "string",
+          "description": "The version of the configuration to use with the Extension."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Send Extension PubSub Message",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/extensions/pubsub"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "target",
+          "type": "array",
+          "description": "Array of strings for valid PubSub targets. Valid values: \"broadcast\", \"global\", \"whisper-&lt;user-id&gt;\""
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "ID of the broadcaster receiving the payload. This is not required if is_global_broadcast is set to true."
+        },
+        {
+          "parameter": "is_global_broadcast",
+          "type": "boolean",
+          "description": "Indicates if the message should be sent to all channels where your Extension is active.. . Default: false."
+        },
+        {
+          "parameter": "message",
+          "type": "string",
+          "description": "String-encoded JSON message to be sent."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Live Channels",
+      "authentication": "",
+      "pagination_support": {
+        "forward": true,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions/live"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID of the Extension to search for."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "first",
+          "type": "integer",
+          "description": "Maximum number of objects to return.. . Maximum: 100. Default: 20."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "The cursor used to fetch the next page of data."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "title",
+          "type": "string",
+          "description": "Title of the stream."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "Broadcaster’s display name."
+        },
+        {
+          "parameter": "game_name",
+          "type": "string",
+          "description": "Name of the game being played."
+        },
+        {
+          "parameter": "game_id",
+          "type": "string",
+          "description": "ID of the game being played."
+        }
+      ]
+    },
+    {
+      "title": "Get Extension Secrets",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions/jwt/secrets"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "format_version",
+          "type": "integer",
+          "description": "Indicates the version associated with the Extension secrets in the response."
+        },
+        {
+          "parameter": "secrets",
+          "type": "array",
+          "description": "Array of secret objects."
+        },
+        {
+          "parameter": "secrets[].content",
+          "type": "string",
+          "description": "Raw secret that should be used with JWT encoding."
+        },
+        {
+          "parameter": "secrets[].active",
+          "type": "string",
+          "description": "The earliest possible time this secret is valid to sign a JWT in RFC 3339 format."
+        },
+        {
+          "parameter": "secrets[].expires",
+          "type": "string",
+          "description": "The latest possible time this secret may be used to decode a JWT in RFC 3339 format."
+        }
+      ]
+    },
+    {
+      "title": "Create Extension Secret",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/extensions/jwt/secrets"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "delay",
+          "type": "integer",
+          "description": "JWT signing activation delay for the newly created secret in seconds.. . Minumum: 300. Default: 300."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "format_version",
+          "type": "integer",
+          "description": "Indicates the version associated with the Extension secrets in the response."
+        },
+        {
+          "parameter": "secrets",
+          "type": "array",
+          "description": "Array of secret objects."
+        },
+        {
+          "parameter": "secrets[].content",
+          "type": "string",
+          "description": "Raw secret that should be used with JWT encoding."
+        },
+        {
+          "parameter": "secrets[].active",
+          "type": "string",
+          "description": "The earliest possible time this secret is valid to sign a JWT in RFC 3339 format."
+        },
+        {
+          "parameter": "secrets[].expires",
+          "type": "string",
+          "description": "The latest possible time this secret may be used to decode a JWT in RFC 3339 format."
+        }
+      ]
+    },
+    {
+      "title": "Send Extension Chat Message",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/extensions/chat"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster whose channel has the Extension activated."
+        }
+      ],
+      "required_body_parameters": [
+        {
+          "parameter": "text",
+          "type": "string",
+          "description": "Message for Twitch chat.. . Maximum: 280 characters."
+        },
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "Client ID associated with the Extension."
+        },
+        {
+          "parameter": "extension_version",
+          "type": "string",
+          "description": "Version of the Extension sending this message."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Extensions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID of the Extension."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "extension_version",
+          "type": "string",
+          "description": "The specific version of the Extension to return. If not provided, the current version is returned."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "author_name",
+          "type": "string",
+          "description": "Name of the individual or organization that owns the Extension."
+        },
+        {
+          "parameter": "bits_enabled",
+          "type": "boolean",
+          "description": "Whether the Extension has features that use Bits."
+        },
+        {
+          "parameter": "can_install",
+          "type": "boolean",
+          "description": "Indicates if a user can install the Extension on their channel. They may not be allowed if the Extension is currently in testing mode and the user is not on the allow list."
+        },
+        {
+          "parameter": "configuration_location",
+          "type": "string",
+          "description": "Whether the Extension configuration is hosted by the EBS or the Extensions Configuration Service."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "The description of the Extension."
+        },
+        {
+          "parameter": "eula_tos_url",
+          "type": "string",
+          "description": "URL to the Extension’s Terms of Service."
+        },
+        {
+          "parameter": "has_chat_support",
+          "type": "boolean",
+          "description": "Indicates if the Extension can communicate with the installed channel’s chat."
+        },
+        {
+          "parameter": "icon_url",
+          "type": "string",
+          "description": "The default icon to be displayed in the Extensions directory."
+        },
+        {
+          "parameter": "icon_urls",
+          "type": "object",
+          "description": "The default icon in a variety of sizes."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The autogenerated ID of the Extension."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "The name of the Extension."
+        },
+        {
+          "parameter": "privacy_policy_url",
+          "type": "string",
+          "description": "URL to the Extension’s privacy policy."
+        },
+        {
+          "parameter": "request_identity_link",
+          "type": "boolean",
+          "description": "Indicates if the Extension wants to explicitly ask viewers to link their Twitch identity."
+        },
+        {
+          "parameter": "screenshot_urls",
+          "type": "array",
+          "description": "Screenshots to be shown in the Extensions marketplace."
+        },
+        {
+          "parameter": "state",
+          "type": "string",
+          "description": "The current state of the Extension. Valid values are \"InTest\", \"InReview\", \"Rejected\", \"Approved\", \"Released\", \"Deprecated\", \"PendingAction\", \"AssetsUploaded\", \"Deleted\"."
+        },
+        {
+          "parameter": "subscriptions_support_level",
+          "type": "object",
+          "description": "Indicates if the Extension can determine a user’s subscription level on the channel the Extension is installed on."
+        },
+        {
+          "parameter": "summary",
+          "type": "string",
+          "description": "A brief description of the Extension."
+        },
+        {
+          "parameter": "support_email",
+          "type": "string",
+          "description": "The email users can use to receive Extension support."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "The version of the Extension."
+        },
+        {
+          "parameter": "viewer_summary",
+          "type": "string",
+          "description": "A brief description displayed on the channel to explain how the Extension works."
+        },
+        {
+          "parameter": "views",
+          "type": "object",
+          "description": "All configurations related to views such as: mobile, panel, video_overlay, and component."
+        },
+        {
+          "parameter": "allowlisted_config_urls",
+          "type": "array",
+          "description": "Allow-listed configuration URLs for displaying the Extension."
+        },
+        {
+          "parameter": "allowlisted_panel_urls",
+          "type": "array",
+          "description": "Allow-listed panel URLs for displaying the Extension."
+        }
+      ]
+    },
+    {
+      "title": "Get Released Extensions",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/extensions/released"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "ID of the Extension."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "extension_version",
+          "type": "string",
+          "description": "The specific version of the Extension to return. If not provided, the current version is returned."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "author_name",
+          "type": "string",
+          "description": "Name of the individual or organization that owns the Extension."
+        },
+        {
+          "parameter": "bits_enabled",
+          "type": "boolean",
+          "description": "Whether the Extension has features that use Bits."
+        },
+        {
+          "parameter": "can_install",
+          "type": "boolean",
+          "description": "Indicates if a user can install the Extension on their channel. They may not be allowed if the Extension is currently in testing mode and the user is not on the allow list."
+        },
+        {
+          "parameter": "configuration_location",
+          "type": "string",
+          "description": "Whether the Extension configuration is hosted by the EBS or the Extensions Configuration Service."
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "The description of the Extension."
+        },
+        {
+          "parameter": "eula_tos_url",
+          "type": "string",
+          "description": "URL to the Extension’s Terms of Service."
+        },
+        {
+          "parameter": "has_chat_support",
+          "type": "boolean",
+          "description": "Indicates if the Extension can communicate with the installed channel’s chat."
+        },
+        {
+          "parameter": "icon_url",
+          "type": "string",
+          "description": "The default icon to be displayed in the Extensions directory."
+        },
+        {
+          "parameter": "icon_urls",
+          "type": "object",
+          "description": "The default icon in a variety of sizes."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "The autogenerated ID of the Extension."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "The name of the Extension."
+        },
+        {
+          "parameter": "privacy_policy_url",
+          "type": "string",
+          "description": "URL to the Extension’s privacy policy."
+        },
+        {
+          "parameter": "request_identity_link",
+          "type": "boolean",
+          "description": "Indicates if the Extension wants to explicitly ask viewers to link their Twitch identity."
+        },
+        {
+          "parameter": "screenshot_urls",
+          "type": "array",
+          "description": "Screenshots to be shown in the Extensions marketplace."
+        },
+        {
+          "parameter": "state",
+          "type": "string",
+          "description": "The current state of the Extension. Valid values are \"InTest\", \"InReview\", \"Rejected\", \"Approved\", \"Released\", \"Deprecated\", \"PendingAction\", \"AssetsUploaded\", \"Deleted\"."
+        },
+        {
+          "parameter": "subscriptions_support_level",
+          "type": "object",
+          "description": "Indicates if the Extension can determine a user’s subscription level on the channel the Extension is installed on."
+        },
+        {
+          "parameter": "summary",
+          "type": "string",
+          "description": "A brief description of the Extension."
+        },
+        {
+          "parameter": "support_email",
+          "type": "string",
+          "description": "The email users can use to receive Extension support."
+        },
+        {
+          "parameter": "version",
+          "type": "string",
+          "description": "The version of the Extension."
+        },
+        {
+          "parameter": "viewer_summary",
+          "type": "string",
+          "description": "A brief description displayed on the channel to explain how the Extension works."
+        },
+        {
+          "parameter": "views",
+          "type": "object",
+          "description": "All configurations related to views such as: mobile, panel, video_overlay, and component."
+        },
+        {
+          "parameter": "allowlisted_config_urls",
+          "type": "array",
+          "description": "Allow-listed configuration URLs for displaying the Extension."
+        },
+        {
+          "parameter": "allowlisted_panel_urls",
+          "type": "array",
+          "description": "Allow-listed panel URLs for displaying the Extension."
+        }
+      ]
+    },
+    {
+      "title": "Get Extension Bits Products",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/bits/extensions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "should_include_all",
+          "type": "boolean",
+          "description": "Whether Bits products that are disabled/expired should be included in the response.. . Default: false."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "sku",
+          "type": "string",
+          "description": "SKU of the Bits product. This is unique across all products that belong to an Extension."
+        },
+        {
+          "parameter": "cost",
+          "type": "object",
+          "description": "Object containing cost information."
+        },
+        {
+          "parameter": "cost.amount",
+          "type": "integer",
+          "description": "Number of Bits for which the product will be exchanged."
+        },
+        {
+          "parameter": "cost.type",
+          "type": "string",
+          "description": "Cost type. The one valid value is \"bits\"."
+        },
+        {
+          "parameter": "in_development",
+          "type": "boolean",
+          "description": "Indicates if the product is in development and not yet released for public use."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "Name of the product to be displayed in the Extension."
+        },
+        {
+          "parameter": "expiration",
+          "type": "string",
+          "description": "Expiration time for the product in RFC3339 format."
+        },
+        {
+          "parameter": "is_broadcast",
+          "type": "boolean",
+          "description": "Indicates if Bits product purchase events are broadcast to all instances of an Extension on a channel via the “onTransactionComplete” helper callback."
+        }
+      ]
+    },
+    {
+      "title": "Update Extension Bits Product",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/bits/extensions"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [
+        {
+          "parameter": "sku",
+          "type": "string",
+          "description": "SKU of the Bits product. This must be unique across all products that belong to an Extension. The SKU cannot be changed after saving.. . Maximum: 255 characters, no white spaces."
+        },
+        {
+          "parameter": "cost",
+          "type": "object",
+          "description": "Object containing cost information."
+        },
+        {
+          "parameter": "cost.amount",
+          "type": "integer",
+          "description": "Number of Bits for which the product will be exchanged.. . Minimum: 1, Maximum: 10000."
+        },
+        {
+          "parameter": "cost.type",
+          "type": "string",
+          "description": "Cost type. The one valid value is \"bits\"."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "Name of the product to be displayed in the Extension.. . Maximum: 255 characters."
+        }
+      ],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "sku",
+          "type": "string",
+          "description": "SKU of the Bits product. This is unique across all products that belong to an Extension."
+        },
+        {
+          "parameter": "cost",
+          "type": "object",
+          "description": "Object containing cost information."
+        },
+        {
+          "parameter": "cost.amount",
+          "type": "integer",
+          "description": "Number of Bits for which the product will be exchanged."
+        },
+        {
+          "parameter": "cost.type",
+          "type": "string",
+          "description": "Cost type. The one valid value is \"bits\"."
+        },
+        {
+          "parameter": "in_development",
+          "type": "boolean",
+          "description": "Indicates if the product is in development and not yet released for public use."
+        },
+        {
+          "parameter": "display_name",
+          "type": "string",
+          "description": "Name of the product to be displayed in the Extension."
+        },
+        {
+          "parameter": "expiration",
+          "type": "string",
+          "description": "Expiration time for the product in RFC3339 format."
+        },
+        {
+          "parameter": "is_broadcast",
+          "type": "boolean",
+          "description": "Indicates if Bits product purchase events are broadcast to all instances of an Extension on a channel via the “onTransactionComplete” helper callback."
+        }
+      ]
+    },
+    {
       "title": "Create EventSub Subscription",
       "authentication": "",
       "pagination_support": {

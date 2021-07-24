@@ -3196,7 +3196,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+          "description": "Provided broadcaster_id must match the user_id in the OAuth token."
         }
       ],
       "required_body_parameters": [],
@@ -3204,7 +3204,7 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "Filters the results and only returns a status object for ban events that include users being banned or un-banned in this  channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
+          "description": "Filters the results to only include users being banned or un-banned in the specified channel based on their user ID.. . Multiple user IDs can be provided, e.g. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100."
         },
         {
           "parameter": "after",
@@ -3214,19 +3214,19 @@
         {
           "parameter": "first",
           "type": "string",
-          "description": "Maximum number of objects to return. Maximum: 100.  Default: 20."
+          "description": "Maximum number of objects to return.. . Maximum: 100.. Default: 20."
         }
       ],
       "response_fields": [
         {
           "parameter": "id",
           "type": "string",
-          "description": "Event ID"
+          "description": "Event ID."
         },
         {
           "parameter": "event_type",
           "type": "string",
-          "description": "Displays moderation.user.ban or moderation.user.unban"
+          "description": "Type of ban event, either moderation.user.ban or moderation.user.unban."
         },
         {
           "parameter": "event_timestamp",
@@ -3234,19 +3234,74 @@
           "description": "RFC3339 formatted timestamp for events."
         },
         {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
-        },
-        {
           "parameter": "version",
           "type": "string",
-          "description": "Returns the version of the endpoint."
+          "description": "Version of the endpoint."
         },
         {
           "parameter": "event_data",
-          "type": "strings",
-          "description": "Returns broadcaster_id, broadcaster_login, broadcaster_name, user_id, user_login, user_name, and expires_at."
+          "type": "object",
+          "description": "Information about the ban event."
+        },
+        {
+          "parameter": "event_data.broadcaster_id",
+          "type": "string",
+          "description": "User ID of the broadcaster."
+        },
+        {
+          "parameter": "event_data.broadcaster_login",
+          "type": "string",
+          "description": "Login of the broadcaster."
+        },
+        {
+          "parameter": "event_data.broadcaster_name",
+          "type": "string",
+          "description": "Display name of the broadcaster."
+        },
+        {
+          "parameter": "event_data.user_id",
+          "type": "string",
+          "description": "User ID of the banned user."
+        },
+        {
+          "parameter": "event_data.user_login",
+          "type": "string",
+          "description": "Login of the banned user."
+        },
+        {
+          "parameter": "event_data.user_name",
+          "type": "string",
+          "description": "Display name of the banned user."
+        },
+        {
+          "parameter": "event_data.expires_at",
+          "type": "string",
+          "description": "Timestamp of the ban expiration. Set to empty string if the ban is permanent."
+        },
+        {
+          "parameter": "reason",
+          "type": "string",
+          "description": "The reason for the ban if provided by the moderator."
+        },
+        {
+          "parameter": "moderator_id",
+          "type": "string",
+          "description": "User ID of the moderator who initiated the ban."
+        },
+        {
+          "parameter": "moderator_login",
+          "type": "string",
+          "description": "Login of the moderator who initiated the ban."
+        },
+        {
+          "parameter": "moderator_name",
+          "type": "string",
+          "description": "Display name of the moderator who initiated the ban."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object containing a string",
+          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results."
         }
       ]
     },
@@ -3265,7 +3320,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Provided broadcaster_id must match the user_id in the auth token.. . Maximum: 1"
+          "description": "Provided broadcaster_id must match the user_id in the OAuth token."
         }
       ],
       "required_body_parameters": [],
@@ -3273,12 +3328,12 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "Filters the results and only returns a status object for users who are banned in this channel and have a matching user_id.. . Format: Repeated Query Parameter, eg. /moderation/banned?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100"
+          "description": "Filters the results and only returns a status object for users who are banned in the channel and have a matching user_id.. . Multiple user IDs can be provided, e.g. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100."
         },
         {
           "parameter": "first",
           "type": "string",
-          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+          "description": "Maximum number of objects to return.. . Maximum: 100.. Default: 1."
         },
         {
           "parameter": "after",
@@ -3295,22 +3350,42 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "User ID of a user who has been banned."
+          "description": "User ID of the banned user."
         },
         {
           "parameter": "user_login",
           "type": "string",
-          "description": "Login of a user who has been banned."
+          "description": "Login of the banned user."
         },
         {
           "parameter": "user_name",
           "type": "string",
-          "description": "Display name of a user who has been banned."
+          "description": "Display name of the banned user."
         },
         {
           "parameter": "expires_at",
           "type": "string",
-          "description": "Timestamp of the ban expiration. Set to null if the ban is permanent."
+          "description": "Timestamp of the ban expiration. Set to empty string if the ban is permanent."
+        },
+        {
+          "parameter": "reason",
+          "type": "string",
+          "description": "The reason for the ban if provided by the moderator."
+        },
+        {
+          "parameter": "moderator_id",
+          "type": "string",
+          "description": "User ID of the moderator who initiated the ban."
+        },
+        {
+          "parameter": "moderator_login",
+          "type": "string",
+          "description": "Login of the moderator who initiated the ban."
+        },
+        {
+          "parameter": "moderator_name",
+          "type": "string",
+          "description": "Display name of the moderator who initiated the ban."
         },
         {
           "parameter": "pagination",

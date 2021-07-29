@@ -5964,66 +5964,6 @@
       ]
     },
     {
-      "title": "Create User Follows",
-      "authentication": "user:edit:follows",
-      "pagination_support": {
-        "forward": false,
-        "reverse": false
-      },
-      "url": {
-        "method": "POST",
-        "url": "https://api.twitch.tv/helix/users/follows"
-      },
-      "required_query_parameters": [
-        {
-          "parameter": "from_id",
-          "type": "string",
-          "description": "User ID of the follower"
-        },
-        {
-          "parameter": "to_id",
-          "type": "string",
-          "description": "ID of the channel to be followed by the user"
-        }
-      ],
-      "required_body_parameters": [],
-      "optional_query_parameters": [
-        {
-          "parameter": "allow_notifications",
-          "type": "Boolean",
-          "description": "If true, the user gets email or push notifications (depending on the user’s notification settings) when the channel goes live. Default value is false."
-        }
-      ],
-      "response_fields": []
-    },
-    {
-      "title": "Delete User Follows",
-      "authentication": "user:edit:follows",
-      "pagination_support": {
-        "forward": false,
-        "reverse": false
-      },
-      "url": {
-        "method": "DELETE",
-        "url": "https://api.twitch.tv/helix/users/follows"
-      },
-      "required_query_parameters": [
-        {
-          "parameter": "from_id",
-          "type": "string",
-          "description": "User ID of the follower"
-        },
-        {
-          "parameter": "to_id",
-          "type": "string",
-          "description": "Channel to be unfollowed by the user"
-        }
-      ],
-      "required_body_parameters": [],
-      "optional_query_parameters": [],
-      "response_fields": []
-    },
-    {
       "title": "Get User Block List",
       "authentication": "user:read:blocked_users",
       "pagination_support": {

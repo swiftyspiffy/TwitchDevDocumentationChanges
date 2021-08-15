@@ -1251,56 +1251,81 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "The broadcaster whose emotes are being requested.. . Maximum: 1"
+          "description": "An ID that identifies the broadcaster to get the emotes from."
         }
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of channel-created emotes."
+        },
+        {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the emote."
+          "description": "An ID that identifies the emote."
         },
         {
           "parameter": "name",
           "type": "string",
-          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+          "description": "The name of the emote. This is the name that viewers type in the chat window to get the emote to appear."
         },
         {
           "parameter": "images",
           "type": "object",
-          "description": "Object of image URLs for the emote."
+          "description": "Contains the image URLs for the emote. These image URLs will always provide a static (i.e., non-animated) emote image with a light background. NOTE: The preference is for you to use the templated URL in the template field to fetch the image instead of using these URLs."
         },
         {
-          "parameter": "images.url_1x",
+          "parameter": "url_1x",
           "type": "string",
-          "description": "Small emote image URL."
+          "description": "A URL to the small version (28px x 28px) of the emote."
         },
         {
-          "parameter": "images.url_2x",
+          "parameter": "url_2x",
           "type": "string",
-          "description": "Medium emote image URL."
+          "description": "A URL to the medium version (56px x 56px) of the emote."
         },
         {
-          "parameter": "images.url_4x",
+          "parameter": "url_4x",
           "type": "string",
-          "description": "Large emote image URL."
+          "description": "A URL to the large version (112px x 112px) of the emote."
         },
         {
           "parameter": "tier",
           "type": "string",
-          "description": "If the emote_type is \"subscriptions\", this indicates the subscriber tier at which the emote is unlocked. Set to an empty string otherwise."
+          "description": "The subscriber tier at which the emote is unlocked. This field contains the tier information only if emote_type is set to subscriptions, otherwise, it’s an empty string."
         },
         {
           "parameter": "emote_type",
           "type": "string",
-          "description": "The type of emote. The most common values for custom channel emotes are:. . subscriptions: Indicates a custom subscriber emote.. . bitstier: Indicates a custom Bits tier emote.. . follower: Indicates a custom follower emote."
+          "description": "The type of emote. The possible values are: bitstier &mdash; Indicates a custom Bits tier emote.follower &mdash; Indicates a custom follower emote.subscriptions &mdash; Indicates a custom subscriber emote."
         },
         {
           "parameter": "emote_set_id",
           "type": "string",
-          "description": "ID of the emote set the emote belongs to."
+          "description": "An ID that identifies the emote set that the emote belongs to."
+        },
+        {
+          "parameter": "format",
+          "type": "string array",
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+        },
+        {
+          "parameter": "scale",
+          "type": "string array",
+          "description": "The sizes that the emote is available in. For example, if the emote is available in small and medium sizes, the array contains 1.0 and 2.0. Possible sizes are: 1.0 &mdash; A small version (28px x 28px) is available.2.0 &mdash; A medium version (56px x 56px) is available.3.0 &mdash; A large version (112px x 112px) is available."
+        },
+        {
+          "parameter": "theme_mode",
+          "type": "string array",
+          "description": "The background themes that the emote is available in. Possible themes are: darklight"
+        },
+        {
+          "parameter": "template",
+          "type": "string",
+          "description": "A templated URL. Use the values from id, format, scale, and theme_mode to replace the like-named placeholder strings in the templated URL to create a CDN (content delivery network) URL that you use to fetch the emote. For information about what the template looks like and how to use it to fetch emotes, see Emote CDN URL format."
         }
       ]
     },
@@ -1320,34 +1345,59 @@
       "optional_query_parameters": [],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of global emotes."
+        },
+        {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the emote."
+          "description": "An ID that identifies the emote."
         },
         {
           "parameter": "name",
           "type": "string",
-          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+          "description": "The name of the emote. This is the name that viewers type in the chat window to get the emote to appear."
         },
         {
           "parameter": "images",
           "type": "object",
-          "description": "Object of image URLs for the emote."
+          "description": "Contains the image URLs for the emote. These image URLs will always provide a static (i.e., non-animated) emote image with a light background. NOTE: The preference is for you to use the templated URL in the template field to fetch the image instead of using these URLs."
         },
         {
-          "parameter": "images.url_1x",
+          "parameter": "url_1x",
           "type": "string",
-          "description": "Small emote image URL."
+          "description": "A URL to the small version (28px x 28px) of the emote."
         },
         {
-          "parameter": "images.url_2x",
+          "parameter": "url_2x",
           "type": "string",
-          "description": "Medium emote image URL."
+          "description": "A URL to the medium version (56px x 56px) of the emote."
         },
         {
-          "parameter": "images.url_4x",
+          "parameter": "url_4x",
           "type": "string",
-          "description": "Large emote image URL."
+          "description": "A URL to the large version (112px x 112px) of the emote."
+        },
+        {
+          "parameter": "format",
+          "type": "string array",
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+        },
+        {
+          "parameter": "scale",
+          "type": "string array",
+          "description": "The sizes that the emote is available in. For example, if the emote is available in small and medium sizes, the array contains 1.0 and 2.0. Possible sizes are: 1.0 &mdash; A small version (28px x 28px) is available.2.0 &mdash; A medium version (56px x 56px) is available.3.0 &mdash; A large version (112px x 112px) is available."
+        },
+        {
+          "parameter": "theme_mode",
+          "type": "string array",
+          "description": "The background themes that the emote is available in. Possible themes are: darklight"
+        },
+        {
+          "parameter": "template",
+          "type": "string",
+          "description": "A templated URL. Use the values from id, format, scale, and theme_mode to replace the like-named placeholder strings in the templated URL to create a CDN (content delivery network) URL that you use to fetch the emote. For information about what the template looks like and how to use it to fetch emotes, see Emote CDN URL format."
         }
       ]
     },
@@ -1366,56 +1416,81 @@
         {
           "parameter": "emote_set_id",
           "type": "string",
-          "description": "ID(s) of the emote set.. . Minimum: 1. Maximum: 25."
+          "description": "An ID that identifies the emote set. Include the parameter for each emote set you want to get. For example, emote_set_id=1234&amp;emote_set_id=5678. You may specify a maximum of 25 IDs."
         }
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of global emotes."
+        },
+        {
           "parameter": "id",
           "type": "string",
-          "description": "Emote ID."
+          "description": "An ID that identifies the emote."
         },
         {
           "parameter": "name",
           "type": "string",
-          "description": "Name of the emote a viewer types into Twitch chat for the image to appear."
+          "description": "The name of the emote. This is the name that viewers type in the chat window to get the emote to appear."
         },
         {
           "parameter": "images",
           "type": "object",
-          "description": "Object of image URLs for the emote."
+          "description": "Contains the image URLs for the emote. These image URLs will always provide a static (i.e., non-animated) emote image with a light background. NOTE: The preference is for you to use the templated URL in the template field to fetch the image instead of using these URLs."
         },
         {
-          "parameter": "images.url_1x",
+          "parameter": "url_1x",
           "type": "string",
-          "description": "Small emote image URL."
+          "description": "A URL to the small version (28px x 28px) of the emote."
         },
         {
-          "parameter": "images.url_2x",
+          "parameter": "url_2x",
           "type": "string",
-          "description": "Medium emote image URL."
+          "description": "A URL to the medium version (56px x 56px) of the emote."
         },
         {
-          "parameter": "images.url_4x",
+          "parameter": "url_4x",
           "type": "string",
-          "description": "Large emote image URL."
+          "description": "A URL to the large version (112px x 112px) of the emote."
         },
         {
           "parameter": "emote_type",
           "type": "string",
-          "description": "The type of emote."
+          "description": "The type of emote. The possible values are: bitstier &mdash; Indicates a Bits tier emote.follower &mdash; Indicates a follower emote.subscriptions &mdash; Indicates a subscriber emote."
         },
         {
           "parameter": "emote_set_id",
           "type": "string",
-          "description": "ID of the emote set the emote belongs to."
+          "description": "An ID that identifies the emote set that the emote belongs to."
         },
         {
           "parameter": "owner_id",
           "type": "string",
-          "description": "User ID of the broadcaster who owns the emote."
+          "description": "The ID of the broadcaster who owns the emote."
+        },
+        {
+          "parameter": "format",
+          "type": "string array",
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+        },
+        {
+          "parameter": "scale",
+          "type": "string array",
+          "description": "The sizes that the emote is available in. For example, if the emote is available in small and medium sizes, the array contains 1.0 and 2.0. Possible sizes are: 1.0 &mdash; A small version (28px x 28px) is available.2.0 &mdash; A medium version (56px x 56px) is available.3.0 &mdash; A large version (112px x 112px) is available."
+        },
+        {
+          "parameter": "theme_mode",
+          "type": "string array",
+          "description": "The background themes that the emote is available in. Possible themes are: darklight"
+        },
+        {
+          "parameter": "template",
+          "type": "string",
+          "description": "A templated URL. Use the values from id, format, scale, and theme_mode to replace the like-named placeholder strings in the templated URL to create a CDN (content delivery network) URL that you use to fetch the emote. For information about what the template looks like and how to use it to fetch emotes, see Emote CDN URL format."
         }
       ]
     },
@@ -2690,80 +2765,85 @@
         {
           "parameter": "type",
           "type": "string",
-          "description": "The category of the subscription that is being created. Valid subscription types can be found here."
+          "description": "The type of subscription to create. For a list of subscriptions you can create, see Subscription Types. Set type to the value in the Name column of the Subscription Types table."
         },
         {
           "parameter": "version",
           "type": "string",
-          "description": "The version of the subscription type that is being created. Each subscription type has independent versioning."
+          "description": "The version of the subscription type used in this request. A subscription type could define one or more object definitions, so you need to specify which definition you’re using."
         },
         {
           "parameter": "condition",
           "type": "condition",
-          "description": "JSON object containing custom parameters for a particular subscription."
+          "description": "The parameter values that are specific to the specified subscription type."
         },
         {
           "parameter": "transport",
           "type": "transport",
-          "description": "JSON object containing notification delivery specific configuration including a method string. Valid transport methods include: webhook. In addition to the method string, a webhook transport must include the callback and secret information."
+          "description": "The transport details, such as the transport method and callback URL, that you want Twitch to use when sending you notifications."
         }
       ],
       "optional_query_parameters": [],
       "response_fields": [
         {
           "parameter": "data",
-          "type": "array",
-          "description": "Array containing 1 element: the created subscription."
+          "type": "object array",
+          "description": "An array of subscription objects. The array will contain only one element."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the subscription created."
+          "description": "An ID that identifies the subscription."
         },
         {
           "parameter": "status",
           "type": "string",
-          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+          "description": "The status of the create subscription request. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL. To determine if the subscription moved from pending to another state, send a GET request and use the ID to find the subscription in the list.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
         },
         {
           "parameter": "type",
           "type": "string",
-          "description": "The category of the subscription that was created."
+          "description": "The type of subscription."
         },
         {
           "parameter": "version",
           "type": "string",
-          "description": "The version of the subscription type that was created."
+          "description": "The version of the subscription type."
         },
         {
           "parameter": "condition",
           "type": "condition",
-          "description": "JSON object specifying custom parameters for the subscription."
+          "description": "The parameter values for the subscription type."
         },
         {
           "parameter": "created_at",
           "type": "string",
-          "description": "RFC3339 timestamp indicating when the subscription was created."
+          "description": "The RFC 3339 timestamp indicating when the subscription was created."
         },
         {
           "parameter": "transport",
           "type": "transport",
-          "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
+          "description": "The transport details used to send you notifications."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The amount that the subscription counts against your limit. Learn More"
         },
         {
           "parameter": "total",
           "type": "integer",
-          "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+          "description": "The total number of subscriptions you’ve created."
         },
         {
           "parameter": "total_cost",
           "type": "integer",
-          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+          "description": "The sum of all of your subscription costs. Learn More"
         },
         {
           "parameter": "max_total_cost",
           "type": "integer",
-          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
+          "description": "The maximum total cost that you may incur for all subscriptions you create."
         }
       ]
     },
@@ -2782,7 +2862,7 @@
         {
           "parameter": "id",
           "type": "string",
-          "description": "The subscription ID for the subscription you want to delete."
+          "description": "The ID of the subscription to delete. This is the ID that Create Eventsub Subscription returns."
         }
       ],
       "required_body_parameters": [],
@@ -2806,74 +2886,89 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "Include this parameter to filter subscriptions by one status type. Valid values: . . enabled: the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: subscription is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: subscription failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+          "description": "Filter subscriptions by its status. You may specify only one status value. Valid values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
         },
         {
           "parameter": "type",
           "type": "string",
-          "description": "Include this parameter to filter subscriptions by subscription type name (e.g., channel.update)."
+          "description": "Filter subscriptions by subscription type (e.g., channel.update). For a list of subscription types, see Subscription Types."
+        },
+        {
+          "parameter": "after",
+          "type": "string",
+          "description": "The cursor used to get the next page of results. The pagination object in the response contains the cursor’s value."
         }
       ],
       "response_fields": [
         {
           "parameter": "data",
-          "type": "array",
-          "description": "Array containing subscriptions."
+          "type": "object array",
+          "description": "An array of subscription objects. The list is empty if you don’t have any subscriptions."
         },
         {
           "parameter": "id",
           "type": "string",
-          "description": "ID of the subscription."
+          "description": "An ID that identifies the subscription."
         },
         {
           "parameter": "status",
           "type": "string",
-          "description": "Status of the subscription. Valid values are: . . enabled: designates that the subscription is in an operable state and is valid. . . webhook_callback_verification_pending: webhook is pending verification of the callback specified in the subscription creation request. . . webhook_callback_verification_failed: webhook failed verification of the callback specified in the subscription creation request. . . notification_failures_exceeded: notification delivery failure rate was too high. . . authorization_revoked: authorization for user(s) in the condition was revoked. . . user_removed: a user in the condition of the subscription was removed."
+          "description": "The subscription’s status. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
         },
         {
           "parameter": "type",
           "type": "string",
-          "description": "The category of the subscription."
+          "description": "The subscription’s type."
         },
         {
           "parameter": "version",
           "type": "string",
-          "description": "The version of the subscription."
+          "description": "The version of the subscription type."
         },
         {
           "parameter": "condition",
           "type": "condition",
-          "description": "JSON object specifying custom parameters for the subscription."
+          "description": "The subscription’s parameter values."
         },
         {
           "parameter": "created_at",
           "type": "string",
-          "description": "RFC3339 timestamp indicating when the subscription was created."
+          "description": "The RFC 3339 timestamp indicating when the subscription was created."
         },
         {
           "parameter": "transport",
           "type": "transport",
-          "description": "JSON object indicating the notification delivery specific information. Includes the transport method and callback URL."
+          "description": "The transport details used to send you notifications."
+        },
+        {
+          "parameter": "cost",
+          "type": "integer",
+          "description": "The amount that the subscription counts against your limit. Learn More"
         },
         {
           "parameter": "total",
           "type": "integer",
-          "description": "Total number of subscriptions for the client ID that made the subscription creation request."
+          "description": "The total number of subscriptions you’ve created."
         },
         {
           "parameter": "total_cost",
           "type": "integer",
-          "description": "Total cost of all the subscriptions for the client ID that made the subscription creation request."
+          "description": "The sum of all of your subscription costs. Learn More"
         },
         {
           "parameter": "max_total_cost",
           "type": "integer",
-          "description": "The maximum total cost allowed for all of the subscriptions for the client ID that made the subscription creation request."
+          "description": "The maximum total cost that you’re allowed to incur for all subscriptions you create."
         },
         {
           "parameter": "pagination",
           "type": "object",
-          "description": "A cursor value to be used in a subsequent request to specify the starting point of the next set of results."
+          "description": "An object that contains the cursor used to get the next page of subscriptions. The object is empty if the list of subscriptions fits on one page or there are no more pages to get. The number of subscriptions returned per page is undertermined."
+        },
+        {
+          "parameter": "cursor",
+          "type": "string",
+          "description": "The cursor value that you set the after query parameter to."
         }
       ]
     },
@@ -5514,44 +5609,54 @@
         {
           "parameter": "after",
           "type": "string",
-          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
+          "description": "The cursor used to get the next page of results. The pagination object in the response contains the cursor’s value.. . The after and tag_id query parameters are mutually exclusive."
         },
         {
           "parameter": "first",
           "type": "integer",
-          "description": "Maximum number of objects to return. Maximum: 100. Default: 20."
+          "description": "The maximum number of tags to return per page.. . Maximum: 100. Default: 20."
         },
         {
           "parameter": "tag_id",
           "type": "string",
-          "description": "ID of a tag. Multiple IDs can be specified, separated by ampersands. If provided, only the specified tag(s) is(are) returned.. . Maximum of 100."
+          "description": "An ID that identifies a specific tag to return. Include the query parameter for each tag you want returned. For example, tag_id=123&amp;tag_id=456. You may specify a maximum of 100 IDs."
         }
       ],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of tag objects."
+        },
+        {
           "parameter": "tag_id",
           "type": "string",
-          "description": "ID of the tag."
+          "description": "An ID that identifies the tag."
         },
         {
           "parameter": "is_auto",
           "type": "Boolean",
-          "description": "true if the tag is auto-generated; otherwise, false . An auto-generated tag is one automatically applied by Twitch (e.g., a language tag based on the broadcaster’s settings); these tags cannot be added or removed by the user."
+          "description": "A Boolean value that determines whether the tag is an automatic tag. An automatic tag is one that Twitch adds to the stream. You cannot add or remove automatic tags. The value is true if the tag is an automatic tag; otherwise, false."
         },
         {
           "parameter": "localization_names",
-          "type": "map[string]string",
-          "description": "All localized names of the tag."
+          "type": "map[string,string]",
+          "description": "A dictionary that contains the localized names of the tag. The key is in the form, &lt;locale&gt;-&lt;coutry/region&gt;. For example, us-en. The value is the localized name."
         },
         {
           "parameter": "localization_descriptions",
-          "type": "map[string]string",
-          "description": "All localized descriptions of the tag."
+          "type": "map[string,string]",
+          "description": "A dictionary that contains the localized descriptions of the tag. The key is in the form, &lt;locale&gt;-&lt;coutry/region&gt;. For example, us-en. The value is the localized description."
         },
         {
           "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results.. Not supported when tag_id is provided."
+          "type": "object",
+          "description": "An object that contains the cursor used to get the next page of tags."
+        },
+        {
+          "parameter": "cursor",
+          "type": "string",
+          "description": "The cursor value that you set the after query parameter to."
         }
       ]
     },
@@ -5570,31 +5675,46 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "User ID of the channel to get tags."
+          "description": "The user ID of the channel to get the tags from."
         }
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of tag objects."
+        },
+        {
           "parameter": "tag_id",
           "type": "string",
-          "description": "ID of the tag."
+          "description": "An ID that identifies the tag."
         },
         {
           "parameter": "is_auto",
           "type": "Boolean",
-          "description": "true if the tag is auto-generated; otherwise, false . An auto-generated tag is one automatically applied by Twitch (e.g., a language tag based on the broadcaster’s settings); tags these cannot be added or removed by the user."
+          "description": "A Boolean value that determines whether the tag is an automatic tag. An automatic tag is one that Twitch adds to the stream. You cannot add or remove automatic tags. The value is true if the tag is an automatic tag; otherwise, false."
         },
         {
           "parameter": "localization_names",
-          "type": "map[string]string",
-          "description": "All localized names of the tag."
+          "type": "map[string,string]",
+          "description": "A dictionary that contains the localized names of the tag. The key is in the form, &lt;locale&gt;-&lt;coutry/region&gt;. For example, us-en. The value is the localized name."
         },
         {
           "parameter": "localization_descriptions",
-          "type": "map[string]string",
-          "description": "All localized descriptions of the tag."
+          "type": "map[string,string]",
+          "description": "A dictionary that contains the localized descriptions of the tag. The key is in the form, &lt;locale&gt;-&lt;coutry/region&gt;. For example, us-en. The value is the localized description."
+        },
+        {
+          "parameter": "pagination",
+          "type": "object",
+          "description": "An object that contains the cursor used to get the next page of tags."
+        },
+        {
+          "parameter": "cursor",
+          "type": "string",
+          "description": "The cursor value that you set the after query parameter to."
         }
       ]
     },
@@ -5613,7 +5733,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the stream for which tags are to be replaced."
+          "description": "The user ID of the channel to apply the tags to."
         }
       ],
       "required_body_parameters": [],

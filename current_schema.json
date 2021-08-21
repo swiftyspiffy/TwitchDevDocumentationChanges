@@ -1991,38 +1991,48 @@
       },
       "required_query_parameters": [
         {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The ID of the broadcaster that owns the extension. This parameter is required if you set the segment parameter to broadcaster or developer. Do not specify this parameter if you set segment to global."
+        },
+        {
           "parameter": "extension_id",
           "type": "string",
-          "description": "ID for the Extension which the configuration is for."
+          "description": "The ID of the extension that contains the configuration segment you want to get."
         },
         {
           "parameter": "segment",
           "type": "string",
-          "description": "The configuration segment type to return. Valid values are \"developer\", \"broadcaster\", and \"global\". Multiple segments can be specified."
+          "description": "The type of configuration segment to get. Valid values are: broadcasterdeveloperglobalYou may specify one or more segments. To specify multiple segments, include the segment parameter for each segment to get. For example, segment=broadcaster&amp;segment=developer."
         }
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": [
         {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of Segment objects."
+        },
+        {
           "parameter": "segment",
           "type": "string",
-          "description": "The type of segment. Either \"developer\", \"broadcaster\", or \"global\"."
+          "description": "The type of segment. Possible values are: broadcasterdeveloperglobal"
         },
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "The broadcaster ID if the segment type is \"developer\" or \"broadcaster\". Otherwise, this parameter is not included."
+          "description": "The ID of the broadcaster that owns the extension. The object includes this field only if the segment query parameter is set to developer or broadcaster."
         },
         {
           "parameter": "content",
           "type": "string",
-          "description": "Configuration in a string-encoded format."
+          "description": "The contents of the segment. This string may be a plain string or a string-encoded JSON object."
         },
         {
           "parameter": "version",
           "type": "string",
-          "description": "Configuration version with the segment type."
+          "description": "The version that identifies the segment’s definition."
         }
       ]
     },

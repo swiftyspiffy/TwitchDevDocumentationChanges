@@ -6319,9 +6319,9 @@
     },
     {
       "title": "Get Videos",
-      "authentication": "user_id",
+      "authentication": "",
       "pagination_support": {
-        "forward": false,
+        "forward": true,
         "reverse": false
       },
       "url": {

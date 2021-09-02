@@ -3079,6 +3079,79 @@
       ]
     },
     {
+      "title": "Get Creator Goals",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/goals"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "The ID of the broadcaster that created the goals."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "object array",
+          "description": "An array of creator goals. The array will contain at most one goal. The array is empty if the broadcaster hasn’t created goals.. . NOTE: Although the API currently supports only one goal, you should write your application to support one or more goals."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "An ID that uniquely identifies this goal."
+        },
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "An ID that uniquely identifies the broadcaster."
+        },
+        {
+          "parameter": "broadcaster_name",
+          "type": "string",
+          "description": "The broadcaster’s display name."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "The broadcaster’s user handle."
+        },
+        {
+          "parameter": "type",
+          "type": "string",
+          "description": "The type of goal. Possible values are: follower &mdash; The goal is to increase followers.subscription &mdash; The goal is to increase subscriptions. "
+        },
+        {
+          "parameter": "description",
+          "type": "string",
+          "description": "A description of the goal, if specified. The description may contain a maximum of 40 characters."
+        },
+        {
+          "parameter": "current_amount",
+          "type": "integer",
+          "description": "The current value.. . If the goal is to increase followers, this field is set to the current number of followers. This number increases with new followers and decreases if users unfollow the channel.. . For subscriptions, current_amount is increased and decreased by the points value associated with the subscription tier. For example, if a tier-two subscription is worth 2 points, current_amount is increased or decreased by 2, not 1."
+        },
+        {
+          "parameter": "target_amount",
+          "type": "integer",
+          "description": "The goal’s target value. For example, if the broadcaster has 200 followers before creating the goal, and their goal is to double that number, this field is set to 400."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "The UTC timestamp in RFC 3339 format, which indicates when the broadcaster created the goal."
+        }
+      ]
+    },
+    {
       "title": "Get Hype Train Events",
       "authentication": "channel:read:hype_train",
       "pagination_support": {

@@ -1260,7 +1260,7 @@
         {
           "parameter": "data",
           "type": "object array",
-          "description": "An array of channel-created emotes."
+          "description": "A list of emotes that the specified channel created."
         },
         {
           "parameter": "id",
@@ -1310,7 +1310,7 @@
         {
           "parameter": "format",
           "type": "string array",
-          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.static &mdash; Indicates a static PNG file is available for this emote."
         },
         {
           "parameter": "scale",
@@ -1347,7 +1347,7 @@
         {
           "parameter": "data",
           "type": "object array",
-          "description": "An array of global emotes."
+          "description": "The list of global emotes."
         },
         {
           "parameter": "id",
@@ -1382,7 +1382,7 @@
         {
           "parameter": "format",
           "type": "string array",
-          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.static &mdash; Indicates a static PNG file is available for this emote."
         },
         {
           "parameter": "scale",
@@ -1425,7 +1425,7 @@
         {
           "parameter": "data",
           "type": "object array",
-          "description": "An array of global emotes."
+          "description": "The list of emotes found in the specified emote sets."
         },
         {
           "parameter": "id",
@@ -1475,7 +1475,7 @@
         {
           "parameter": "format",
           "type": "string array",
-          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.default &mdash; Returns an animated GIF if available, otherwise, returns the static PNG.static &mdash; Indicates a static PNG file is available for this emote."
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.static &mdash; Indicates a static PNG file is available for this emote."
         },
         {
           "parameter": "scale",

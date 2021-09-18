@@ -6580,59 +6580,6 @@
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": []
-    },
-    {
-      "title": "Get Webhook Subscriptions",
-      "authentication": "",
-      "pagination_support": {
-        "forward": false,
-        "reverse": false
-      },
-      "url": {
-        "method": "GET",
-        "url": "https://api.twitch.tv/helix/webhooks/subscriptions"
-      },
-      "required_query_parameters": [],
-      "required_body_parameters": [],
-      "optional_query_parameters": [
-        {
-          "parameter": "after",
-          "type": "string",
-          "description": "Cursor for forward pagination: tells the server where to start fetching the next set of results, in a multi-page response. The cursor value specified here is from the pagination response field of a prior query."
-        },
-        {
-          "parameter": "first",
-          "type": "string",
-          "description": "Number of values to be returned per page. Limit: 100. Default: 20."
-        }
-      ],
-      "response_fields": [
-        {
-          "parameter": "callback",
-          "type": "string",
-          "description": "The callback provided for this subscription."
-        },
-        {
-          "parameter": "expires_at",
-          "type": "string",
-          "description": "Date and time when this subscription expires. Encoded as RFC3339. The timezone is always UTC (&ldquo;Z&rdquo;)."
-        },
-        {
-          "parameter": "pagination",
-          "type": "object containing a string",
-          "description": "A cursor value, to be used in a subsequent request to specify the starting point of the next set of results. If this is empty, you are at the last page."
-        },
-        {
-          "parameter": "topic",
-          "type": "string",
-          "description": "The topic used in the initial subscription."
-        },
-        {
-          "parameter": "total",
-          "type": "int",
-          "description": "A hint at the total number of results returned, on all pages. This is an approximation: as you page through the list, some subscriptions may expire and others may be added."
-        }
-      ]
     }
   ]
 }

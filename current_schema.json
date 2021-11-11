@@ -2771,7 +2771,7 @@
     },
     {
       "title": "Create EventSub Subscription",
-      "authentication": "",
+      "authentication": "channel.subscribe",
       "pagination_support": {
         "forward": false,
         "reverse": false

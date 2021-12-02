@@ -2849,12 +2849,12 @@
         },
         {
           "parameter": "condition",
-          "type": "object",
+          "type": "condition",
           "description": "The parameter values that are specific to the specified subscription type."
         },
         {
           "parameter": "transport",
-          "type": "object",
+          "type": "transport",
           "description": "The transport details, such as the transport method and callback URL, that you want Twitch to use when sending you notifications."
         }
       ],
@@ -2887,7 +2887,7 @@
         },
         {
           "parameter": "condition",
-          "type": "object",
+          "type": "condition",
           "description": "The parameter values for the subscription type."
         },
         {
@@ -2897,7 +2897,7 @@
         },
         {
           "parameter": "transport",
-          "type": "object",
+          "type": "transport",
           "description": "The transport details used to send you notifications."
         },
         {
@@ -3002,7 +3002,7 @@
         },
         {
           "parameter": "condition",
-          "type": "object",
+          "type": "condition",
           "description": "The subscription’s parameter values."
         },
         {
@@ -3012,7 +3012,7 @@
         },
         {
           "parameter": "transport",
-          "type": "object",
+          "type": "transport",
           "description": "The transport details used to send you notifications."
         },
         {

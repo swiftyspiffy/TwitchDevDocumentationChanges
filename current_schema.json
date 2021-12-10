@@ -5409,6 +5409,66 @@
       ]
     },
     {
+      "title": "Get Soundtrack Current Track",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/soundtrack/current_track"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The ID of the broadcaster that’s playing a Soundtrack track."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Soundtrack Playlist",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/soundtrack/playlist"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The ID of the Soundtrack playlist to get."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get Soundtrack Playlists",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/soundtrack/playlists"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
       "title": "Get Stream Key",
       "authentication": "channel:read:stream_key",
       "pagination_support": {

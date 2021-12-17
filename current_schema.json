@@ -2321,7 +2321,7 @@
         {
           "parameter": "delay",
           "type": "integer",
-          "description": "JWT signing activation delay for the newly created secret in seconds.. . Minumum: 300. Default: 300."
+          "description": "JWT signing activation delay for the newly created secret in seconds.. . Minimum: 300. Default: 300."
         }
       ],
       "response_fields": [
@@ -3692,7 +3692,7 @@
       ]
     },
     {
-      "title": "Ban Users",
+      "title": "Ban User",
       "authentication": "moderator:manage:banned_users",
       "pagination_support": {
         "forward": false,

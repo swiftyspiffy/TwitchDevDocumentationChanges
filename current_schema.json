@@ -3192,7 +3192,7 @@
         {
           "parameter": "type",
           "type": "string",
-          "description": "The type of goal. Possible values are: follower &mdash; The goal is to increase followers.subscription &mdash; The goal is to increase subscriptions. "
+          "description": "The type of goal. Possible values are: follower &mdash; The goal is to increase followers.subscription &mdash; The goal is to increase subscriptions. This type shows the net increase or decrease in subscriptions.new_subscription &mdash; The goal is to increase subscriptions. This type shows only the net increase in subscriptions (it does not account for users that stopped subscribing since the goal's inception)."
         },
         {
           "parameter": "description",
@@ -3202,7 +3202,7 @@
         {
           "parameter": "current_amount",
           "type": "integer",
-          "description": "The current value.. . If the goal is to increase followers, this field is set to the current number of followers. This number increases with new followers and decreases if users unfollow the channel.. . For subscriptions, current_amount is increased and decreased by the points value associated with the subscription tier. For example, if a tier-two subscription is worth 2 points, current_amount is increased or decreased by 2, not 1."
+          "description": "The current value.. . If the goal is to increase followers, this field is set to the current number of followers. This number increases with new followers and decreases if users unfollow the channel.. . For subscriptions, current_amount is increased and decreased by the points value associated with the subscription tier. For example, if a tier-two subscription is worth 2 points, current_amount is increased or decreased by 2, not 1.. . For new_subscriptions, current_amount is increased by the points value associated with the subscription tier. For example, if a tier-two subscription is worth 2 points, current_amount is increased by 2, not 1."
         },
         {
           "parameter": "target_amount",

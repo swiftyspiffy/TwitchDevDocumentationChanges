@@ -513,7 +513,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "ID of the channel to be updated"
+          "description": "User ID for the channel."
         }
       ],
       "required_body_parameters": [],
@@ -522,22 +522,27 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "Twitch User ID of this channel owner"
+          "description": "Twitch User ID of this channel owner."
+        },
+        {
+          "parameter": "broadcaster_login",
+          "type": "string",
+          "description": "Broadcaster’s user login name."
         },
         {
           "parameter": "broadcaster_name",
           "type": "string",
-          "description": "Twitch user display name of this channel owner"
+          "description": "Twitch user display name of this channel owner."
         },
         {
           "parameter": "game_name",
           "type": "string",
-          "description": "Name of the game being played on the channel"
+          "description": "Name of the game being played on the channel."
         },
         {
           "parameter": "game_id",
           "type": "string",
-          "description": "Current game ID being played on the channel"
+          "description": "Current game ID being played on the channel."
         },
         {
           "parameter": "broadcaster_language",
@@ -547,12 +552,12 @@
         {
           "parameter": "title",
           "type": "string",
-          "description": "Title of the stream"
+          "description": "Title of the stream."
         },
         {
           "parameter": "delay",
           "type": "integer",
-          "description": "Stream delay in seconds"
+          "description": "Stream delay in seconds."
         }
       ]
     },

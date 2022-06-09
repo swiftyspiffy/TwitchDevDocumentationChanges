@@ -3538,7 +3538,12 @@
         {
           "parameter": "expires_at",
           "type": "string",
-          "description": "Timestamp of the ban expiration. Set to empty string if the ban is permanent."
+          "description": "The UTC date and time (in RFC3999 format) when the timeout expires, or an empty string if the user is permanently banned."
+        },
+        {
+          "parameter": "created_at",
+          "type": "string",
+          "description": "The UTC date and time (in RFC3999 format) when the ban was created."
         },
         {
           "parameter": "reason",
@@ -4280,7 +4285,7 @@
         {
           "parameter": "outcome.color",
           "type": "string",
-          "description": "Color for the outcome. Valid values: BLUE, PINK"
+          "description": "Color for the outcome. If the number of outcomes is two, the color is BLUE for the first one and PINK for the second one. If there are more than two outcomes, the color is BLUE for all of them."
         },
         {
           "parameter": "prediction_window",
@@ -4335,7 +4340,7 @@
         {
           "parameter": "outcomes",
           "type": "object[]",
-          "description": "Array of outcome objects with titles for the Prediction. Array size must be between 2 and 10 inclusively. If 2 outcomes are provided, the first outcome object is the “blue” outcome and the second outcome object is the “pink” outcome when viewing the Prediction on Twitch. If more than 2 outcomes are provided, all outcomes are blue when viewing the Prediction on Twitch."
+          "description": "The list of possible outcomes for the Prediction. The minimum number of outcomes that you may specify is 2 and the maximum is 10."
         },
         {
           "parameter": "outcome.title",
@@ -4408,7 +4413,7 @@
         {
           "parameter": "outcome.color",
           "type": "string",
-          "description": "Color for the outcome. Valid values: BLUE, PINK"
+          "description": "Color for the outcome. If the number of outcomes is two, the color is BLUE for the first one and PINK for the second one. If there are more than two outcomes, the color is BLUE for all of them."
         },
         {
           "parameter": "outcome.top_predictors",
@@ -4556,7 +4561,7 @@
         {
           "parameter": "outcome.color",
           "type": "string",
-          "description": "Color for the outcome. Valid values: BLUE, PINK"
+          "description": "Color for the outcome. If the number of outcomes is two, the color is BLUE for the first one and PINK for the second one. If there are more than two outcomes, the color is BLUE for all of them."
         },
         {
           "parameter": "outcome.top_predictors",
@@ -4614,6 +4619,38 @@
           "description": "UTC timestamp for when the prediction was locked. If the status is not LOCKED, this is set to null."
         }
       ]
+    },
+    {
+      "title": "Start a raid",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/raids"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Cancel a raid",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/raids"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
     },
     {
       "title": "Get Channel Stream Schedule",

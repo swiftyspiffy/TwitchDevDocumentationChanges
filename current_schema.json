@@ -1975,18 +1975,7 @@
       },
       "required_query_parameters": [],
       "required_body_parameters": [],
-      "optional_query_parameters": [
-        {
-          "parameter": "entitlement_ids",
-          "type": "array",
-          "description": "An array of unique identifiers of the entitlements to update.. . Maximum: 100."
-        },
-        {
-          "parameter": "fulfillment_status",
-          "type": "string",
-          "description": "A fulfillment status. Valid values are \"CLAIMED\" or \"FULFILLED\"."
-        }
-      ],
+      "optional_query_parameters": [],
       "response_fields": [
         {
           "parameter": "data",
@@ -2024,7 +2013,7 @@
         },
         {
           "parameter": "user_id",
-          "type": "Integer",
+          "type": "String",
           "description": "The ID of the user that owns the redemption code to redeem."
         }
       ],
@@ -2163,7 +2152,7 @@
           "description": "The version fo the Extension to release."
         },
         {
-          "parameter": "configuration_version",
+          "parameter": "required_configuration",
           "type": "string",
           "description": "The version of the configuration to use with the Extension."
         }
@@ -2320,7 +2309,13 @@
         "method": "POST",
         "url": "https://api.twitch.tv/helix/extensions/jwt/secrets"
       },
-      "required_query_parameters": [],
+      "required_query_parameters": [
+        {
+          "parameter": "extension_id",
+          "type": "string",
+          "description": "The ID of the extension to apply the shared secret to."
+        }
+      ],
       "required_body_parameters": [],
       "optional_query_parameters": [
         {
@@ -2966,12 +2961,17 @@
         {
           "parameter": "status",
           "type": "string",
-          "description": "Filter subscriptions by its status. You may specify only one status value. Valid values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
+          "description": "Filter subscriptions by its status. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
         },
         {
           "parameter": "type",
           "type": "string",
           "description": "Filter subscriptions by subscription type (e.g., channel.update). For a list of subscription types, see Subscription Types."
+        },
+        {
+          "parameter": "user_id",
+          "type": "string",
+          "description": "Filter subscriptions by user ID. The response contains subscriptions where the user ID matches a user ID that you specified in the Condition object when you created the subscription."
         },
         {
           "parameter": "after",
@@ -5284,7 +5284,18 @@
         }
       ],
       "required_body_parameters": [],
-      "optional_query_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The maximum number of tracks to return for this playlist in the response. The minimum number of tracks is 1 and the maximum is 100. The default is 20."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The cursor used to get the next page of tracks for this playlist. The Pagination object in the response contains the cursor’s value."
+        }
+      ],
       "response_fields": []
     },
     {
@@ -5300,7 +5311,13 @@
       },
       "required_query_parameters": [],
       "required_body_parameters": [],
-      "optional_query_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The ID of the Soundtrack playlist to get. Specify an ID only if you want to get a single playlist instead of all playlists."
+        }
+      ],
       "response_fields": []
     },
     {
@@ -6248,7 +6265,7 @@
         {
           "parameter": "view_count",
           "type": "integer",
-          "description": "Total number of views of the user’s channel."
+          "description": "Total number of views of the user’s channel.. . NOTE: This field has been deprecated. For information, see Get Users API endpoint – “view_count” deprecation. The response continues to include the field; however, it contains stale data. You should stop displaying this data at your earliest convenience."
         },
         {
           "parameter": "email",

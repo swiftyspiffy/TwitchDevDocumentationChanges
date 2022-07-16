@@ -1665,6 +1665,54 @@
       "response_fields": []
     },
     {
+      "title": "Send Chat Announcement",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/chat/announcements"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Get User Chat Color",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/color"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Update User Chat Color",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "PUT",
+        "url": "https://api.twitch.tv/helix/chat/color"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
       "title": "Create Clip",
       "authentication": "clips:edit",
       "pagination_support": {
@@ -3716,11 +3764,6 @@
         {
           "parameter": "\n      ",
           "type": "String",
-          "description": "The ID of the broadcaster that owns the list of blocked terms."
-        },
-        {
-          "parameter": "\n      ",
-          "type": "String",
           "description": "The ID of the blocked term you want to delete."
         },
         {
@@ -3731,6 +3774,38 @@
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Delete Chat Messages",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/moderation/chat"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that owns the chat room to remove messages from."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID in the OAuth token. If the broadcaster wants to remove messages themselves (instead of having the moderator do it), set this parameter to the broadcaster’s ID, too."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "No",
+          "description": "The ID of the message to remove. The id tag in the PRIVMSG contains the message’s ID (see PRIVMSG Tags). Restrictions:The message must have been created within the last 6 hours.The message must not belong to the broadcaster.If not specified, the request removes all messages in the broadcaster’s chat room."
+        }
+      ],
       "response_fields": []
     },
     {
@@ -3791,6 +3866,151 @@
           "description": "A cursor value, to be used in subsequent requests to specify the starting point of the next set of results."
         }
       ]
+    },
+    {
+      "title": "Add Channel Moderator",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/moderation/moderators"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that owns the chat room."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the user to add as a moderator in the broadcaster’s chat room."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Remove Channel Moderator",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/moderation/moderators"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that owns the chat room."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the user to remove as a moderator from the broadcaster’s chat room."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Get VIPs",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/channels/vips"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "No",
+          "description": "Filters the list for specific VIPs. To specify more than one user, include the user_id parameter for each user to get. For example, &amp;user_id=1234&amp;user_id=5678. The maximum number of IDs that you may specify is 100. Ignores those users in the list that aren’t VIPs."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster whose list of VIPs you want to get."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "No",
+          "description": "The maximum number of items to return per page in the response. The minimum page size is 1 item per page and the maximum is 100. The default is 20."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "No",
+          "description": "The cursor used to get the next page of results. The Pagination object in the response contains the cursor’s value. Read more."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Add Channel VIP",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/channels/vips"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the user to add as a VIP in the broadcaster’s chat room."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that’s granting VIP status to the user."
+        }
+      ],
+      "response_fields": []
+    },
+    {
+      "title": "Remove Channel VIP",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "DELETE",
+        "url": "https://api.twitch.tv/helix/channels/vips"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the user to remove as a VIP from the broadcaster’s chat room."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that’s removing VIP status from the user."
+        }
+      ],
+      "response_fields": []
     },
     {
       "title": "Get Polls",
@@ -6774,6 +6994,22 @@
           "description": "ID of the video(s) to be deleted. Limit: 5."
         }
       ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
+      "title": "Send Whisper",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "POST",
+        "url": "https://api.twitch.tv/helix/whispers"
+      },
+      "required_query_parameters": [],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": []

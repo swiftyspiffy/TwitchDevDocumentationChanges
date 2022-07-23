@@ -1840,7 +1840,7 @@
         {
           "parameter": "video_id",
           "type": "string",
-          "description": "ID of the video from which the clip was created. This field contains an empty string if the video is no longer available."
+          "description": "ID of the video from which the clip was created. This field contains an empty string if the video is not available."
         },
         {
           "parameter": "game_id",
@@ -1880,7 +1880,7 @@
         {
           "parameter": "vod_offset",
           "type": "int",
-          "description": "The zero-based offset, in seconds, to where the clip starts in the video (VOD) or stream."
+          "description": "The zero-based offset, in seconds, to where the clip starts in the video (VOD). Is null if the video is not available or hasn’t been created yet from the live stream. See video_id.. . Note that there’s a delay between when a clip is created during a broadcast and when the offset is set. During the delay period, vod_offset is null. The delay is indeterminant but is typically minutes long."
         },
         {
           "parameter": "pagination",

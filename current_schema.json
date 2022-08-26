@@ -1335,6 +1335,114 @@
       ]
     },
     {
+      "title": "Get Charity Campaign",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/charity/campaigns"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [
+        {
+          "parameter": "\n      ",
+          "type": "Yes",
+          "description": "The ID of the broadcaster that’s actively running a charity campaign."
+        }
+      ],
+      "response_fields": [
+        {
+          "parameter": "\n      ",
+          "type": "Object[]",
+          "description": "A list that contains the charity campaign that the broadcaster is currently running. The array is empty if the broadcaster is not running a charity campaign; the campaign information is no longer available as soon as the campaign ends."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "An ID that uniquely identifies the charity campaign."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "An ID that uniquely identifies the broadcaster that’s running the campaign."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The broadcaster’s login name."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The broadcaster’s display name."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The charity’s name."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "A description of the charity."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "A URL to an image of the charity’s logo. The image’s type is PNG and its size is 100px X 100px."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "A URL to the charity’s website."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Object",
+          "description": "An object that contains the current amount of donations that the campaign has received."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The monetary amount. The amount is specified in the currency’s minor unit. For example, the minor units for USD is cents, so if the amount is $5.50 USD, value is set to 550."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The number of decimal places used by the currency. For example, USD uses two decimal places. Use this number to translate value from minor units to major units by using the formula:. . value / 10^decimal_places"
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The ISO-4217 three-letter currency code that identifies the type of currency in value."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Object",
+          "description": "An object that contains the amount of money that the campaign is trying to raise. This field may be null if the broadcaster has not defined a target goal."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The monetary amount. The amount is specified in the currency’s minor unit. For example, the minor units for USD is cents, so if the amount is $5.50 USD, value is set to 550."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The number of decimal places used by the currency. For example, USD uses two decimal places. Use this number to translate value from minor units to major units by using the formula:. . value / 10^decimal_places"
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The ISO-4217 three-letter currency code that identifies the type of currency in value."
+        }
+      ]
+    },
+    {
       "title": "Get Global Emotes",
       "authentication": "",
       "pagination_support": {

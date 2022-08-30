@@ -1242,99 +1242,6 @@
       ]
     },
     {
-      "title": "Get Channel Emotes",
-      "authentication": "",
-      "pagination_support": {
-        "forward": false,
-        "reverse": false
-      },
-      "url": {
-        "method": "GET",
-        "url": "https://api.twitch.tv/helix/chat/emotes"
-      },
-      "required_query_parameters": [
-        {
-          "parameter": "broadcaster_id",
-          "type": "string",
-          "description": "An ID that identifies the broadcaster to get the emotes from."
-        }
-      ],
-      "required_body_parameters": [],
-      "optional_query_parameters": [],
-      "response_fields": [
-        {
-          "parameter": "data",
-          "type": "object array",
-          "description": "A list of emotes that the specified channel created."
-        },
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "An ID that identifies the emote."
-        },
-        {
-          "parameter": "name",
-          "type": "string",
-          "description": "The name of the emote. This is the name that viewers type in the chat window to get the emote to appear."
-        },
-        {
-          "parameter": "images",
-          "type": "object",
-          "description": "Contains the image URLs for the emote. These image URLs will always provide a static (i.e., non-animated) emote image with a light background. NOTE: The preference is for you to use the templated URL in the template field to fetch the image instead of using these URLs."
-        },
-        {
-          "parameter": "url_1x",
-          "type": "string",
-          "description": "A URL to the small version (28px x 28px) of the emote."
-        },
-        {
-          "parameter": "url_2x",
-          "type": "string",
-          "description": "A URL to the medium version (56px x 56px) of the emote."
-        },
-        {
-          "parameter": "url_4x",
-          "type": "string",
-          "description": "A URL to the large version (112px x 112px) of the emote."
-        },
-        {
-          "parameter": "tier",
-          "type": "string",
-          "description": "The subscriber tier at which the emote is unlocked. This field contains the tier information only if emote_type is set to subscriptions, otherwise, it’s an empty string."
-        },
-        {
-          "parameter": "emote_type",
-          "type": "string",
-          "description": "The type of emote. The possible values are: bitstier &mdash; Indicates a custom Bits tier emote.follower &mdash; Indicates a custom follower emote.subscriptions &mdash; Indicates a custom subscriber emote."
-        },
-        {
-          "parameter": "emote_set_id",
-          "type": "string",
-          "description": "An ID that identifies the emote set that the emote belongs to."
-        },
-        {
-          "parameter": "format",
-          "type": "string array",
-          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.static &mdash; Indicates a static PNG file is available for this emote."
-        },
-        {
-          "parameter": "scale",
-          "type": "string array",
-          "description": "The sizes that the emote is available in. For example, if the emote is available in small and medium sizes, the array contains 1.0 and 2.0. Possible sizes are: 1.0 &mdash; A small version (28px x 28px) is available.2.0 &mdash; A medium version (56px x 56px) is available.3.0 &mdash; A large version (112px x 112px) is available."
-        },
-        {
-          "parameter": "theme_mode",
-          "type": "string array",
-          "description": "The background themes that the emote is available in. Possible themes are: darklight"
-        },
-        {
-          "parameter": "template",
-          "type": "string",
-          "description": "A templated URL. Use the values from id, format, scale, and theme_mode to replace the like-named placeholder strings in the templated URL to create a CDN (content delivery network) URL that you use to fetch the emote. For information about what the template looks like and how to use it to fetch emotes, see Emote CDN URL format."
-        }
-      ]
-    },
-    {
       "title": "Get Charity Campaign",
       "authentication": "",
       "pagination_support": {
@@ -1439,6 +1346,99 @@
           "parameter": "\n      ",
           "type": "String",
           "description": "The ISO-4217 three-letter currency code that identifies the type of currency in value."
+        }
+      ]
+    },
+    {
+      "title": "Get Channel Emotes",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/emotes"
+      },
+      "required_query_parameters": [
+        {
+          "parameter": "broadcaster_id",
+          "type": "string",
+          "description": "An ID that identifies the broadcaster to get the emotes from."
+        }
+      ],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "object array",
+          "description": "A list of emotes that the specified channel created."
+        },
+        {
+          "parameter": "id",
+          "type": "string",
+          "description": "An ID that identifies the emote."
+        },
+        {
+          "parameter": "name",
+          "type": "string",
+          "description": "The name of the emote. This is the name that viewers type in the chat window to get the emote to appear."
+        },
+        {
+          "parameter": "images",
+          "type": "object",
+          "description": "Contains the image URLs for the emote. These image URLs will always provide a static (i.e., non-animated) emote image with a light background. NOTE: The preference is for you to use the templated URL in the template field to fetch the image instead of using these URLs."
+        },
+        {
+          "parameter": "url_1x",
+          "type": "string",
+          "description": "A URL to the small version (28px x 28px) of the emote."
+        },
+        {
+          "parameter": "url_2x",
+          "type": "string",
+          "description": "A URL to the medium version (56px x 56px) of the emote."
+        },
+        {
+          "parameter": "url_4x",
+          "type": "string",
+          "description": "A URL to the large version (112px x 112px) of the emote."
+        },
+        {
+          "parameter": "tier",
+          "type": "string",
+          "description": "The subscriber tier at which the emote is unlocked. This field contains the tier information only if emote_type is set to subscriptions, otherwise, it’s an empty string."
+        },
+        {
+          "parameter": "emote_type",
+          "type": "string",
+          "description": "The type of emote. The possible values are: bitstier &mdash; Indicates a custom Bits tier emote.follower &mdash; Indicates a custom follower emote.subscriptions &mdash; Indicates a custom subscriber emote."
+        },
+        {
+          "parameter": "emote_set_id",
+          "type": "string",
+          "description": "An ID that identifies the emote set that the emote belongs to."
+        },
+        {
+          "parameter": "format",
+          "type": "string array",
+          "description": "The formats that the emote is available in. For example, if the emote is available only as a static PNG, the array contains only static. But if it’s available as a static PNG and an animated GIF, the array contains static and animated. The possible formats are: animated &mdash; Indicates an animated GIF is available for this emote.static &mdash; Indicates a static PNG file is available for this emote."
+        },
+        {
+          "parameter": "scale",
+          "type": "string array",
+          "description": "The sizes that the emote is available in. For example, if the emote is available in small and medium sizes, the array contains 1.0 and 2.0. Possible sizes are: 1.0 &mdash; A small version (28px x 28px) is available.2.0 &mdash; A medium version (56px x 56px) is available.3.0 &mdash; A large version (112px x 112px) is available."
+        },
+        {
+          "parameter": "theme_mode",
+          "type": "string array",
+          "description": "The background themes that the emote is available in. Possible themes are: darklight"
+        },
+        {
+          "parameter": "template",
+          "type": "string",
+          "description": "A templated URL. Use the values from id, format, scale, and theme_mode to replace the like-named placeholder strings in the templated URL to create a CDN (content delivery network) URL that you use to fetch the emote. For information about what the template looks like and how to use it to fetch emotes, see Emote CDN URL format."
         }
       ]
     },

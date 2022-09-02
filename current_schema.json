@@ -4337,17 +4337,17 @@
         {
           "parameter": "choice.bits_votes",
           "type": "integer",
-          "description": "Number of votes received via Bits."
+          "description": "Not used; will be set to 0."
         },
         {
           "parameter": "bits_voting_enabled",
           "type": "boolean",
-          "description": "Indicates if Bits can be used for voting."
+          "description": "Not used; will be set to false."
         },
         {
           "parameter": "bits_per_vote",
           "type": "integer",
-          "description": "Number of Bits required to vote once with Bits."
+          "description": "Not used; will be set to 0."
         },
         {
           "parameter": "channel_points_voting_enabled",

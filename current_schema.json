@@ -643,7 +643,7 @@
         {
           "parameter": "title",
           "type": "string",
-          "description": "The title of the reward."
+          "description": "The title of the reward. The title may contain a maximum of 45 characters and it must be unique amongst all of the broadcaster’s custom rewards."
         },
         {
           "parameter": "cost",
@@ -1622,7 +1622,7 @@
         {
           "parameter": "broadcaster_id",
           "type": "string",
-          "description": "The broadcaster whose chat badges are being requested. Provided broadcaster_id must match the user_id in the user OAuth token.. . Maximum: 1"
+          "description": "The ID of the broadcaster whose chat badges you want to get."
         }
       ],
       "required_body_parameters": [],
@@ -1760,12 +1760,12 @@
         {
           "parameter": "\n      ",
           "type": "String",
-          "description": "The ID of the broadcaster whose chat settings you want to update. This ID must match the user ID associated with the user OAuth token."
+          "description": "The ID of the broadcaster whose chat settings you want to update."
         },
         {
           "parameter": "\n      ",
           "type": "String",
-          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID associated with the user OAuth token.. . If the broadcaster wants to update their own settings (instead of having the moderator do it), set this parameter to the broadcaster’s ID, too."
+          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID associated with the user OAuth token.. . If the broadcaster is making the update, also set this parameter to the broadcaster’s ID."
         }
       ],
       "required_body_parameters": [],
@@ -2352,7 +2352,7 @@
         {
           "parameter": "message",
           "type": "string",
-          "description": "String-encoded JSON message to be sent."
+          "description": "String-encoded JSON message to be sent. The message is limited to a maximum of 5 KB."
         }
       ],
       "optional_query_parameters": [],
@@ -3662,7 +3662,7 @@
         {
           "parameter": "user_id",
           "type": "string",
-          "description": "Filters the results and only returns a status object for users who are banned in the channel and have a matching user_id.. . Multiple user IDs can be provided, e.g. /moderation/banned/events?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100."
+          "description": "Filters the results and only returns a status object for users who are banned in the channel and have a matching user_id.. . Multiple user IDs can be provided, e.g. /moderation/banned?broadcaster_id=1&amp;user_id=2&amp;user_id=3. . Maximum: 100."
         },
         {
           "parameter": "first",
@@ -3882,7 +3882,7 @@
         {
           "parameter": "\n      ",
           "type": "String",
-          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID associated with the user OAuth token.. . If the broadcaster wants to delete the blocked term (instead of having the moderator do it), set this parameter to the broadcaster’s ID, too."
+          "description": "The ID of the broadcaster or a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID associated with the user OAuth token."
         }
       ],
       "required_body_parameters": [],
@@ -4578,7 +4578,7 @@
         {
           "parameter": "outcome.users",
           "type": "integer",
-          "description": "Number of unique uesrs that chose the outcome."
+          "description": "Number of unique users that chose the outcome."
         },
         {
           "parameter": "outcome.channel_points",
@@ -4591,17 +4591,17 @@
           "description": "Array of users who were the top predictors. null if none."
         },
         {
-          "parameter": "outcome.top_predictors.user.id",
+          "parameter": "outcome.top_predictors.user.user_id",
           "type": "string",
           "description": "ID of the user."
         },
         {
-          "parameter": "outcome.top_predictors.user.name",
+          "parameter": "outcome.top_predictors.user.user_name",
           "type": "string",
           "description": "Display name of the user."
         },
         {
-          "parameter": "outcome.top_predictors.user.login",
+          "parameter": "outcome.top_predictors.user.user_login",
           "type": "string",
           "description": "Login of the user."
         },
@@ -5078,7 +5078,7 @@
           "description": "Game/category name."
         },
         {
-          "parameter": "is_recurring",
+          "parameter": "segment.is_recurring",
           "type": "boolean",
           "description": "Indicates if the scheduled broadcast is recurring weekly."
         },
@@ -5211,7 +5211,7 @@
         {
           "parameter": "is_recurring",
           "type": "boolean",
-          "description": "Indicates if the scheduled broadcast is recurring weekly."
+          "description": "Indicates if the scheduled broadcast is recurring weekly. To create a non-recurring segment, the broadcaster must be a partner or affiliate."
         }
       ],
       "optional_query_parameters": [],
@@ -5262,7 +5262,7 @@
           "description": "Game/category name."
         },
         {
-          "parameter": "is_recurring",
+          "parameter": "segment.is_recurring",
           "type": "boolean",
           "description": "Indicates if the scheduled broadcast is recurring weekly."
         },
@@ -5562,7 +5562,7 @@
         {
           "parameter": "thumbnail_url",
           "type": "string",
-          "description": "Thumbnail URL of the stream. All image URLs have variable width and height. You can replace {width} and {height} with any values to get that size image."
+          "description": "A URL to a thumbnail of the channel’s profile image."
         },
         {
           "parameter": "title",
@@ -5621,7 +5621,7 @@
         {
           "parameter": "\n      ",
           "type": "Integer",
-          "description": "The maximum number of tracks to return for this playlist in the response. The minimum number of tracks is 1 and the maximum is 100. The default is 20."
+          "description": "The maximum number of tracks to return for this playlist in the response. The minimum number of tracks is 1 and the maximum is 50. The default is 20."
         },
         {
           "parameter": "\n      ",
@@ -5649,6 +5649,16 @@
           "parameter": "\n      ",
           "type": "String",
           "description": "The ID of the Soundtrack playlist to get. Specify an ID only if you want to get a single playlist instead of all playlists."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "Integer",
+          "description": "The maximum number of items to return per page in the response. The minimum page size is 1 item per page and the maximum is 50 items per page. The default is 20."
+        },
+        {
+          "parameter": "\n      ",
+          "type": "String",
+          "description": "The cursor used to get the next page of results. The Pagination object in the response contains the cursor’s value. Read more."
         }
       ],
       "response_fields": []
@@ -6189,14 +6199,19 @@
           "description": "Indicates if the subscription is a gift."
         },
         {
+          "parameter": "gifter_id",
+          "type": "string",
+          "description": "The ID of the user that gifted the subscription to the user. The object includes this field only if is_gift is true."
+        },
+        {
           "parameter": "gifter_login",
           "type": "string",
-          "description": "Login of the gifter (if is_gift is true)."
+          "description": "The gifter’s login name. The object includes this field only if is_gift is true."
         },
         {
           "parameter": "gifter_name",
           "type": "string",
-          "description": "Display name of the gifter (if is_gift is true)."
+          "description": "The gifter’s display name. The object includes this field only if is_gift is true."
         },
         {
           "parameter": "tier",
@@ -7109,7 +7124,13 @@
       ],
       "required_body_parameters": [],
       "optional_query_parameters": [],
-      "response_fields": []
+      "response_fields": [
+        {
+          "parameter": "data",
+          "type": "string[]",
+          "description": "An array of IDs of the videos that were deleted."
+        }
+      ]
     },
     {
       "title": "Send Whisper",

@@ -3911,12 +3911,12 @@
         {
           "parameter": "\n      ",
           "type": "Yes",
-          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID in the OAuth token. If the broadcaster wants to remove messages themselves (instead of having the moderator do it), set this parameter to the broadcaster’s ID, too."
+          "description": "The ID of a user that has permission to moderate the broadcaster’s chat room. This ID must match the user ID in the OAuth token. If the broadcaster wants to remove messages themselves, set this parameter to the broadcaster’s ID, too."
         },
         {
           "parameter": "\n      ",
           "type": "No",
-          "description": "The ID of the message to remove. The id tag in the PRIVMSG contains the message’s ID (see PRIVMSG Tags). Restrictions:The message must have been created within the last 6 hours.The message must not belong to the broadcaster.If not specified, the request removes all messages in the broadcaster’s chat room."
+          "description": "The ID of the message to remove. The id tag in the PRIVMSG contains the message’s ID (see PRIVMSG Tags). Restrictions:The message must have been created within the last 6 hours.The message must not belong to the broadcaster.The message must not belong to another moderator.If not specified, the request removes all messages in the broadcaster’s chat room."
         }
       ],
       "response_fields": []

@@ -1350,6 +1350,22 @@
       ]
     },
     {
+      "title": "Get Chatters",
+      "authentication": "",
+      "pagination_support": {
+        "forward": false,
+        "reverse": false
+      },
+      "url": {
+        "method": "GET",
+        "url": "https://api.twitch.tv/helix/chat/chatters"
+      },
+      "required_query_parameters": [],
+      "required_body_parameters": [],
+      "optional_query_parameters": [],
+      "response_fields": []
+    },
+    {
       "title": "Get Channel Emotes",
       "authentication": "",
       "pagination_support": {

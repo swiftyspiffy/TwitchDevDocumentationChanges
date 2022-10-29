@@ -3013,91 +3013,9 @@
         "url": "https://api.twitch.tv/helix/eventsub/subscriptions"
       },
       "required_query_parameters": [],
-      "required_body_parameters": [
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "The type of subscription to create. For a list of subscriptions you can create, see Subscription Types. Set type to the value in the Name column of the Subscription Types table."
-        },
-        {
-          "parameter": "version",
-          "type": "string",
-          "description": "The version of the subscription type used in this request. A subscription type could define one or more object definitions, so you need to specify which definition you’re using."
-        },
-        {
-          "parameter": "condition",
-          "type": "condition",
-          "description": "The parameter values that are specific to the specified subscription type."
-        },
-        {
-          "parameter": "transport",
-          "type": "transport",
-          "description": "The transport details, such as the transport method and callback URL, that you want Twitch to use when sending you notifications."
-        }
-      ],
+      "required_body_parameters": [],
       "optional_query_parameters": [],
-      "response_fields": [
-        {
-          "parameter": "data",
-          "type": "object array",
-          "description": "An array of subscription objects. The array will contain only one element."
-        },
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "An ID that identifies the subscription."
-        },
-        {
-          "parameter": "status",
-          "type": "string",
-          "description": "The status of the create subscription request. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL. To determine if the subscription moved from pending to another state, send a GET request and use the ID to find the subscription in the list.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "The type of subscription."
-        },
-        {
-          "parameter": "version",
-          "type": "string",
-          "description": "The version of the subscription type."
-        },
-        {
-          "parameter": "condition",
-          "type": "condition",
-          "description": "The parameter values for the subscription type."
-        },
-        {
-          "parameter": "created_at",
-          "type": "string",
-          "description": "The RFC 3339 timestamp indicating when the subscription was created."
-        },
-        {
-          "parameter": "transport",
-          "type": "transport",
-          "description": "The transport details used to send you notifications."
-        },
-        {
-          "parameter": "cost",
-          "type": "integer",
-          "description": "The amount that the subscription counts against your limit. Learn More"
-        },
-        {
-          "parameter": "total",
-          "type": "integer",
-          "description": "The total number of subscriptions you’ve created."
-        },
-        {
-          "parameter": "total_cost",
-          "type": "integer",
-          "description": "The sum of all of your subscription costs. Learn More"
-        },
-        {
-          "parameter": "max_total_cost",
-          "type": "integer",
-          "description": "The maximum total cost that you may incur for all subscriptions you create."
-        }
-      ]
+      "response_fields": []
     },
     {
       "title": "Delete EventSub Subscription",
@@ -3110,13 +3028,7 @@
         "method": "DELETE",
         "url": "https://api.twitch.tv/helix/eventsub/subscriptions"
       },
-      "required_query_parameters": [
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "The ID of the subscription to delete. This is the ID that Create Eventsub Subscription returns."
-        }
-      ],
+      "required_query_parameters": [],
       "required_body_parameters": [],
       "optional_query_parameters": [],
       "response_fields": []
@@ -3134,100 +3046,8 @@
       },
       "required_query_parameters": [],
       "required_body_parameters": [],
-      "optional_query_parameters": [
-        {
-          "parameter": "status",
-          "type": "string",
-          "description": "Filter subscriptions by its status. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "Filter subscriptions by subscription type (e.g., channel.update). For a list of subscription types, see Subscription Types."
-        },
-        {
-          "parameter": "user_id",
-          "type": "string",
-          "description": "Filter subscriptions by user ID. The response contains subscriptions where the user ID matches a user ID that you specified in the Condition object when you created the subscription."
-        },
-        {
-          "parameter": "after",
-          "type": "string",
-          "description": "The cursor used to get the next page of results. The pagination object in the response contains the cursor’s value."
-        }
-      ],
-      "response_fields": [
-        {
-          "parameter": "data",
-          "type": "object array",
-          "description": "An array of subscription objects. The list is empty if you don’t have any subscriptions."
-        },
-        {
-          "parameter": "id",
-          "type": "string",
-          "description": "An ID that identifies the subscription."
-        },
-        {
-          "parameter": "status",
-          "type": "string",
-          "description": "The subscription’s status. Possible values are: enabled &mdash; The subscription is enabled.webhook_callback_verification_pending &mdash; The subscription is pending verification of the specified callback URL.webhook_callback_verification_failed &mdash; The specified callback URL failed verification.notification_failures_exceeded &mdash; The notification delivery failure rate was too high.authorization_revoked &mdash; The authorization was revoked for one or more users specified in the Condition object.user_removed &mdash; One of the users specified in the Condition object was removed."
-        },
-        {
-          "parameter": "type",
-          "type": "string",
-          "description": "The subscription’s type."
-        },
-        {
-          "parameter": "version",
-          "type": "string",
-          "description": "The version of the subscription type."
-        },
-        {
-          "parameter": "condition",
-          "type": "condition",
-          "description": "The subscription’s parameter values."
-        },
-        {
-          "parameter": "created_at",
-          "type": "string",
-          "description": "The RFC 3339 timestamp indicating when the subscription was created."
-        },
-        {
-          "parameter": "transport",
-          "type": "transport",
-          "description": "The transport details used to send you notifications."
-        },
-        {
-          "parameter": "cost",
-          "type": "integer",
-          "description": "The amount that the subscription counts against your limit. Learn More"
-        },
-        {
-          "parameter": "total",
-          "type": "integer",
-          "description": "The total number of subscriptions you’ve created."
-        },
-        {
-          "parameter": "total_cost",
-          "type": "integer",
-          "description": "The sum of all of your subscription costs. Learn More"
-        },
-        {
-          "parameter": "max_total_cost",
-          "type": "integer",
-          "description": "The maximum total cost that you’re allowed to incur for all subscriptions you create."
-        },
-        {
-          "parameter": "pagination",
-          "type": "object",
-          "description": "An object that contains the cursor used to get the next page of subscriptions. The object is empty if the list of subscriptions fits on one page or there are no more pages to get. The number of subscriptions returned per page is undertermined."
-        },
-        {
-          "parameter": "cursor",
-          "type": "string",
-          "description": "The cursor value that you set the after query parameter to."
-        }
-      ]
+      "optional_query_parameters": [],
+      "response_fields": []
     },
     {
       "title": "Get Top Games",

@@ -3003,7 +3003,7 @@
     },
     {
       "title": "Create EventSub Subscription",
-      "authentication": "channel.subscribe",
+      "authentication": "webhooks to receive events",
       "pagination_support": {
         "forward": false,
         "reverse": false
